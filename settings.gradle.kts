@@ -8,4 +8,3 @@
  */
 
 rootProject.name = "jtrs"
-include("app")
