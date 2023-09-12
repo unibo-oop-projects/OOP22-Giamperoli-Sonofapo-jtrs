@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class JTetrisTest {
     @Test void appHasAGreeting() {
-        JTetrisTest classUnderTest = new App();
+        JTetris classUnderTest = new JTetris();
         assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
     }
 }
