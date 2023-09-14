@@ -6,9 +6,9 @@ import it.unibo.jtrs.utils.Pair;
 
 public interface Tetromino {
 	
-	public boolean rotate();
+	public void rotate();
 
-	public boolean translate(int x, int y);
+	public void translate(int x, int y);
 
 	public Set<Pair<Integer, Integer>> getComponents();
 }
