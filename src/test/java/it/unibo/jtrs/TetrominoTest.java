@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Set;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.unibo.jtrs.model.api.Tetromino;
@@ -17,7 +17,7 @@ public class TetrominoTest {
 	private final Set<Pair<Integer, Integer>> initialComponents =
 		Set.of(new Pair<>(0,0), new Pair<>(0,1), new Pair<>(1,1), new Pair<>(2,1));
 
-	@BeforeAll
+	@BeforeEach
 	public void init() {
 		tetromino = new TetrominoImpl(initialComponents);
 	}
