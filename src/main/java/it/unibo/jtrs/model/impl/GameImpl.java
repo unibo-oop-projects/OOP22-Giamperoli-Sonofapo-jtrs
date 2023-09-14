@@ -1,25 +1,36 @@
 package it.unibo.jtrs.model.impl;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import it.unibo.jtrs.model.api.Game;
 import it.unibo.jtrs.model.api.Tetromino;
-import it.unibo.jtrs.utils.Pair;    
 
-public class GameImpl implements Game{
+public class GameImpl implements Game {
 
-    private Map<Pair<Integer, Integer>, Tetromino> pieces;
+    private List<Tetromino> pieces;
+    private Tetromino current;
 
     public GameImpl() {
-        this.pieces = new HashMap<>();
+        this.pieces = new ArrayList<>();
+    }
+
+    public void addPiece() {
+        this.pieces.add(current);
+        this.current = null; //it will get the next piece
     }
 
     @Override
     public List<Tetromino> getPieces() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPieces'");
+        return List.copyOf(this.pieces);
+    }
+
+    public boolean fallDown() {
+        return false;
+    }
+
+    public boolean checkCollision() {
+        return false;
     }
 
     @Override

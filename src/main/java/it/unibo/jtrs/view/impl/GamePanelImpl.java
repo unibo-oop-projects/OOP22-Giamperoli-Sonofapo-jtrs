@@ -22,8 +22,9 @@ public class GamePanelImpl extends JFrame implements GamePanel {
         this.setVisible(true);
 
         JPanel background = new JPanel(new GridLayout(1,2));
+        background.add(new ScorePanel(this.application.getScoreController()));
+        
         this.getContentPane().add(background);
-
     }
 
     @Override
