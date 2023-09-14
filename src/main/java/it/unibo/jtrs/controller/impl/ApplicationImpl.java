@@ -11,6 +11,7 @@ public class ApplicationImpl implements Application {
     private GameEngine engine;
 
     public ApplicationImpl() {
+        //TODO this is not the entire game panel but only the grid
         this.panel = new GamePanelImpl(1000, 1000);
     }
 
