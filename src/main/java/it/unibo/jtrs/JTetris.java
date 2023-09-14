@@ -3,12 +3,11 @@
  */
 package it.unibo.jtrs;
 
+import it.unibo.jtrs.controller.impl.ApplicationImpl;
+
 public class JTetris {
-    public String getGreeting() {
-        return "Hello World!";
-    }
 
     public static void main(String[] args) {
-        System.out.println(new JTetris().getGreeting());
+        new ApplicationImpl();
     }
 }
