@@ -38,15 +38,19 @@ public class TetrominoImpl implements Tetromino {
 		return Set.copyOf(this.compontents);
 	}
 
+	/**
+	 * Evaluate the Tetromino's pivot point at the current state. This is found
+	 * as a rectangle centroid.
+	 * 
+	 * @return the pivot point
+	 */
 	private Pair<Integer, Integer> center() {
-		int maxX = this.compontents.stream().mapToInt(Pair::getX).max().getAsInt();
-		int minX = this.compontents.stream().mapToInt(Pair::getX).min().getAsInt();
-		int maxY = this.compontents.stream().mapToInt(Pair::getY).max().getAsInt();
-		int minY = this.compontents.stream().mapToInt(Pair::getY).min().getAsInt();
+		var x = this.compontents.stream().collect(Collectors.summarizingInt(Pair::getX));
+		var y = this.compontents.stream().collect(Collectors.summarizingInt(Pair::getY));
+		int wh = (int) Math.ceil((x.getMax() - x.getMin()) / 2.0);
+		int hh = (int) Math.ceil((y.getMax() - y.getMin()) / 2.0);
 
-		int wh = (int) Math.ceil((maxX - minX) / 2.0);
-		int hh = (int) Math.ceil((maxY - minY) / 2.0);
-		return new Pair<>(minX + wh, minY + hh);
+		return new Pair<>(x.getMin() + wh, y.getMin() + hh);
 	}
 	
 }
