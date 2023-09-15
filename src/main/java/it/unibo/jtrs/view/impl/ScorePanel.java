@@ -16,7 +16,7 @@ public class ScorePanel extends SubPanel<Integer> {
 
 	@Override
 	public void update() {
-		var res = this.controller.update();
+		var res = this.controller.update(null);
 		this.score.setText("Punteggio: " + res);
 	}
 	
