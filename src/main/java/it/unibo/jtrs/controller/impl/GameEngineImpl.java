@@ -14,10 +14,10 @@ public class GameEngineImpl implements GameEngine {
     @Override
     public void gameLoop() {
         //TODO add condition
-        while (true) {
+        //while (true) {
             this.application.update();
             this.application.redraw();
-        }
+        //}
 
         //System.exit(0);
 
