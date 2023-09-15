@@ -28,4 +28,6 @@ public interface Tetromino {
 	 * @return the set of coordinates
 	 */
 	public Set<Pair<Integer, Integer>> getComponents();
+
+	public String getColor();
 }

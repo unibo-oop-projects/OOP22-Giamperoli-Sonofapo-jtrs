@@ -11,9 +11,11 @@ public class TetrominoImpl implements Tetromino {
 
 	private Set<Pair<Integer, Integer>> compontents;
 	private Pair<Integer, Integer> pivot;
+	private final String color;
 
-	public TetrominoImpl(Set<Pair<Integer, Integer>> initialComponents) {
+	public TetrominoImpl(Set<Pair<Integer, Integer>> initialComponents, String color) {
 		this.compontents = new HashSet<>(initialComponents);
+		this.color = color;
 		this.pivot = this.center();
 	}
 
@@ -51,6 +53,11 @@ public class TetrominoImpl implements Tetromino {
 		int hh = (int) Math.ceil((y.getMax() - y.getMin()) / 2.0);
 
 		return new Pair<>(x.getMin() + wh, y.getMin() + hh);
+	}
+
+	@Override
+	public String getColor() {
+		return this.color;
 	}
 	
 }

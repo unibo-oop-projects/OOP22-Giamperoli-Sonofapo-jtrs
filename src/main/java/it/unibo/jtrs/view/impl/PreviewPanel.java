@@ -1,5 +1,8 @@
 package it.unibo.jtrs.view.impl;
 
+import static it.unibo.jtrs.utils.Constants.PREVIEW_ROWS;
+import static it.unibo.jtrs.utils.Constants.PREVIEW_COLS;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.HashMap;
@@ -19,7 +22,7 @@ public class PreviewPanel extends SubPanel<Tetromino> {
 	public PreviewPanel(Controller<Tetromino> controller) {
 		super(controller);
 
-		this.setLayout(new GridLayout(6, 6));
+		this.setLayout(new GridLayout(PREVIEW_ROWS, PREVIEW_COLS));
 		this.initalize();
 		this.update();
 		this.setVisible(true);
@@ -28,14 +31,15 @@ public class PreviewPanel extends SubPanel<Tetromino> {
 	@Override
 	public void update() {
 		Tetromino t = this.controller.update(null);
+		Color color = Color.decode(t.getColor());
 		this.cells.forEach((k, v) -> {
-			v.setBackground(t.getComponents().contains(k) ? Color.RED : Color.GRAY);
+			v.setBackground(t.getComponents().contains(k) ? color : Color.GRAY);
 		});
 	}
 
 	private void initalize() {
-		for (int x = 0; x < 6; x++) {
-			for (int y = 0; y < 6; y++) {
+		for (int x = 0; x < PREVIEW_ROWS; x++) {
+			for (int y = 0; y < PREVIEW_COLS; y++) {
 				var lbl = new JLabel();
 				lbl.setOpaque(true);
 				this.add(lbl);

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.model.impl.TetrominoImpl;
 import it.unibo.jtrs.utils.Pair;
+import it.unibo.jtrs.utils.TetrominoData;
 
 public class TetrominoTest {
 
@@ -19,7 +20,7 @@ public class TetrominoTest {
 
 	@BeforeEach
 	public void init() {
-		tetromino = new TetrominoImpl(initialComponents);
+		tetromino = new TetrominoImpl(initialComponents, TetrominoData.O_COLOR);
 	}
 
 	@Test

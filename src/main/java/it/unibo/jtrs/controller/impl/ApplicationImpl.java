@@ -6,7 +6,7 @@ import it.unibo.jtrs.controller.api.Application;
 import it.unibo.jtrs.controller.api.Controller;
 import it.unibo.jtrs.controller.api.GameEngine;
 import it.unibo.jtrs.model.api.Tetromino;
-import it.unibo.jtrs.utils.Costants;
+import it.unibo.jtrs.utils.Constants;
 import it.unibo.jtrs.view.impl.GamePanel;
 
 public class ApplicationImpl implements Application {
@@ -23,7 +23,7 @@ public class ApplicationImpl implements Application {
         this.previewController = new PreviewController();
         this.piecesController = null;
 
-        this.panel = new GamePanel(Costants.FRAME_WIDTH, Costants.FRAME_HEIGHT, this);
+        this.panel = new GamePanel(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, this);
         this.engine.gameLoop();
     }
 
