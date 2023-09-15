@@ -2,9 +2,13 @@ package it.unibo.jtrs.controller.api;
 
 import it.unibo.jtrs.view.api.SubPanel;
 
-public interface Controller<X> {
-	
-	public X update(X data);
+public abstract class Controller {
 
-	public SubPanel<X> getView();
+	protected SubPanel view;
+	
+	public abstract <X> X getStatus();
+
+	public SubPanel getView() {
+		return this.view;
+	}
 }
