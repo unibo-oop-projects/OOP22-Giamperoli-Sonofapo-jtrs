@@ -61,11 +61,11 @@ public class TetrominoData {
 	/**
 	 * T piece color
 	 */
-	public static final String T_COLOR = "FF00FF";
+	public static final String T_COLOR = "#FF00FF";
 	/**
 	 * Z piece color
 	 */
-	public static final String Z_COLOR = "FF0000";
+	public static final String Z_COLOR = "#FF0000";
 	/**
 	 * S piece color
 	 */

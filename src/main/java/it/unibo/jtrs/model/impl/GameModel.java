@@ -3,17 +3,16 @@ package it.unibo.jtrs.model.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unibo.jtrs.model.api.Game;
 import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.model.api.TetrominoFactory;
 
-public class GameImpl implements Game {
+public class GameModel {
 
     private List<Tetromino> pieces;
     private Tetromino current;
     private TetrominoFactory factory;
 
-    public GameImpl() {
+    public GameModel() {
         this.pieces = new ArrayList<>();
         this.factory = null;
     }
@@ -23,7 +22,6 @@ public class GameImpl implements Game {
         this.current = this.factory.getRandomTetromino();
     }
 
-    @Override
     public List<Tetromino> getPieces() {
         return List.copyOf(this.pieces);
     }
@@ -39,7 +37,6 @@ public class GameImpl implements Game {
         return false;
     }
 
-    @Override
     public boolean isOver() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'isOver'");
