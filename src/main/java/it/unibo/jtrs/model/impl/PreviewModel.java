@@ -1,20 +1,14 @@
 package it.unibo.jtrs.model.impl;
 
-import it.unibo.jtrs.model.api.Model;
 import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.model.api.TetrominoFactory;
 
-public class PreviewModel implements Model<Tetromino> {
+public class PreviewModel {
 
 	TetrominoFactory factory = new TetrominoFactoryImpl();
 
-	@Override
-	public Tetromino get() {
+	public Tetromino next() {
 		return factory.getRandomTetromino();
-	}
-
-	@Override
-	public void set(Tetromino data) {
 	}
 	
 }
