@@ -12,13 +12,9 @@ import it.unibo.jtrs.utils.Pair;
 public class TetrominoFactoryImpl implements TetrominoFactory {
 
 	private List<Tetromino> bag;
-	private final int width;
-	private final int height;
 
-	public TetrominoFactoryImpl(int width, int height) {
-		this.width = width;
-		this.height = height;	
-		this.bag = this.initialize();	
+	public TetrominoFactoryImpl() {
+		this.bag = this.initialize();
 	}
 
 	private List<Tetromino> initialize() {
@@ -30,11 +26,7 @@ public class TetrominoFactoryImpl implements TetrominoFactory {
 		Tetromino Z = new TetrominoImpl(Set.of(new Pair<>(0,1), new Pair<>(1,1), new Pair<>(1,0), new Pair<>(2,0)));
 		Tetromino S = new TetrominoImpl(Set.of(new Pair<>(0,0), new Pair<>(1,0), new Pair<>(1,1), new Pair<>(2,1)));
 
-		var list = new ArrayList<>(List.of(O, L, J, I, T, Z, S));
-		for (final Tetromino t : list) {
-			t.translate(this.width/2 - 1, this.height - 2);
-		}
-		return list;
+		return new ArrayList<>(List.of(O, L, J, I, T, Z, S));
 	}
 
 	@Override
