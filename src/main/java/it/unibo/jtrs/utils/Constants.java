@@ -8,7 +8,7 @@ public final class Constants {
     /**
      * Main application window width.
      */
-    public static final int FRAME_WIDTH = 800;
+    public static final int FRAME_WIDTH = 900;
     /**
      * Main application window height.
      */

@@ -15,11 +15,13 @@ public abstract class SubPanel extends JPanel {
     private final Controller controller;
 
     /**
-     * Create a new SubPanel.
+     * Constructor.
      * 
      * @param controller the controller this view should use
      */
     public SubPanel(final Controller controller) {
+        super();
+
         this.controller = controller;
     }
 
