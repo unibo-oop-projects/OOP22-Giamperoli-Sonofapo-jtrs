@@ -41,5 +41,5 @@ public class GameModel {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'isOver'");
     }
-    
+
 }

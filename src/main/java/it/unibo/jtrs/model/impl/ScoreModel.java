@@ -24,7 +24,7 @@ public class ScoreModel {
         this.deletedLines = this.deletedLines + lines;
         this.setLevel();
     }
-    
+
     private void setLevel() {
         this.level = this.deletedLines / ScoreModel.LEVEL_FACTOR;
     }

@@ -7,7 +7,7 @@ import it.unibo.jtrs.controller.impl.ApplicationImpl;
 
 public class JTetris {
 
-	private JTetris() {}
+    private JTetris() {}
 
     public static void main(String[] args) {
         new ApplicationImpl();

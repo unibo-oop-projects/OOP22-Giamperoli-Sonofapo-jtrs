@@ -12,10 +12,10 @@ public class GameController extends Controller {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getStatus'");
     }
-    
+
     public int advance() {
         var linee = 3;
         return linee;
     }
-	
+
 }

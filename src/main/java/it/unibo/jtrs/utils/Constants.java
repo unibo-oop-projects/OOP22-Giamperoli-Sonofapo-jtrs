@@ -5,32 +5,32 @@ package it.unibo.jtrs.utils;
  */
 public class Constants {
 
-	// prevents instantiation
-	private Constants() {} 
+    // prevents instantiation
+    private Constants() {}
 
-	/**
-	 * Main application window width.
-	 */
-	public static final int FRAME_WIDTH = 800;
-	/**
-	 * Main application window height.
-	 */
-	public static final int FRAME_HEIGHT = 900;
-	/**
-	 * Gameboard vertical cells.
-	 */
-	public static final int GRID_ROWS = 20;
-	/**
-	 * Gameboard horizontal cells.
-	 */
-	public static final int GRID_COLS = 10;
-	/**
-	 * Preview panel vertical cells.
-	 */
-	public static final int PREVIEW_ROWS = 5;
-	/**
-	 * Preview panel horizontal cells.
-	 */
-	public static final int PREVIEW_COLS = 5;
+    /**
+     * Main application window width.
+     */
+    public static final int FRAME_WIDTH = 800;
+    /**
+     * Main application window height.
+     */
+    public static final int FRAME_HEIGHT = 900;
+    /**
+     * Gameboard vertical cells.
+     */
+    public static final int GRID_ROWS = 20;
+    /**
+     * Gameboard horizontal cells.
+     */
+    public static final int GRID_COLS = 10;
+    /**
+     * Preview panel vertical cells.
+     */
+    public static final int PREVIEW_ROWS = 5;
+    /**
+     * Preview panel horizontal cells.
+     */
+    public static final int PREVIEW_COLS = 5;
 
 }

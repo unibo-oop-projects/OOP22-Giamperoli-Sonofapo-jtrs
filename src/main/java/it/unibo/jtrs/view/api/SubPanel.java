@@ -9,21 +9,21 @@ import it.unibo.jtrs.controller.api.Controller;
  */
 public abstract class SubPanel extends JPanel {
 
-	/**
-	 * The controller this view uses to perform its updates.
-	 */
-	protected final Controller controller;
+    /**
+     * The controller this view uses to perform its updates.
+     */
+    protected final Controller controller;
 
-	/**
-	 * Create a Sub
-	 * @param controller
-	 */
-	public SubPanel(Controller controller) {
-		this.controller = controller;
-	}
+    /**
+     * Create a Sub
+     * @param controller
+     */
+    public SubPanel(Controller controller) {
+        this.controller = controller;
+    }
 
-	/**
-	 * Updates all the components in this view.
-	 */
-	public abstract void update();
+    /**
+     * Updates all the components in this view.
+     */
+    public abstract void update();
 }

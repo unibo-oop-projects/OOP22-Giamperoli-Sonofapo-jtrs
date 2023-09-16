@@ -12,18 +12,18 @@ import it.unibo.jtrs.view.impl.PreviewPanel;
  */
 public class PreviewController extends Controller {
 
-	private final PreviewModel model = new PreviewModel();
+    private final PreviewModel model = new PreviewModel();
 
-	/**
-	 * Constructor.
-	 */
-	public PreviewController() {
-		this.view = new PreviewPanel(this);
-	}
+    /**
+     * Constructor.
+     */
+    public PreviewController() {
+        this.view = new PreviewPanel(this);
+    }
 
-	@Override
-	public Tetromino getStatus() {
-		return this.model.next();
-	}
-	
+    @Override
+    public Tetromino getStatus() {
+        return this.model.next();
+    }
+
 }

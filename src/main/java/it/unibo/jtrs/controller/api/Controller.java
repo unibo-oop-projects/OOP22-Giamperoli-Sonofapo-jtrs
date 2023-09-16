@@ -8,26 +8,26 @@ import it.unibo.jtrs.view.api.SubPanel;
  */
 public abstract class Controller {
 
-	/**
-	 * The view the controller is operating on.
-	 */
-	protected SubPanel view;
+    /**
+     * The view the controller is operating on.
+     */
+    protected SubPanel view;
 
-	/**
-	 * Returns an object representing the current model status. This method
-	 * should be implemented through covariant return type to narrow down the
-	 * correct object instance.
-	 * 
-	 * @return the status of the model
-	 */
-	public abstract Object getStatus();
+    /**
+     * Returns an object representing the current model status. This method
+     * should be implemented through covariant return type to narrow down the
+     * correct object instance.
+     *
+     * @return the status of the model
+     */
+    public abstract Object getStatus();
 
-	/**
-	 * Return the view this controller is operating on.
-	 * 
-	 * @return the view
-	 */
-	public SubPanel getView() {
-		return this.view;
-	}
+    /**
+     * Return the view this controller is operating on.
+     *
+     * @return the view
+     */
+    public SubPanel getView() {
+        return this.view;
+    }
 }

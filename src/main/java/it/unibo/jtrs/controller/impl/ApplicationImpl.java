@@ -16,7 +16,7 @@ public class ApplicationImpl implements Application {
 
     public ApplicationImpl() {
         this.panel = new GamePanel(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, this);
-		this.engine = new GameEngineImpl(this);
+        this.engine = new GameEngineImpl(this);
         this.engine.gameLoop();
     }
 

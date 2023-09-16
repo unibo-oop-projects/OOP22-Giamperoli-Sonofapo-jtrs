@@ -9,15 +9,15 @@ import it.unibo.jtrs.model.api.TetrominoFactory;
  */
 public class PreviewModel {
 
-	private final TetrominoFactory factory = new TetrominoFactoryImpl();
+    private final TetrominoFactory factory = new TetrominoFactoryImpl();
 
-	/**
-	 * Return the next Tetromino to show during gameplay.
-	 * 
-	 * @return the Tetromino
-	 */
-	public Tetromino next() {
-		return factory.getRandomTetromino();
-	}
-	
+    /**
+     * Return the next Tetromino to show during gameplay.
+     *
+     * @return the Tetromino
+     */
+    public Tetromino next() {
+        return factory.getRandomTetromino();
+    }
+
 }
