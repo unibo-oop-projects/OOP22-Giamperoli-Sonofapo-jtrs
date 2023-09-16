@@ -5,34 +5,34 @@ package it.unibo.jtrs.controller.api;
  */
 public interface Application {
 
-	/**
-	 * Update the application status.
-	 */
+    /**
+     * Update the application status.
+     */
     void update();
 
-	/**
-	 * Redraw the application's graphical elements.
-	 */
+    /**
+     * Redraw the application's graphical elements.
+     */
     void redraw();
 
-	/**
-	 * Return the controller which keeps track of the score.
-	 * 
-	 * @return the score controller
-	 */
+    /**
+     * Return the controller which keeps track of the score.
+     * 
+     * @return the score controller
+     */
     Controller getScoreController();
 
-	/**
-	 * Return the controller which manages the preview (next Tetromino).
-	 * 
-	 * @return the preview controller
-	 */
+    /**
+     * Return the controller which manages the preview (next Tetromino).
+     * 
+     * @return the preview controller
+     */
     Controller getPreviewController();
 
-	/**
-	 * Return the controllr which manages the game logic.
-	 * 
-	 * @return the game controller
-	 */
+    /**
+     * Return the controllr which manages the game logic.
+     * 
+     * @return the game controller
+     */
     Controller getGameController();
 }
