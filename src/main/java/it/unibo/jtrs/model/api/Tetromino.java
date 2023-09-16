@@ -12,7 +12,7 @@ public interface Tetromino {
     /**
      * Rotate the Tetromino 90 degrees clockwise on its center of gravity.
      */
-    public void rotate();
+    void rotate();
 
     /**
      * Translate the Tetromino by a specific amount.
@@ -20,7 +20,7 @@ public interface Tetromino {
      * @param x horizontal translation
      * @param y vertical translation
      */
-    public void translate(final int x, final int y);
+    void translate(int x, int y);
 
     /**
      * Return a set of coordinates indicating where the tetromino is placed evantyally
@@ -30,12 +30,12 @@ public interface Tetromino {
      * @param y vertical displacement
      * @return the set of coordinates
      */
-    public Set<Pair<Integer, Integer>> getComponents(final int x, final int y);
+    Set<Pair<Integer, Integer>> getComponents(int x, int y);
 
     /**
      * Return the color assigend to the Tetromino.
      *
      * @return the color as an hexadecimal string
      */
-    public String getColor();
+    String getColor();
 }

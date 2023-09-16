@@ -11,7 +11,7 @@ public abstract class Controller {
     /**
      * The view the controller is operating on.
      */
-    protected SubPanel view;
+    private SubPanel view;
 
     /**
      * Returns an object representing the current model status. This method
@@ -29,5 +29,14 @@ public abstract class Controller {
      */
     public SubPanel getView() {
         return this.view;
+    }
+
+    /**
+     * Set the current view.
+     * 
+     * @param view the desired view
+     */
+    protected void setView(final SubPanel view) {
+        this.view = view;
     }
 }

@@ -16,6 +16,9 @@ import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.utils.Pair;
 import it.unibo.jtrs.view.api.SubPanel;
 
+/**
+ * The class model a preview panel. This view must show the next Tetromino.
+ */
 public class PreviewPanel extends SubPanel {
 
     Map<Pair<Integer, Integer>, JLabel> cells = new HashMap<>();
@@ -31,7 +34,7 @@ public class PreviewPanel extends SubPanel {
 
     @Override
     public void update() {
-        Tetromino t = ((PreviewController) this.controller).getStatus();
+        Tetromino t = ((PreviewController) this.getController()).getStatus();
         Color color = Color.decode(t.getColor());
         this.cells.forEach((k, v) -> {
             v.setBackground(t.getComponents(0, 0).contains(k) ? color : Color.GRAY);

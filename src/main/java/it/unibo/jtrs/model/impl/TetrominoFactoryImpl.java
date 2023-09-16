@@ -23,15 +23,15 @@ public class TetrominoFactoryImpl implements TetrominoFactory {
     }
 
     private List<Tetromino> initialize() {
-        Tetromino O = new TetrominoImpl(TetrominoData.O_COORD, TetrominoData.O_COLOR);
-        Tetromino L = new TetrominoImpl(TetrominoData.L_COORD, TetrominoData.L_COLOR);
-        Tetromino J = new TetrominoImpl(TetrominoData.J_COORD, TetrominoData.J_COLOR);
-        Tetromino I = new TetrominoImpl(TetrominoData.I_COORD, TetrominoData.I_COLOR);
-        Tetromino T = new TetrominoImpl(TetrominoData.T_COORD, TetrominoData.T_COLOR);
-        Tetromino Z = new TetrominoImpl(TetrominoData.Z_COORD, TetrominoData.Z_COLOR);
-        Tetromino S = new TetrominoImpl(TetrominoData.S_COORD, TetrominoData.S_COLOR);
+        Tetromino oPc = new TetrominoImpl(TetrominoData.O_COORD, TetrominoData.O_COLOR);
+        Tetromino lPc = new TetrominoImpl(TetrominoData.L_COORD, TetrominoData.L_COLOR);
+        Tetromino jPc = new TetrominoImpl(TetrominoData.J_COORD, TetrominoData.J_COLOR);
+        Tetromino iPc = new TetrominoImpl(TetrominoData.I_COORD, TetrominoData.I_COLOR);
+        Tetromino tPc = new TetrominoImpl(TetrominoData.T_COORD, TetrominoData.T_COLOR);
+        Tetromino zPc = new TetrominoImpl(TetrominoData.Z_COORD, TetrominoData.Z_COLOR);
+        Tetromino sPc = new TetrominoImpl(TetrominoData.S_COORD, TetrominoData.S_COLOR);
 
-        return new ArrayList<>(List.of(O, L, J, I, T, Z, S));
+        return new ArrayList<>(List.of(oPc, lPc, jPc, iPc, tPc, zPc, sPc));
     }
 
     @Override

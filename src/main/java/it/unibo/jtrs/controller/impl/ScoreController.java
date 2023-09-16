@@ -10,7 +10,7 @@ public class ScoreController extends Controller {
     private final ScoreModel model = new ScoreModel();
 
     public ScoreController() {
-        this.view = new ScorePanel(this);
+        this.setView(new ScorePanel(this));
     }
 
     @Override
@@ -18,7 +18,7 @@ public class ScoreController extends Controller {
         return this.model.getStatus();
     }
 
-    public void evaluate(int lines) {
+    public void evaluate(final int lines) {
         this.model.evaluate(lines);
     }
 

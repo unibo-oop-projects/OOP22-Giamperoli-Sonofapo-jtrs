@@ -18,7 +18,7 @@ public class PreviewController extends Controller {
      * Constructor.
      */
     public PreviewController() {
-        this.view = new PreviewPanel(this);
+        this.setView(new PreviewPanel(this));
     }
 
     @Override

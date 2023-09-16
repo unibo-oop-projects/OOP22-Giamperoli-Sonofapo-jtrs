@@ -12,13 +12,14 @@ public abstract class SubPanel extends JPanel {
     /**
      * The controller this view uses to perform its updates.
      */
-    protected final Controller controller;
+    private final Controller controller;
 
     /**
-     * Create a Sub
-     * @param controller
+     * Create a new SubPanel.
+     * 
+     * @param controller the controller this view should use
      */
-    public SubPanel(Controller controller) {
+    public SubPanel(final Controller controller) {
         this.controller = controller;
     }
 
@@ -26,4 +27,13 @@ public abstract class SubPanel extends JPanel {
      * Updates all the components in this view.
      */
     public abstract void update();
+
+    /**
+     * Return the current controller.
+     * 
+     * @return the controller
+     */
+    protected Controller getController() {
+        return this.controller;
+    }
 }

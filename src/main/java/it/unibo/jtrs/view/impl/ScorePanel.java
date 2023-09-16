@@ -20,7 +20,7 @@ public class ScorePanel extends SubPanel {
 
     @Override
     public void update() {
-        var res = ((ScoreController) this.controller).getStatus();
+        var res = ((ScoreController) this.getController()).getStatus();
         this.level.setText("Livello: " + res.getX());
         this.score.setText("Punteggio: " + res.getY());
     }

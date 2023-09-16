@@ -5,11 +5,11 @@ package it.unibo.jtrs;
 
 import it.unibo.jtrs.controller.impl.ApplicationImpl;
 
-public class JTetris {
+public final class JTetris {
 
-    private JTetris() {}
+    private JTetris() { }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         new ApplicationImpl();
     }
 }

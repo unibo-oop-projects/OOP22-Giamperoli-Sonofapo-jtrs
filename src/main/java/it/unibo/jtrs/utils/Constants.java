@@ -1,12 +1,12 @@
 package it.unibo.jtrs.utils;
 
 /**
- * A class containing all useful constant used in this application
+ * A class containing all useful constant used in this application.
  */
-public class Constants {
+public final class Constants {
 
     // prevents instantiation
-    private Constants() {}
+    private Constants() { }
 
     /**
      * Main application window width.

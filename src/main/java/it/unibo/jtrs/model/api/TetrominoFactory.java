@@ -15,6 +15,6 @@ public interface TetrominoFactory {
      *
      * @return the random Tetromino
      */
-    public Tetromino getRandomTetromino();
+    Tetromino getRandomTetromino();
 
 }

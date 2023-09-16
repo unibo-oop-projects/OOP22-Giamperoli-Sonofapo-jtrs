@@ -7,7 +7,7 @@ public class GameEngineImpl implements GameEngine {
 
     private final Application application;
 
-    public GameEngineImpl(Application application) {
+    public GameEngineImpl(final Application application) {
         this.application = application;
     }
 
