@@ -23,7 +23,7 @@ public interface Tetromino {
     void translate(int x, int y);
 
     /**
-     * Return a set of coordinates indicating where the tetromino is placed evantyally
+     * Return a set of coordinates indicating where the tetromino is placed eventually
      * ofsetted by an horizontal and vertical amounts, respectivly x and y.
      *
      * @param x horizontal displacement
