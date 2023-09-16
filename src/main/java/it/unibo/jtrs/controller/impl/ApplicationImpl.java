@@ -9,18 +9,14 @@ import it.unibo.jtrs.view.impl.GamePanel;
 public class ApplicationImpl implements Application {
 
     private final GamePanel panel;
-    private GameEngine engine;
-    private final Controller scoreController;
-    private final Controller previewController;
-    private final Controller piecesController;
+    private final GameEngine engine;
+    private final Controller sC = new ScoreController();
+    private final Controller pC = new PreviewController();
+    private final Controller gC = new GameController();
 
     public ApplicationImpl() {
-		this.engine = new GameEngineImpl(this);
-        this.scoreController = new ScoreController();
-        this.previewController = new PreviewController();
-        this.piecesController = new GameController();
-
         this.panel = new GamePanel(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, this);
+		this.engine = new GameEngineImpl(this);
         this.engine.gameLoop();
     }
 
@@ -36,17 +32,17 @@ public class ApplicationImpl implements Application {
 
     @Override
     public Controller getScoreController() {
-        return this.scoreController;
+        return this.sC;
     }
 
     @Override
     public Controller getPreviewController() {
-        return this.previewController;
+        return this.pC;
     }
 
     @Override
     public Controller getGameController() {
-        return this.piecesController;
+        return this.gC;
     }
 
 }

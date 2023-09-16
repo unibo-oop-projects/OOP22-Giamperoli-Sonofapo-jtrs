@@ -8,10 +8,16 @@ import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.model.api.TetrominoFactory;
 import it.unibo.jtrs.utils.TetrominoData;
 
+/**
+ * This class implements the logic to provide a TetrominoFactory.
+ */
 public class TetrominoFactoryImpl implements TetrominoFactory {
 
 	private List<Tetromino> bag;
 
+	/**
+	 * Constructor.
+	 */
 	public TetrominoFactoryImpl() {
 		this.bag = this.initialize();
 	}

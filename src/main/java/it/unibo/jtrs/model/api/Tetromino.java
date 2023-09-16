@@ -20,14 +20,22 @@ public interface Tetromino {
 	 * @param x horizontal translation
 	 * @param y vertical translation
 	 */
-	public void translate(int x, int y);
+	public void translate(final int x, final int y);
 
 	/**
-	 * Return a set of coordinates indicating where the tetromino is placed.
+	 * Return a set of coordinates indicating where the tetromino is placed evantyally
+	 * ofsetted by an horizontal and vertical amounts, respectivly x and y.
 	 * 
+	 * @param x horizontal displacement
+	 * @param y vertical displacement
 	 * @return the set of coordinates
 	 */
-	public Set<Pair<Integer, Integer>> getComponents();
+	public Set<Pair<Integer, Integer>> getComponents(final int x, final int y);
 
+	/**
+	 * Return the color assigend to the Tetromino.
+	 * 
+	 * @return the color as an hexadecimal string
+	 */
 	public String getColor();
 }

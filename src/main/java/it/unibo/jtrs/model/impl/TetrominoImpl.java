@@ -7,13 +7,22 @@ import java.util.stream.Collectors;
 import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.utils.Pair;
 
+/**
+ * This class implements how a Tetramino should work.
+ */
 public class TetrominoImpl implements Tetromino {
 
 	private Set<Pair<Integer, Integer>> compontents;
 	private Pair<Integer, Integer> pivot;
 	private final String color;
 
-	public TetrominoImpl(Set<Pair<Integer, Integer>> initialComponents, String color) {
+	/**
+	 * Constructor.
+	 * 
+	 * @param initialComponents the initial set of coordinates
+	 * @param color the color of the Tetromino
+	 */
+	public TetrominoImpl(final Set<Pair<Integer, Integer>> initialComponents, final String color) {
 		this.compontents = new HashSet<>(initialComponents);
 		this.color = color;
 		this.pivot = this.center();
@@ -24,20 +33,20 @@ public class TetrominoImpl implements Tetromino {
 		this.compontents = this.compontents.stream()
 			.map(c -> new Pair<>(c.getY() - pivot.getY() + pivot.getX(),
 				pivot.getX() - c.getX() + pivot.getY()))
-			.collect(Collectors.toSet());
+			.collect(Collectors.toCollection(HashSet::new));
 	}
 
 	@Override
-	public void translate(int x, int y) {
+	public void translate(final int x, final int y) {
 		this.pivot = this.center();
-		this.compontents = this.compontents.stream()
-			.map(c -> new Pair<>(c.getX() + x, c.getY() + y))
-			.collect(Collectors.toSet());
+		this.compontents = this.getComponents(x, y);
 	}
 
 	@Override
-	public Set<Pair<Integer, Integer>> getComponents() {
-		return Set.copyOf(this.compontents);
+	public Set<Pair<Integer, Integer>> getComponents(final int x, final int y) {
+		return this.compontents.stream()
+			.map(c -> new Pair<>(c.getX() + x, c.getY() + y))
+			.collect(Collectors.toCollection(HashSet::new));
 	}
 
 	/**

@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.swing.JLabel;
 
+import it.unibo.jtrs.controller.api.Controller;
 import it.unibo.jtrs.controller.impl.PreviewController;
 import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.utils.Pair;
@@ -19,7 +20,7 @@ public class PreviewPanel extends SubPanel {
 
 	Map<Pair<Integer, Integer>, JLabel> cells = new HashMap<>();
 
-	public PreviewPanel(PreviewController controller) {
+	public PreviewPanel(final Controller controller) {
 		super(controller);
 
 		this.setLayout(new GridLayout(PREVIEW_ROWS, PREVIEW_COLS));
@@ -30,10 +31,10 @@ public class PreviewPanel extends SubPanel {
 
 	@Override
 	public void update() {
-		Tetromino t = this.controller.getStatus();
+		Tetromino t = ((PreviewController) this.controller).getStatus();
 		Color color = Color.decode(t.getColor());
 		this.cells.forEach((k, v) -> {
-			v.setBackground(t.getComponents().contains(k) ? color : Color.GRAY);
+			v.setBackground(t.getComponents(0, 0).contains(k) ? color : Color.GRAY);
 		});
 	}
 
