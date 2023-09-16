@@ -16,7 +16,7 @@ public class TetrominoTest {
 
     private Tetromino tetromino;
     private final Set<Pair<Integer, Integer>> initialComponents =
-        Set.of(new Pair<>(0,0), new Pair<>(0,1), new Pair<>(1,1), new Pair<>(2,1));
+        Set.of(new Pair<>(0, 0), new Pair<>(0, 1), new Pair<>(1, 1), new Pair<>(2, 1));
 
     @BeforeEach
     public void init() {
@@ -27,13 +27,13 @@ public class TetrominoTest {
     public void testRotate() {
         tetromino.rotate();
         assertEquals(tetromino.getComponents(0, 0),
-            Set.of(new Pair<>(1,2), new Pair<>(1,1), new Pair<>(1,0), new Pair<>(0,2)));
+            Set.of(new Pair<>(1, 2), new Pair<>(1, 1), new Pair<>(1, 0), new Pair<>(0, 2)));
         tetromino.rotate();
         assertEquals(tetromino.getComponents(0, 0),
-            Set.of(new Pair<>(2,2), new Pair<>(1,1), new Pair<>(2,1), new Pair<>(0,1)));
+            Set.of(new Pair<>(2, 2), new Pair<>(1, 1), new Pair<>(2, 1), new Pair<>(0, 1)));
         tetromino.rotate();
         assertEquals(tetromino.getComponents(0, 0),
-            Set.of(new Pair<>(1,2), new Pair<>(1,1), new Pair<>(1,0), new Pair<>(2,0)));
+            Set.of(new Pair<>(1, 2), new Pair<>(1, 1), new Pair<>(1, 0), new Pair<>(2, 0)));
         tetromino.rotate();
         assertEquals(tetromino.getComponents(0, 0), initialComponents);
     }
