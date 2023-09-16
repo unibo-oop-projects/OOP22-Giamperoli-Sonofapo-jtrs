@@ -1,42 +1,57 @@
 package it.unibo.jtrs.view.impl;
 
+import static it.unibo.jtrs.utils.Constants.GRID_ROWS;
+import static it.unibo.jtrs.utils.Constants.GRID_COLS;
+
+import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JLabel;
 
-import it.unibo.jtrs.controller.api.Application;
+import it.unibo.jtrs.controller.api.Controller;
+import it.unibo.jtrs.controller.impl.GameController;
+import it.unibo.jtrs.model.api.Tetromino;
+import it.unibo.jtrs.utils.Pair;
 import it.unibo.jtrs.view.api.SubPanel;
 
-public class GamePanel extends JFrame {
+public class GamePanel extends SubPanel {
 
-    private final SubPanel previewPanel;
-    private final SubPanel scorePanel;
+    Map<Pair<Integer, Integer>, JLabel> cells = new HashMap<>();
 
-    public GamePanel(final int width, final int height, final Application application) {
-        this.previewPanel = application.getPreviewController().getView();
-        this.scorePanel = application.getScoreController().getView();
+    public GamePanel(Controller controller) {
+        super(controller);
 
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(width, height);
-        this.setTitle("jTetris");
-        this.setResizable(false);
+        this.setLayout(new GridLayout(GRID_ROWS, GRID_COLS));
+        this.initalize();
+        this.update();
         this.setVisible(true);
-
-        final JPanel background = new JPanel(new GridLayout(1, 2));
-        background.add(new JPanel()); // main game
-
-        final JPanel side = new JPanel(new GridLayout(2, 1));
-        side.add(this.previewPanel);
-        side.add(this.scorePanel);
-        background.add(side);
-
-        this.getContentPane().add(background);
     }
 
-    public void redraw() {
-        this.previewPanel.update();
-        this.scorePanel.update();
+    @Override
+    public void update() {
+        List<Tetromino> pieces = ((GameController) this.getController()).getStatus();
+        if(!pieces.isEmpty()) {
+            pieces.forEach(p -> {
+                final Color color = Color.decode(p.getColor());
+                this.cells.forEach((k, v) -> {
+                    v.setBackground(p.getComponents(0, 0).contains(k) ? color : Color.GRAY);
+                });
+            }); 
+        }   
     }
 
+    private void initalize() {
+        for (int x = 0; x < GRID_ROWS; x++) {
+            for (int y = 0; y < GRID_COLS; y++) {
+                final var lbl = new JLabel();
+                lbl.setOpaque(true);
+                this.add(lbl);
+                this.cells.put(new Pair<>(y, x), lbl);
+            }
+        }
+    }
+    
 }

@@ -1,45 +1,81 @@
 package it.unibo.jtrs.model.impl;
 
 import java.util.ArrayList;
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import it.unibo.jtrs.model.api.Tetromino;
-import it.unibo.jtrs.model.api.TetrominoFactory;
+import it.unibo.jtrs.utils.Constants;
+import it.unibo.jtrs.utils.Pair;
 
 public class GameModel {
 
     private List<Tetromino> pieces;
     private Tetromino current;
-    private TetrominoFactory factory;
+    private Tetromino next;
 
     public GameModel() {
         this.pieces = new ArrayList<>();
-        this.factory = null;
-    }
-
-    public void addPiece() {
-        this.pieces.add(current);
-        this.current = this.factory.getRandomTetromino();
+        this.current = null;
+        this.next = null;
     }
 
     public List<Tetromino> getPieces() {
-        return List.copyOf(this.pieces);
+        return Stream.concat(this.pieces.stream(), Stream.of(this.current)).collect(Collectors.toList());
     }
 
-    //TODO ale
+    public Tetromino getCurrentPiece() {
+        return this.current;
+    }
+
+    public int advance() {
+        this.current = this.next;
+        return 0;
+    }
+
+    public void setNext(Tetromino next) {
+        this.next = next;
+    }
+
+    //return if current can be put in game grid
+    public boolean isOver() {    
+        return false;
+    }
+
+    //return if current can rotate
+    public boolean canRotate() {
+        return false;
+    }
+
+    //return if current touches ground
     public boolean fallDown() {
-        this.addPiece();
+        //draft
+        if(this.checkPieceCollision()) {
+            return true;
+        }
         return false;
     }
 
-    //TODO anto
-    public boolean checkCollision() {
+    //return if current touches pieces
+    public boolean checkPieceCollision() {
+
         return false;
     }
 
-    public boolean isOver() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isOver'");
+    //return if current touches boundaries
+    public boolean checkBoundCollision() {
+        return this.getCurrentXStats().getMin() == 0 || this.getCurrentXStats().getMax() == Constants.GRID_COLS - 1;
     }
 
+    private IntSummaryStatistics getCurrentXStats() {
+        return this.current.getComponents(0, 0).stream().collect(Collectors.summarizingInt(Pair::getX));
+    }
+
+    private IntSummaryStatistics getCurrentYStats() {
+        return this.current.getComponents(0, 0).stream().collect(Collectors.summarizingInt(Pair::getY));
+    }
+
+    //possibile enumerazione per dire da che lato devo controllare la collisione
 }
