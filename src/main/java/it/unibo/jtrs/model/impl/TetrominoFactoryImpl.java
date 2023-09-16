@@ -23,20 +23,20 @@ public class TetrominoFactoryImpl implements TetrominoFactory {
     }
 
     private List<Tetromino> initialize() {
-        Tetromino oPc = new TetrominoImpl(TetrominoData.O_COORD, TetrominoData.O_COLOR);
-        Tetromino lPc = new TetrominoImpl(TetrominoData.L_COORD, TetrominoData.L_COLOR);
-        Tetromino jPc = new TetrominoImpl(TetrominoData.J_COORD, TetrominoData.J_COLOR);
-        Tetromino iPc = new TetrominoImpl(TetrominoData.I_COORD, TetrominoData.I_COLOR);
-        Tetromino tPc = new TetrominoImpl(TetrominoData.T_COORD, TetrominoData.T_COLOR);
-        Tetromino zPc = new TetrominoImpl(TetrominoData.Z_COORD, TetrominoData.Z_COLOR);
-        Tetromino sPc = new TetrominoImpl(TetrominoData.S_COORD, TetrominoData.S_COLOR);
+        final Tetromino oPc = new TetrominoImpl(TetrominoData.O_COORD, TetrominoData.O_COLOR);
+        final Tetromino lPc = new TetrominoImpl(TetrominoData.L_COORD, TetrominoData.L_COLOR);
+        final Tetromino jPc = new TetrominoImpl(TetrominoData.J_COORD, TetrominoData.J_COLOR);
+        final Tetromino iPc = new TetrominoImpl(TetrominoData.I_COORD, TetrominoData.I_COLOR);
+        final Tetromino tPc = new TetrominoImpl(TetrominoData.T_COORD, TetrominoData.T_COLOR);
+        final Tetromino zPc = new TetrominoImpl(TetrominoData.Z_COORD, TetrominoData.Z_COLOR);
+        final Tetromino sPc = new TetrominoImpl(TetrominoData.S_COORD, TetrominoData.S_COLOR);
 
         return new ArrayList<>(List.of(oPc, lPc, jPc, iPc, tPc, zPc, sPc));
     }
 
     @Override
     public Tetromino getRandomTetromino() {
-        if (this.bag.size() < 1) {
+        if (this.bag.isEmpty()) {
             this.bag = this.initialize();
         }
         Collections.shuffle(this.bag);

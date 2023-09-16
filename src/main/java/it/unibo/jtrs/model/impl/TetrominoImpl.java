@@ -56,10 +56,10 @@ public class TetrominoImpl implements Tetromino {
      * @return the pivot point
      */
     private Pair<Integer, Integer> center() {
-        var x = this.compontents.stream().collect(Collectors.summarizingInt(Pair::getX));
-        var y = this.compontents.stream().collect(Collectors.summarizingInt(Pair::getY));
-        int wh = (int) Math.ceil((x.getMax() - x.getMin()) / 2.0);
-        int hh = (int) Math.ceil((y.getMax() - y.getMin()) / 2.0);
+        final var x = this.compontents.stream().collect(Collectors.summarizingInt(Pair::getX));
+        final var y = this.compontents.stream().collect(Collectors.summarizingInt(Pair::getY));
+        final int wh = (int) Math.ceil((x.getMax() - x.getMin()) / 2.0);
+        final int hh = (int) Math.ceil((y.getMax() - y.getMin()) / 2.0);
 
         return new Pair<>(x.getMin() + wh, y.getMin() + hh);
     }

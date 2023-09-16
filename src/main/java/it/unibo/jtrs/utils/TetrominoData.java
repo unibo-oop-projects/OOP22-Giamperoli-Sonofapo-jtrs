@@ -7,8 +7,6 @@ import java.util.Set;
  */
 public final class TetrominoData {
 
-    private TetrominoData() { }
-
     /**
      * O piece coordinate.
      */
@@ -73,5 +71,7 @@ public final class TetrominoData {
      * S piece color.
      */
     public static final String S_COLOR = "#00FF00";
+
+    private TetrominoData() { }
 
 }

@@ -34,8 +34,8 @@ public class PreviewPanel extends SubPanel {
 
     @Override
     public void update() {
-        Tetromino t = ((PreviewController) this.getController()).getStatus();
-        Color color = Color.decode(t.getColor());
+        final Tetromino t = ((PreviewController) this.getController()).getStatus();
+        final Color color = Color.decode(t.getColor());
         this.cells.forEach((k, v) -> {
             v.setBackground(t.getComponents(0, 0).contains(k) ? color : Color.GRAY);
         });
@@ -44,7 +44,7 @@ public class PreviewPanel extends SubPanel {
     private void initalize() {
         for (int x = 0; x < PREVIEW_ROWS; x++) {
             for (int y = 0; y < PREVIEW_COLS; y++) {
-                var lbl = new JLabel();
+                final var lbl = new JLabel();
                 lbl.setOpaque(true);
                 this.add(lbl);
                 this.cells.put(new Pair<>(y, x), lbl);

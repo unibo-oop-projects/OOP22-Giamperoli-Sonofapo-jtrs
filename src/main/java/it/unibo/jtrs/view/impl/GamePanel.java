@@ -23,10 +23,10 @@ public class GamePanel extends JFrame {
         this.setResizable(false);
         this.setVisible(true);
 
-        JPanel background = new JPanel(new GridLayout(1, 2));
+        final JPanel background = new JPanel(new GridLayout(1, 2));
         background.add(new JPanel()); // main game
 
-        JPanel side = new JPanel(new GridLayout(2, 1));
+        final JPanel side = new JPanel(new GridLayout(2, 1));
         side.add(this.previewPanel);
         side.add(this.scorePanel);
         background.add(side);

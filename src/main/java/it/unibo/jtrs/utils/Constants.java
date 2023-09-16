@@ -5,9 +5,6 @@ package it.unibo.jtrs.utils;
  */
 public final class Constants {
 
-    // prevents instantiation
-    private Constants() { }
-
     /**
      * Main application window width.
      */
@@ -32,5 +29,8 @@ public final class Constants {
      * Preview panel horizontal cells.
      */
     public static final int PREVIEW_COLS = 5;
+
+     // prevents instantiation
+    private Constants() { }
 
 }
