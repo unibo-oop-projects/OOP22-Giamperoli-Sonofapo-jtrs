@@ -23,7 +23,12 @@ public class PreviewController extends Controller {
 
     @Override
     public Tetromino getStatus() {
-        return this.model.next();
+        return this.model.getCurrent();
+    }
+
+    @Override
+    public void next(Object o) {
+        this.model.next();
     }
 
 }

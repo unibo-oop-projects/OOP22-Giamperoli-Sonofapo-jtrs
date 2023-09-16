@@ -10,9 +10,9 @@ public class ApplicationImpl implements Application {
 
     private final ApplicationPanel panel;
     private final GameEngine engine;
-    private final Controller sC = new ScoreController();
-    private final Controller pC = new PreviewController();
-    private final Controller gC = new GameController();
+    private final ScoreController sC = new ScoreController();
+    private final PreviewController pC = new PreviewController();
+    private final GameController gC = new GameController();
 
     public ApplicationImpl() {
         this.panel = new ApplicationPanel(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, this);
@@ -22,10 +22,11 @@ public class ApplicationImpl implements Application {
 
     @Override
     public void update() {
-        var current = this.pC.getStatus();
-        this.gC.next(current);
-        var lines = this.gC.getStatus();
-        this.sC.next(lines);
+        pC.next(null); // preview update
+        var next = this.pC.getStatus(); // Tetromino to add into grid
+        this.gC.next(next); // add to grid
+        var res = this.gC.getStatus().getY();
+        this.sC.next(res); // update score
     }
 
     @Override

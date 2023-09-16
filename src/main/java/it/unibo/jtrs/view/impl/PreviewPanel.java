@@ -16,9 +16,7 @@ import it.unibo.jtrs.view.api.GridPanel;
 public class PreviewPanel extends GridPanel {
 
     public PreviewPanel(final Controller controller) {
-        super(controller, PREVIEW_ROWS, PREVIEW_COLS, 100); // TODO: remove magic number
-        
-        this.update();
+        super(controller, PREVIEW_ROWS, PREVIEW_COLS, 100); // TODO: remove magic number        
     }
 
     @Override

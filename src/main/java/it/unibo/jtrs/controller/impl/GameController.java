@@ -5,6 +5,7 @@ import java.util.List;
 import it.unibo.jtrs.controller.api.Controller;
 import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.model.impl.GameModel;
+import it.unibo.jtrs.utils.Pair;
 import it.unibo.jtrs.view.impl.GamePanel;
 
 public class GameController extends Controller {
@@ -16,8 +17,8 @@ public class GameController extends Controller {
     }
 
     @Override
-    public List<Tetromino> getStatus() {
-        return this.model.getPieces();
+    public Pair<List<Tetromino>, Integer> getStatus() {
+        return new Pair<>(this.model.getPieces(), 1);
     }
 
     @Override

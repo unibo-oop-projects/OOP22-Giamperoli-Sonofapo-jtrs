@@ -10,14 +10,24 @@ import it.unibo.jtrs.model.api.TetrominoFactory;
 public class PreviewModel {
 
     private final TetrominoFactory factory = new TetrominoFactoryImpl();
+    private Tetromino current = factory.getRandomTetromino();
 
     /**
      * Return the next Tetromino to show during gameplay.
      *
      * @return the Tetromino
      */
-    public Tetromino next() {
-        return factory.getRandomTetromino();
+    public void next() {
+        this.factory.getRandomTetromino();
+    }
+
+    /**
+     * Return the current Tetromino.
+     * 
+     * @return the Tetromino
+     */
+    public Tetromino getCurrent() {
+        return this.current;
     }
 
 }
