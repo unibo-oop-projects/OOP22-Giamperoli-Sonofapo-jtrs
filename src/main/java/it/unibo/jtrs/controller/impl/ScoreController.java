@@ -18,8 +18,9 @@ public class ScoreController extends Controller {
         return this.model.getStatus();
     }
 
-    public void evaluate(final int lines) {
-        this.model.evaluate(lines);
+    @Override
+    public void next(Object o) {
+        this.model.evaluate((int) o);
     }
 
 }

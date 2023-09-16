@@ -22,6 +22,8 @@ public abstract class Controller {
      */
     public abstract Object getStatus();
 
+    public abstract void next(Object o);
+
     /**
      * Return the view this controller is operating on.
      *
