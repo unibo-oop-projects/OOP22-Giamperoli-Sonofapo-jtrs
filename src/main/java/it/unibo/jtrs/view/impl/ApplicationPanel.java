@@ -6,18 +6,17 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import it.unibo.jtrs.controller.api.Application;
-import it.unibo.jtrs.view.api.SubPanel;
 
 public class ApplicationPanel extends JFrame {
 
-    private final SubPanel previewPanel;
-    private final SubPanel scorePanel;
-    private final SubPanel gamePanel;
+    private final PreviewPanel previewPanel;
+    private final ScorePanel scorePanel;
+    private final GamePanel gamePanel;
 
     public ApplicationPanel(final int width, final int height, final Application application) {
-        this.previewPanel = application.getPreviewController().getView();
-        this.scorePanel = application.getScoreController().getView();
-        this.gamePanel = application.getGameController().getView();
+        this.previewPanel = new PreviewPanel(application.getPreviewController());
+        this.scorePanel = new ScorePanel(application.getScoreController());
+        this.gamePanel = new GamePanel(application.getGameController());
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(width, height);
@@ -37,9 +36,9 @@ public class ApplicationPanel extends JFrame {
     }
 
     public void redraw() {
-        this.gamePanel.update();
-        this.previewPanel.update();
-        this.scorePanel.update();
+        this.gamePanel.redraw();;
+        this.previewPanel.redraw();
+        this.scorePanel.redraw();
     }
 
 }
