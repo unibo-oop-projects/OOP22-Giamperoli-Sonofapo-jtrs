@@ -2,44 +2,36 @@ package it.unibo.jtrs.view.impl;
 
 import java.awt.GridLayout;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import it.unibo.jtrs.controller.api.Application;
-import it.unibo.jtrs.view.api.SubPanel;
 
-public class ApplicationPanel extends JFrame {
+/**
+ * A class modelling the main panel to be inserted in a frame.
+ */
+public class ApplicationPanel extends JPanel {
 
-    private final SubPanel previewPanel;
-    private final SubPanel scorePanel;
-    private final SubPanel gamePanel;
+    public static final long serialVersionUID = 4328743;
 
-    public ApplicationPanel(final int width, final int height, final Application application) {
-        this.previewPanel = application.getPreviewController().getView();
-        this.scorePanel = application.getScoreController().getView();
-        this.gamePanel = application.getGameController().getView();
+    private final PreviewPanel preview;
 
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(width, height);
-        this.setTitle("jTetris");
-        this.setResizable(false);
-        this.setVisible(true);
+    /**
+     * Constructor.
+     *
+     * @param application the application this panel should show
+     */
+    public ApplicationPanel(final Application application) {
 
-        final JPanel background = new JPanel(new GridLayout(1, 2));
-        background.add(this.gamePanel);
+        this.preview = new PreviewPanel(application.getPreviewController());
 
-        final JPanel side = new JPanel(new GridLayout(2, 1));
-        side.add(this.previewPanel);
-        side.add(this.scorePanel);
-        background.add(side);
-
-        this.getContentPane().add(background);
+        this.setLayout(new GridLayout());
+        this.add(this.preview);
     }
 
+    /**
+     * Redraws the application components.
+     */
     public void redraw() {
-        this.gamePanel.update();
-        this.previewPanel.update();
-        this.scorePanel.update();
+        this.preview.redraw();
     }
-
 }

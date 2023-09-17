@@ -1,38 +1,35 @@
 package it.unibo.jtrs.controller.api;
+
+import it.unibo.jtrs.controller.impl.PreviewController;
+
 /**
- * An interface modelling a jTetris application. The application must provide a way to
- * update its status, redraw its view and supply the controller it utilises.
+ * An interface modelling an application. An application should be able to update
+ * its state and its graphics. The application should be also able to tell whether is
+ * running or not.
  */
 public interface Application {
 
     /**
-     * Update the application status.
+     * Update application logic.
      */
     void update();
 
     /**
-     * Redraw the application's graphical elements.
+     * Update graphical component.
      */
     void redraw();
 
     /**
-     * Return the controller which keeps track of the score.
-     * 
-     * @return the score controller
+     * Check the application running status.
+     *
+     * @return true if running, false otherwise
      */
-    Controller getScoreController();
+    boolean isRunning();
 
     /**
-     * Return the controller which manages the preview (next Tetromino).
+     * Returns the preview controller.
      * 
-     * @return the preview controller
+     * @return the controller
      */
-    Controller getPreviewController();
-
-    /**
-     * Return the controllr which manages the game logic.
-     * 
-     * @return the game controller
-     */
-    Controller getGameController();
+    PreviewController getPreviewController();
 }
