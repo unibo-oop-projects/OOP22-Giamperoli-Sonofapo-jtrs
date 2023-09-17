@@ -1,31 +1,50 @@
 package it.unibo.jtrs.view.impl;
 
-import static it.unibo.jtrs.utils.Constants.GRID_ROWS;
-import static it.unibo.jtrs.utils.Constants.GRID_COLS;
-
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.util.List;
 
-import it.unibo.jtrs.controller.api.Controller;
+import javax.swing.JPanel;
+
 import it.unibo.jtrs.controller.impl.GameController;
 import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.view.api.GridPanel;
+import it.unibo.jtrs.view.api.View;
 
-public class GamePanel extends GridPanel {
+/**
+ * The class models the game panel. This view must show the Tetronimos placed during the game.
+ */
+public class GamePanel extends JPanel implements View {
 
-    public GamePanel(final Controller controller) {
-        super(controller, GRID_ROWS, GRID_COLS, 20);
+    private static final int GRID_ROWS = 20;
+    private static final int GRID_COLS = 10;
+    private static final int PADDING = 20;
+
+    private final GridPanel game;
+    private final transient GameController controller;
+
+    /**
+     * Constructor.
+     *
+     * @param controller the game controller
+     */
+    public GamePanel(final GameController controller) {
+        this.controller = controller;
+        
+        this.game = new GridPanel(GRID_ROWS, GRID_COLS, PADDING);
+        this.setLayout(new GridLayout());
+        this.add(this.game);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void update() {
-        List<Tetromino> pieces = ((GameController) this.getController()).getStatus().getX();
+    public void redraw() {
+        final List<Tetromino> pieces = this.controller.getPieces();
         pieces.forEach(p -> {
-            final Color color = Color.decode(p.getColor());
-            this.getCells().forEach((k, v) -> {
-                v.setBackground(p.getComponents(0, 0).contains(k) ? color : Color.GRAY);
-            });
-        });  
+            this.game.setCells(p.getComponents(0, 0), Color.decode(p.getColor()));
+        });
     }
 
     

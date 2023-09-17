@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import it.unibo.jtrs.model.api.Tetromino;
-import it.unibo.jtrs.utils.Constants;
 import it.unibo.jtrs.utils.Pair;
 
 public class GameModel {
@@ -66,7 +65,8 @@ public class GameModel {
 
     //return if current touches boundaries
     public boolean checkBoundCollision() {
-        return this.getCurrentXStats().getMin() == 0 || this.getCurrentXStats().getMax() == Constants.GRID_COLS - 1;
+        //return this.getCurrentXStats().getMin() == 0 || this.getCurrentXStats().getMax() == Constants.GRID_COLS - 1;
+        return false;
     }
 
     private IntSummaryStatistics getCurrentXStats() {
