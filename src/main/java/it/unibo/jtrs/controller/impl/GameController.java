@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.model.impl.GameModel;
+import it.unibo.jtrs.model.impl.TetrominoFactoryImpl;
 
 /**
  * GameController implementation.
@@ -20,6 +21,8 @@ public class GameController {
     }
 
     public List<Tetromino> getPieces() {
+        this.model.setNext((new TetrominoFactoryImpl()).getRandomTetromino());
+        this.model.advance();
         return this.model.getPieces();
     }
 

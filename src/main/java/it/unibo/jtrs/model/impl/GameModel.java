@@ -22,7 +22,7 @@ public class GameModel {
     }
 
     public List<Tetromino> getPieces() {
-        return Stream.concat(this.pieces.stream(), Stream.of(this.current)).collect(Collectors.toList());
+        return Stream.concat(this.pieces.stream(), Stream.of(this.current)).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public Tetromino getCurrentPiece() {
