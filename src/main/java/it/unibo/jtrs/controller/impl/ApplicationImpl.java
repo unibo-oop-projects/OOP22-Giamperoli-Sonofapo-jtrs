@@ -1,7 +1,10 @@
 package it.unibo.jtrs.controller.impl;
 
 import it.unibo.jtrs.controller.api.Application;
+import it.unibo.jtrs.game.core.api.GameLogic;
 import it.unibo.jtrs.game.core.impl.GameEngineImpl;
+import it.unibo.jtrs.game.core.impl.GameLogicImpl;
+import it.unibo.jtrs.view.impl.ApplicationFrame;
 import it.unibo.jtrs.view.impl.ApplicationPanel;
 
 /**
@@ -9,7 +12,9 @@ import it.unibo.jtrs.view.impl.ApplicationPanel;
  */
 public class ApplicationImpl implements Application {
 
+    private final GameLogic logic;
     private final ApplicationPanel panel;
+    private final ApplicationFrame frame;
     private final ScoreController sC = new ScoreController();
     private final PreviewController pC = new PreviewController();
     private final GameController gC = new GameController();
@@ -19,7 +24,9 @@ public class ApplicationImpl implements Application {
      */
     public ApplicationImpl() {
 
+        this.logic = new GameLogicImpl(this);
         this.panel = new ApplicationPanel(this);
+        this.frame = new ApplicationFrame(this.panel);
         (new GameEngineImpl(this)).mainLoop();
     }
 
@@ -28,6 +35,8 @@ public class ApplicationImpl implements Application {
      */
     @Override
     public void update() {
+        this.logic.keyboardUpdate(this.frame.getKeyboard());
+        this.logic.timeUpdate();
     }
 
     /**
@@ -35,7 +44,7 @@ public class ApplicationImpl implements Application {
      */
     @Override
     public boolean isRunning() {
-        return true;
+        return !this.logic.isOver();
     }
 
     /**

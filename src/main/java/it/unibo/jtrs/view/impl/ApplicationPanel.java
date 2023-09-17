@@ -28,10 +28,15 @@ public class ApplicationPanel extends JPanel {
         this.scorePanel = new ScorePanel(application.getScoreController());
         this.gamePanel = new GamePanel(application.getGameController());
 
-        this.setLayout(new GridLayout());
-        this.add(this.previewPanel);
-        this.add(this.scorePanel);
-        this.add(this.gamePanel);
+        this.setLayout(new GridLayout(1, 2));
+        var panelL = new JPanel(new GridLayout());
+        var panelR = new JPanel(new GridLayout(2, 1));
+
+        panelR.add(this.previewPanel);
+        panelR.add(this.scorePanel);
+        panelL.add(this.gamePanel);
+        this.add(panelL);
+        this.add(panelR);
     }
 
     /**
