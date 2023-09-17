@@ -13,25 +13,28 @@ public class ApplicationPanel extends JPanel {
 
     public static final long serialVersionUID = 4328743;
 
-    private final PreviewPanel preview;
+    private final PreviewPanel previewPanel;
+    private final ScorePanel scorePanel;
+    private final GamePanel gamePanel;
 
-    /**
-     * Constructor.
-     *
-     * @param application the application this panel should show
-     */
-    public ApplicationPanel(final Application application) {
+    public ApplicationPanel(final int width, final int height, final Application application) {
 
-        this.preview = new PreviewPanel(application.getPreviewController());
+        this.previewPanel = new PreviewPanel(application.getPreviewController());
+        this.scorePanel = new ScorePanel(application.getScoreController());
+        this.gamePanel = new GamePanel(application.getGameController());
 
         this.setLayout(new GridLayout());
-        this.add(this.preview);
+        this.add(this.previewPanel);
+        this.add(this.scorePanel);
+        this.add(this.gamePanel);
     }
 
     /**
      * Redraws the application components.
      */
     public void redraw() {
-        this.preview.redraw();
+        this.gamePanel.redraw();;
+        this.previewPanel.redraw();
+        this.scorePanel.redraw();
     }
 }

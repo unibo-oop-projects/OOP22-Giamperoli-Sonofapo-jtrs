@@ -1,12 +1,13 @@
 package it.unibo.jtrs.controller.impl;
 
 import it.unibo.jtrs.controller.api.Application;
-import it.unibo.jtrs.controller.api.Controller;
 import it.unibo.jtrs.controller.api.GameEngine;
-import it.unibo.jtrs.utils.Constants;
 import it.unibo.jtrs.view.impl.ApplicationPanel;
 
 public class ApplicationImpl implements Application {
+
+    private static final int FRAME_WIDTH = 900;
+    private static final int FRAME_HEIGHT = 900;
 
     private final ApplicationPanel panel;
     private final GameEngine engine;
@@ -15,18 +16,13 @@ public class ApplicationImpl implements Application {
     private final GameController gC = new GameController();
 
     public ApplicationImpl() {
-        this.panel = new ApplicationPanel(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, this);
+        this.panel = new ApplicationPanel(FRAME_WIDTH, FRAME_HEIGHT, this);
         this.engine = new GameEngineImpl(this);
         this.engine.gameLoop();
     }
 
     @Override
     public void update() {
-        pC.next(null); // preview update
-        var next = this.pC.getStatus(); // Tetromino to add into grid
-        this.gC.next(next); // add to grid
-        var res = this.gC.getStatus().getY();
-        this.sC.next(res); // update score
     }
 
     @Override
@@ -35,17 +31,17 @@ public class ApplicationImpl implements Application {
     }
 
     @Override
-    public Controller getScoreController() {
+    public ScoreController getScoreController() {
         return this.sC;
     }
 
     @Override
-    public Controller getPreviewController() {
+    public PreviewController getPreviewController() {
         return this.pC;
     }
 
     @Override
-    public Controller getGameController() {
+    public GameController getGameController() {
         return this.gC;
     }
 

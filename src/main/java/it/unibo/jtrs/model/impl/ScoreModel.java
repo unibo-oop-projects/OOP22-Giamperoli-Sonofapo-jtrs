@@ -20,6 +20,14 @@ public class ScoreModel {
         return new Pair<>(this.level, this.score);
     }
 
+    public int getLevel() {
+        return this.level;
+    }
+
+    public int getScore() {
+        return this.score;
+    }
+
     public void evaluate(final int lines) {
         this.deletedLines = this.deletedLines + lines;
         this.setLevel();

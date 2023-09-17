@@ -1,26 +1,20 @@
 package it.unibo.jtrs.controller.impl;
 
-import it.unibo.jtrs.controller.api.Controller;
 import it.unibo.jtrs.model.impl.ScoreModel;
-import it.unibo.jtrs.utils.Pair;
-import it.unibo.jtrs.view.impl.ScorePanel;
 
-public class ScoreController extends Controller {
+public class ScoreController {
 
-    private final ScoreModel model = new ScoreModel();
+    private final ScoreModel model;
 
     public ScoreController() {
-        this.setView(new ScorePanel(this));
+        this.model = new ScoreModel();
     }
 
-    @Override
-    public Pair<Integer, Integer> getStatus() {
-        return this.model.getStatus();
+    public int getLevel() {
+        return this.model.getLevel();
     }
 
-    @Override
-    public void next(Object o) {
-        this.model.evaluate((int) o);
+    public int getScore() {
+        return this.model.getScore();
     }
-
 }

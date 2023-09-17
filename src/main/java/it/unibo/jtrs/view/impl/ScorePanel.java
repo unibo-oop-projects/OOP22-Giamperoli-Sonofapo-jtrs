@@ -1,28 +1,41 @@
 package it.unibo.jtrs.view.impl;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-import it.unibo.jtrs.controller.api.Controller;
 import it.unibo.jtrs.controller.impl.ScoreController;
-import it.unibo.jtrs.view.api.SubPanel;
+import it.unibo.jtrs.view.api.View;
 
-public class ScorePanel extends SubPanel {
+/**
+ * The class models the score panel. This view must show the current level and score.
+ */
+public class ScorePanel extends JPanel implements View {
 
-    private final JLabel score = new JLabel();
-    private final JLabel level = new JLabel();
+    private final JLabel score;
+    private final JLabel level;
+    private final transient ScoreController controller;
 
-    public ScorePanel(final Controller controller) {
-        super(controller);
+    /**
+     * Constructor.
+     *
+     * @param controller the score controller
+     */
+    public ScorePanel(final ScoreController controller) {
+        this.controller = controller;
 
+        this.level = new JLabel();
+        this.score = new JLabel();
         this.add(this.level);
         this.add(this.score);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void update() {
-        final var res = ((ScoreController) this.getController()).getStatus();
-        this.level.setText("Livello: " + res.getX());
-        this.score.setText("Punteggio: " + res.getY());
+    public void redraw() {
+        this.level.setText("Livello: " + this.controller.getLevel());
+        this.score.setText("Punteggio: " + this.controller.getScore());
     }
 
 }

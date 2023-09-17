@@ -11,7 +11,7 @@ import it.unibo.jtrs.view.api.GridPanel;
 import it.unibo.jtrs.view.api.View;
 
 /**
- * The class model a preview panel. This view must show the next Tetromino.
+ * The class models the preview panel. This view must show the next Tetromino.
  */
 public class PreviewPanel extends JPanel implements View {
 
@@ -33,7 +33,7 @@ public class PreviewPanel extends JPanel implements View {
 
         this.preview = new GridPanel(GRID_SIZE, GRID_SIZE, PADDING);
         this.setLayout(new GridLayout());
-        this.add(preview);
+        this.add(this.preview);
     }
 
     /**
