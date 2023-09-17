@@ -17,7 +17,12 @@ public class ApplicationPanel extends JPanel {
     private final ScorePanel scorePanel;
     private final GamePanel gamePanel;
 
-    public ApplicationPanel(final int width, final int height, final Application application) {
+    /**
+     * Constructor.
+     *
+     * @param application the application this panel should show
+     */
+    public ApplicationPanel(final Application application) {
 
         this.previewPanel = new PreviewPanel(application.getPreviewController());
         this.scorePanel = new ScorePanel(application.getScoreController());
