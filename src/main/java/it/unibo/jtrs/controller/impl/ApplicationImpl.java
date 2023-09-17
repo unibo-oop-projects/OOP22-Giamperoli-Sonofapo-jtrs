@@ -1,7 +1,7 @@
 package it.unibo.jtrs.controller.impl;
 
 import it.unibo.jtrs.controller.api.Application;
-import it.unibo.jtrs.controller.api.GameEngine;
+import it.unibo.jtrs.game.core.impl.GameEngineImpl;
 import it.unibo.jtrs.view.impl.ApplicationPanel;
 
 /**
@@ -10,7 +10,6 @@ import it.unibo.jtrs.view.impl.ApplicationPanel;
 public class ApplicationImpl implements Application {
 
     private final ApplicationPanel panel;
-    private final GameEngine engine;
     private final ScoreController sC = new ScoreController();
     private final PreviewController pC = new PreviewController();
     private final GameController gC = new GameController();
@@ -21,8 +20,7 @@ public class ApplicationImpl implements Application {
     public ApplicationImpl() {
 
         this.panel = new ApplicationPanel(this);
-        this.engine = new GameEngineImpl(this);
-        this.engine.gameLoop();
+        (new GameEngineImpl(this)).mainLoop();
     }
 
     /**

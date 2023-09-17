@@ -21,7 +21,7 @@ public interface GameLogic {
 
     /**
      * Performs operation based on the keyboard status.
-     * 
+     *
      * @param keyboard the keyboard to read
      */
     void keyboardUpdate(KeyboardQuery keyboard);
