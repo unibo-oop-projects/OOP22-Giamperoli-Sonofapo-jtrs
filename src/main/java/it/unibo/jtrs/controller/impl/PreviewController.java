@@ -20,7 +20,7 @@ public class PreviewController {
 
     /**
      * Return the current Tetromino.
-     * 
+     *
      * @return the Tetromino
      */
     public Tetromino getCurrentTetromino() {

@@ -38,7 +38,7 @@ public class ApplicationPanel extends JPanel {
      * Redraws the application components.
      */
     public void redraw() {
-        this.gamePanel.redraw();;
+        this.gamePanel.redraw();
         this.previewPanel.redraw();
         this.scorePanel.redraw();
     }

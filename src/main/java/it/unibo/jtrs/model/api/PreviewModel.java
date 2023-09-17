@@ -7,7 +7,7 @@ public interface PreviewModel {
 
     /**
      * Return the current Tetromino in the preview (next to show in game).
-     * 
+     *
      * @return the current Tetromino
      */
     Tetromino current();

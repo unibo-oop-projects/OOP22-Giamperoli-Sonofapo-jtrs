@@ -30,7 +30,7 @@ public class GamePanel extends JPanel implements View {
      */
     public GamePanel(final GameController controller) {
         this.controller = controller;
-        
+
         this.game = new GridPanel(GRID_ROWS, GRID_COLS, PADDING);
         this.setLayout(new GridLayout());
         this.add(this.game);
@@ -47,5 +47,5 @@ public class GamePanel extends JPanel implements View {
         });
     }
 
-    
+
 }

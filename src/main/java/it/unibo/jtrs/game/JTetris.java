@@ -11,7 +11,7 @@ public final class JTetris {
 
     /**
      * Main class.
-     * 
+     *
      * @param args command line arguments
      */
     public static void main(final String[] args) {

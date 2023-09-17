@@ -39,7 +39,7 @@ public class GameModel {
     }
 
     //return if current can be put in game grid
-    public boolean isOver() {    
+    public boolean isOver() {
         return false;
     }
 

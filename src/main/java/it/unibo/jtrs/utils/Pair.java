@@ -2,7 +2,7 @@ package it.unibo.jtrs.utils;
 
 /**
  * A class modelling a pair of objects.
- * 
+ *
  * @param <X> first object type
  * @param <Y> second object type
  */
@@ -13,7 +13,7 @@ public class Pair<X, Y> {
 
     /**
      * Constructor.
-     * 
+     *
      * @param x first value
      * @param y second value
      */
@@ -25,7 +25,7 @@ public class Pair<X, Y> {
 
     /**
      * Returns the first object of the pair.
-     * 
+     *
      * @return the first object
      */
     public X getX() {
@@ -34,7 +34,7 @@ public class Pair<X, Y> {
 
     /**
      * Returns the second object of the pair.
-     * 
+     *
      * @return the second object
      */
     public Y getY() {
