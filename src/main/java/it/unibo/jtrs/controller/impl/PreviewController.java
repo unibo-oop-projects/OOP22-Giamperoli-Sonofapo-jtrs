@@ -1,33 +1,36 @@
 package it.unibo.jtrs.controller.impl;
 
-import it.unibo.jtrs.controller.api.Controller;
+import it.unibo.jtrs.model.api.PreviewModel;
 import it.unibo.jtrs.model.api.Tetromino;
-import it.unibo.jtrs.model.impl.PreviewModel;
-import it.unibo.jtrs.view.impl.PreviewPanel;
+import it.unibo.jtrs.model.impl.PreviewModelImpl;
 
 /**
- * This class models basic functionalities a PreviewController must have.
- * This controller should be able to work with its view and model in order to provide
- * the next Tetromino to show during the game.
+ * PreviewController implementation.
  */
-public class PreviewController extends Controller {
+public class PreviewController {
 
-    private final PreviewModel model = new PreviewModel();
+    private final PreviewModel model;
 
     /**
      * Constructor.
      */
     public PreviewController() {
-        this.setView(new PreviewPanel(this));
+        this.model = new PreviewModelImpl();
     }
 
-    @Override
-    public Tetromino getStatus() {
-        return this.model.getCurrent();
+    /**
+     * Return the current Tetromino.
+     * 
+     * @return the Tetromino
+     */
+    public Tetromino getCurrentTetromino() {
+        return this.model.current();
     }
 
-    @Override
-    public void next(Object o) {
+    /**
+     * Advance to next Tetromino.
+     */
+    public void nextTetromino() {
         this.model.next();
     }
 

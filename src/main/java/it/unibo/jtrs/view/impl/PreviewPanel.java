@@ -1,31 +1,48 @@
 package it.unibo.jtrs.view.impl;
 
-import static it.unibo.jtrs.utils.Constants.PREVIEW_ROWS;
-import static it.unibo.jtrs.utils.Constants.PREVIEW_COLS;
-
 import java.awt.Color;
+import java.awt.GridLayout;
 
-import it.unibo.jtrs.controller.api.Controller;
+import javax.swing.JPanel;
+
 import it.unibo.jtrs.controller.impl.PreviewController;
 import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.view.api.GridPanel;
+import it.unibo.jtrs.view.api.View;
 
 /**
  * The class model a preview panel. This view must show the next Tetromino.
  */
-public class PreviewPanel extends GridPanel {
+public class PreviewPanel extends JPanel implements View {
 
-    public PreviewPanel(final Controller controller) {
-        super(controller, PREVIEW_ROWS, PREVIEW_COLS, 100); // TODO: remove magic number        
+    public static final long serialVersionUID = 4328743;
+
+    private static final int GRID_SIZE = 5;
+    private static final int PADDING = 100;
+
+    private final GridPanel preview;
+    private final transient PreviewController controller;
+
+    /**
+     * Constructor.
+     *
+     * @param controller the preview controller
+     */
+    public PreviewPanel(final PreviewController controller) {
+        this.controller = controller;
+
+        this.preview = new GridPanel(GRID_SIZE, GRID_SIZE, PADDING);
+        this.setLayout(new GridLayout());
+        this.add(preview);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void update() {
-        final Tetromino t = ((PreviewController) this.getController()).getStatus();
-        final Color color = Color.decode(t.getColor());
-        this.getCells().forEach((k, v) -> {
-            v.setBackground(t.getComponents(0, 0).contains(k) ? color : Color.GRAY);
-        });
+    public void redraw() {
+        final Tetromino t = this.controller.getCurrentTetromino();
+        this.preview.setCells(t.getComponents(0, 0), Color.decode(t.getColor()));
     }
 
 }

@@ -1,24 +1,49 @@
 package it.unibo.jtrs.utils;
 
+/**
+ * A class modelling a pair of objects.
+ * 
+ * @param <X> first object type
+ * @param <Y> second object type
+ */
 public class Pair<X, Y> {
 
     private final X x;
     private final Y y;
 
+    /**
+     * Constructor.
+     * 
+     * @param x first value
+     * @param y second value
+     */
     public Pair(final X x, final Y y) {
         super();
         this.x = x;
         this.y = y;
     }
 
+    /**
+     * Returns the first object of the pair.
+     * 
+     * @return the first object
+     */
     public X getX() {
         return this.x;
     }
 
+    /**
+     * Returns the second object of the pair.
+     * 
+     * @return the second object
+     */
     public Y getY() {
         return this.y;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -28,6 +53,9 @@ public class Pair<X, Y> {
         return result;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings("rawtypes")
     @Override
     public boolean equals(final Object obj) {
@@ -58,6 +86,9 @@ public class Pair<X, Y> {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "Pair [x=" + x + ", y=" + y + "]";
