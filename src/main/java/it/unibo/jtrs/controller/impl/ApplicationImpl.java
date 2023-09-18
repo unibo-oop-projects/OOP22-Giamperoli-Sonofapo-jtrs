@@ -15,14 +15,19 @@ public class ApplicationImpl implements Application {
     private final GameLogic logic;
     private final ApplicationPanel panel;
     private final ApplicationFrame frame;
-    private final ScoreController sC = new ScoreController();
-    private final PreviewController pC = new PreviewController();
-    private final GameController gC = new GameController();
+    private final ScoreController sC;
+    private final PreviewController pC;
+    private final GameController gC;
 
     /**
      * Constructor.
      */
     public ApplicationImpl() {
+
+        this.sC = new ScoreController();
+        this.pC = new PreviewController();
+        this.gC = new GameController(this.pC.getCurrentTetromino());
+        this.pC.nextTetromino();
 
         this.logic = new GameLogicImpl(this);
         this.panel = new ApplicationPanel(this);
