@@ -29,7 +29,7 @@ public class GameEngineImpl implements GameEngine {
             try {
                 this.application.update();
                 this.application.redraw();
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) { }
         }
     }

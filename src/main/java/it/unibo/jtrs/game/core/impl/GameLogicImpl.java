@@ -17,7 +17,7 @@ public class GameLogicImpl implements GameLogic {
      * @param application the application this logic should operates on
      */
     public GameLogicImpl(final Application application) {
-       this.application = application;
+        this.application = application;
     }
 
     /**
@@ -33,6 +33,15 @@ public class GameLogicImpl implements GameLogic {
      */
     @Override
     public void timeUpdate() {
+        if (this.application.getGameController().fallDown()) {
+            this.application.getGameController().nextPiece(this.application.getPreviewController().getCurrentTetromino());
+            this.application.getPreviewController().nextTetromino();
+        }
+        if (this.application.getGameController().checkPieceCollision()) {
+            this.application.getGameController().nextPiece(this.application.getPreviewController().getCurrentTetromino());
+            this.application.getPreviewController().nextTetromino();
+        }
+        this.application.getGameController().advance();
     }
 
     /**
