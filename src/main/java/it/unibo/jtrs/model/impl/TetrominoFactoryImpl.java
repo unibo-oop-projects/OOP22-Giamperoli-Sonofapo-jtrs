@@ -9,7 +9,7 @@ import it.unibo.jtrs.model.api.TetrominoFactory;
 import it.unibo.jtrs.utils.TetrominoData;
 
 /**
- * This class implements the logic to provide a TetrominoFactory.
+ * TetrominoFactory implementations.
  */
 public class TetrominoFactoryImpl implements TetrominoFactory {
 
@@ -34,6 +34,9 @@ public class TetrominoFactoryImpl implements TetrominoFactory {
         return new ArrayList<>(List.of(oPc, lPc, jPc, iPc, tPc, zPc, sPc));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Tetromino getRandomTetromino() {
         if (this.bag.isEmpty()) {

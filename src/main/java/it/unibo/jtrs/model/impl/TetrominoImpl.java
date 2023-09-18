@@ -8,7 +8,7 @@ import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.utils.Pair;
 
 /**
- * This class implements how a Tetramino should work.
+ * Tetromino implementation.
  */
 public class TetrominoImpl implements Tetromino {
 
@@ -28,6 +28,9 @@ public class TetrominoImpl implements Tetromino {
         this.pivot = this.center();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void rotate() {
         this.compontents = this.compontents.stream()
@@ -36,12 +39,18 @@ public class TetrominoImpl implements Tetromino {
             .collect(Collectors.toCollection(HashSet::new));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void translate(final int x, final int y) {
         this.pivot = this.center();
         this.compontents = this.getComponents(x, y);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<Pair<Integer, Integer>> getComponents(final int x, final int y) {
         return this.compontents.stream()
@@ -64,6 +73,9 @@ public class TetrominoImpl implements Tetromino {
         return new Pair<>(x.getMin() + wh, y.getMin() + hh);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getColor() {
         return this.color;
