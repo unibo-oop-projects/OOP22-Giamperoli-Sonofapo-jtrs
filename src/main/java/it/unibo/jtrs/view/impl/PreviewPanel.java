@@ -2,6 +2,7 @@ package it.unibo.jtrs.view.impl;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.stream.Collectors;
 
 import javax.swing.JPanel;
 
@@ -42,7 +43,10 @@ public class PreviewPanel extends JPanel implements View {
     @Override
     public void redraw() {
         final Tetromino t = this.controller.getCurrentTetromino();
-        this.preview.setCells(t.getComponents(0, 0), Color.decode(t.getColor()));
+        var cells = t.getComponents(0, 0)
+            .stream()
+            .collect(Collectors.toMap(k -> k, v -> Color.decode(t.getColor())));
+        this.preview.setCells(cells);
     }
 
 }
