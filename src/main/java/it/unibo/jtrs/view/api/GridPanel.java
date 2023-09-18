@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.IntStream;
 
 import javax.swing.BorderFactory;
@@ -60,15 +59,14 @@ public class GridPanel extends JPanel {
     }
 
     /**
-     * Update a set of cells specified with their coordinates with a new color.
+     * Update a map of cells with the specified color.
      * Restore the other cells with a default color.
      *
-     * @param components a set of coordinates
-     * @param color the color to update
+     * @param map a map of coordinates with a color
      */
-    public void setCells(final Set<Pair<Integer, Integer>> components, final Color color) {
+    public void setCells(final Map<Pair<Integer, Integer>, Color> map) {
         this.cells.forEach((k, v) -> {
-            v.setBackground(components.contains(k) ? color : Color.GRAY);
+            v.setBackground(map.keySet().contains(k) ? map.get(k) : Color.GRAY);
         });
     }
 

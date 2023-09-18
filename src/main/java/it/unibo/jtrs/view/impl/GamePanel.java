@@ -3,11 +3,14 @@ package it.unibo.jtrs.view.impl;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.JPanel;
 
 import it.unibo.jtrs.controller.impl.GameController;
 import it.unibo.jtrs.model.api.Tetromino;
+import it.unibo.jtrs.model.impl.GameModel;
+import it.unibo.jtrs.utils.Pair;
 import it.unibo.jtrs.view.api.GridPanel;
 import it.unibo.jtrs.view.api.View;
 
@@ -16,8 +19,6 @@ import it.unibo.jtrs.view.api.View;
  */
 public class GamePanel extends JPanel implements View {
 
-    private static final int GRID_ROWS = 20;
-    private static final int GRID_COLS = 10;
     private static final int PADDING = 20;
 
     private final GridPanel game;
@@ -31,7 +32,7 @@ public class GamePanel extends JPanel implements View {
     public GamePanel(final GameController controller) {
         this.controller = controller;
 
-        this.game = new GridPanel(GRID_ROWS, GRID_COLS, PADDING);
+        this.game = new GridPanel(GameModel.GRID_ROWS, GameModel.GRID_COLS, PADDING);
         this.setLayout(new GridLayout());
         this.add(this.game);
     }
@@ -42,10 +43,12 @@ public class GamePanel extends JPanel implements View {
     @Override
     public void redraw() {
         final List<Tetromino> pieces = this.controller.getPieces();
-        pieces.forEach(p -> {
-            this.game.setCells(p.getComponents(0, 0), Color.decode(p.getColor()));
-        });
-    }
 
+        var result = pieces.stream()
+                .flatMap(p -> p.getComponents(0 ,0).stream().map(comp -> new Pair<>(comp, Color.decode(p.getColor()))))
+                .collect(Collectors.toMap(Pair::getX, Pair::getY));
+
+        this.game.setCells(result);
+    }
 
 }
