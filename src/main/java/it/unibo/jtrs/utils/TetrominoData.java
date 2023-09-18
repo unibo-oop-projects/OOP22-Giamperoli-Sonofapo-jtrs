@@ -16,17 +16,17 @@ public final class TetrominoData {
      * L piece coordinate.
      */
     public static final Set<Pair<Integer, Integer>> L_COORD =
-        Set.of(new Pair<>(0, 0), new Pair<>(0, 1), new Pair<>(1, 1), new Pair<>(2, 1));
+        Set.of(new Pair<>(0, 1), new Pair<>(0, 0), new Pair<>(1, 0), new Pair<>(2, 0));
     /**
      * J piece coordinate.
      */
     public static final Set<Pair<Integer, Integer>> J_COORD =
-        Set.of(new Pair<>(0, 1), new Pair<>(0, 0), new Pair<>(1, 0), new Pair<>(2, 0));
+        Set.of(new Pair<>(0, 0), new Pair<>(0, 1), new Pair<>(1, 1), new Pair<>(2, 1));
     /**
      * I piece coordinate.
      */
     public static final Set<Pair<Integer, Integer>> I_COORD =
-        Set.of(new Pair<>(0, 1), new Pair<>(1, 1), new Pair<>(2, 1), new Pair<>(3, 1));
+        Set.of(new Pair<>(0, 0), new Pair<>(1, 0), new Pair<>(2, 0), new Pair<>(3, 0));
     /**
      * T piece coordinate.
      */
@@ -36,12 +36,12 @@ public final class TetrominoData {
      * Z piece coordinate.
      */
     public static final Set<Pair<Integer, Integer>> Z_COORD =
-        Set.of(new Pair<>(0, 1), new Pair<>(1, 1), new Pair<>(1, 0), new Pair<>(2, 0));
+        Set.of(new Pair<>(0, 0), new Pair<>(1, 0), new Pair<>(1, 1), new Pair<>(2, 1));
     /**
      * S piece coordinate.
      */
     public static final Set<Pair<Integer, Integer>> S_COORD =
-        Set.of(new Pair<>(0, 0), new Pair<>(1, 0), new Pair<>(1, 1), new Pair<>(2, 1));
+        Set.of(new Pair<>(0, 1), new Pair<>(1, 1), new Pair<>(1, 0), new Pair<>(2, 0));
 
     /**
      * O piece color.
