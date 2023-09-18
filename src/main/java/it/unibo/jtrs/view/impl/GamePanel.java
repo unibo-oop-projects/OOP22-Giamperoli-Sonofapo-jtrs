@@ -43,11 +43,10 @@ public class GamePanel extends JPanel implements View {
     @Override
     public void redraw() {
         final List<Tetromino> pieces = this.controller.getPieces();
-
-        var result = pieces.stream()
-                .flatMap(p -> p.getComponents(0 ,0).stream().map(comp -> new Pair<>(comp, Color.decode(p.getColor()))))
+        final var result = pieces.stream()
+            .flatMap(p -> p.getComponents(0, 0)
+                .stream().map(c -> new Pair<>(c, Color.decode(p.getColor()))))
                 .collect(Collectors.toMap(Pair::getX, Pair::getY));
-
         this.game.setCells(result);
     }
 

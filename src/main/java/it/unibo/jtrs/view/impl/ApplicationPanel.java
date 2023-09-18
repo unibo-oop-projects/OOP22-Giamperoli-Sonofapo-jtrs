@@ -35,7 +35,7 @@ public class ApplicationPanel extends JPanel {
         panelR.add(this.previewPanel);
         panelR.add(this.scorePanel);
         panelL.add(this.gamePanel);
-        
+
         this.add(panelL);
         this.add(panelR);
     }

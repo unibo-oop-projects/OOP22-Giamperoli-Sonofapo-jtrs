@@ -59,10 +59,9 @@ public class GridPanel extends JPanel {
     }
 
     /**
-     * Update a map of cells with the specified color.
-     * Restore the other cells with a default color.
+     * Update a map of coordinates, each with their specified color. Restore the remaining cells with a default color.
      *
-     * @param map a map of coordinates with a color
+     * @param map the map to read from
      */
     public void setCells(final Map<Pair<Integer, Integer>, Color> map) {
         this.cells.forEach((k, v) -> {

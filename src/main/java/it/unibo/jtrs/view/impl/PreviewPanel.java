@@ -43,7 +43,7 @@ public class PreviewPanel extends JPanel implements View {
     @Override
     public void redraw() {
         final Tetromino t = this.controller.getCurrentTetromino();
-        var cells = t.getComponents(0, 0)
+        final var cells = t.getComponents(0, 0)
             .stream()
             .collect(Collectors.toMap(k -> k, v -> Color.decode(t.getColor())));
         this.preview.setCells(cells);
