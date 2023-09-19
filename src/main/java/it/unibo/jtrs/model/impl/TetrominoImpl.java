@@ -45,17 +45,17 @@ public class TetrominoImpl implements Tetromino {
     @Override
     public void translate(final int x, final int y) {
         this.pivot = this.center();
-        this.compontents = this.getComponents(x, y);
+        this.compontents = this.compontents.stream()
+            .map(c -> new Pair<>(c.getX() + x, c.getY() + y))
+            .collect(Collectors.toCollection(HashSet::new));
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Set<Pair<Integer, Integer>> getComponents(final int x, final int y) {
-        return this.compontents.stream()
-            .map(c -> new Pair<>(c.getX() + x, c.getY() + y))
-            .collect(Collectors.toCollection(HashSet::new));
+    public Set<Pair<Integer, Integer>> getComponents() {
+        return Set.copyOf(this.compontents);
     }
 
     /**
@@ -79,6 +79,14 @@ public class TetrominoImpl implements Tetromino {
     @Override
     public String getColor() {
         return this.color;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Tetromino copy() {
+        return new TetrominoImpl(Set.copyOf(compontents), color);
     }
 
 }

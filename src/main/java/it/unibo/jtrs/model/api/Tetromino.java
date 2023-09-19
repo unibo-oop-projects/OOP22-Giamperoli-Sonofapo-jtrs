@@ -23,14 +23,11 @@ public interface Tetromino {
     void translate(int x, int y);
 
     /**
-     * Return a set of coordinates indicating where the tetromino is placed eventually
-     * ofsetted by an horizontal and vertical amounts, respectivly x and y.
-     *
-     * @param x horizontal displacement
-     * @param y vertical displacement
+     * Returns a set of coordinates indicating where the Tetromino is placed.
+     * 
      * @return the set of coordinates
      */
-    Set<Pair<Integer, Integer>> getComponents(int x, int y);
+    Set<Pair<Integer, Integer>> getComponents();
 
     /**
      * Return the color assigend to the Tetromino.
@@ -38,4 +35,11 @@ public interface Tetromino {
      * @return the color as an hexadecimal string
      */
     String getColor();
+
+    /**
+     * Create a copy of the Tetromino.
+     * 
+     * @return the copy
+     */
+    Tetromino copy();
 }

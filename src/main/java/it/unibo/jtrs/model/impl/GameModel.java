@@ -52,7 +52,7 @@ public class GameModel {
 
     //return if current touches pieces
     public boolean checkPieceCollision() {
-        var c = this.getCoordPieces().stream().filter(p -> this.getCurrentPiece().getComponents(0, 0).stream().map(x -> x.getX()).collect(Collectors.toList()).contains(p.getX())); //?????????????????????????
+        var c = this.getCoordPieces().stream().filter(p -> this.getCurrentPiece().getComponents().stream().map(x -> x.getX()).collect(Collectors.toList()).contains(p.getX())); //?????????????????????????
         return this.checkUnder(c.collect(Collectors.summarizingInt(Pair::getY)).getMax());
     }
 
@@ -66,16 +66,16 @@ public class GameModel {
     }
     
     private IntSummaryStatistics getCurrentXStats() {
-        return this.getCurrentPiece().getComponents(0, 0).stream().collect(Collectors.summarizingInt(Pair::getX));
+        return this.getCurrentPiece().getComponents().stream().collect(Collectors.summarizingInt(Pair::getX));
     }
 
     private IntSummaryStatistics getCurrentYStats() {
-        return this.getCurrentPiece().getComponents(0, 0).stream().collect(Collectors.summarizingInt(Pair::getY));
+        return this.getCurrentPiece().getComponents().stream().collect(Collectors.summarizingInt(Pair::getY));
     }
 
     private List<Pair<Integer, Integer>> getCoordPieces() {
         List<Pair<Integer, Integer>> res = new ArrayList<>();
-        this.pieces.forEach(p -> res.addAll(p.getComponents(0, 0)));
+        this.pieces.forEach(p -> res.addAll(p.getComponents()));
         return res;
     }
 

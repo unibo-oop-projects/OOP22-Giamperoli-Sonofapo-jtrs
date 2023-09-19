@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import javax.swing.JPanel;
 
 import it.unibo.jtrs.controller.impl.PreviewController;
-import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.view.api.GridPanel;
 import it.unibo.jtrs.view.api.View;
 
@@ -43,11 +42,11 @@ public class PreviewPanel extends JPanel implements View {
      */
     @Override
     public void redraw() {
-        final Tetromino t = this.controller.getCurrentTetromino();
-        final var cells = t.getComponents(0, 0)
+        final var t = this.controller.getCurrentTetromino();
+        final var c = t.getComponents()
             .stream()
             .collect(Collectors.toMap(k -> k, v -> Color.decode(t.getColor())));
-        this.preview.setCells(cells);
+        this.preview.setCells(c);
     }
 
 }
