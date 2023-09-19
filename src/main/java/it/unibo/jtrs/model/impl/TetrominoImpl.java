@@ -37,6 +37,7 @@ public class TetrominoImpl implements Tetromino {
             .map(c -> new Pair<>(c.getY() - pivot.getY() + pivot.getX(),
                 pivot.getX() - c.getX() + pivot.getY()))
             .collect(Collectors.toCollection(HashSet::new));
+        this.pivot = this.center();
     }
 
     /**
@@ -44,10 +45,10 @@ public class TetrominoImpl implements Tetromino {
      */
     @Override
     public void translate(final int x, final int y) {
-        this.pivot = this.center();
         this.compontents = this.compontents.stream()
             .map(c -> new Pair<>(c.getX() + x, c.getY() + y))
             .collect(Collectors.toCollection(HashSet::new));
+        this.pivot = this.center();
     }
 
     /**
@@ -67,10 +68,10 @@ public class TetrominoImpl implements Tetromino {
     private Pair<Integer, Integer> center() {
         final var x = this.compontents.stream().mapToInt(Pair::getX).summaryStatistics();
         final var y = this.compontents.stream().mapToInt(Pair::getY).summaryStatistics();
-        final int wh = (int) Math.ceil((x.getMax() - x.getMin()) / 2.0);
-        final int hh = (int) Math.ceil((y.getMax() - y.getMin()) / 2.0);
+        final int cx = (int) Math.round(x.getAverage());
+        final int cy = (int) Math.round(y.getAverage());
 
-        return new Pair<>(x.getMin() + wh, y.getMin() + hh);
+        return new Pair<>(cx, cy);
     }
 
     /**
