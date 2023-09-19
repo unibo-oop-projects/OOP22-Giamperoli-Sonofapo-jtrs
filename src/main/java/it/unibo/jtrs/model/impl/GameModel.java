@@ -24,13 +24,12 @@ public class GameModel {
 
     public enum Interaction {
         DOWN,
-        LEFT, 
+        LEFT,
         RIGHT,
         ROTATE
     }
 
     private List<Tetromino> pieces;
-    //private Set<Pair<Integer, Integer>> freeCells;
 
     /**
      * Constructor.
@@ -44,17 +43,16 @@ public class GameModel {
         return List.copyOf(this.pieces);
     }
 
-    //Serve??
     public Tetromino getCurrentPiece() {
         return this.pieces.get(this.pieces.size() - 1);
     }
 
-    public void nextPiece(Tetromino next) {     
+    public void nextPiece(Tetromino next) {
         this.pieces.add(next);
     }
 
     public boolean advance(Interaction i) {
-        Predicate<Set<Pair<Integer, Integer>>> predicate = c -> this.checkAvailablePosition(c); 
+        Predicate<Set<Pair<Integer, Integer>>> predicate = c -> this.checkAvailablePosition(c);
         Consumer<Tetromino> consumer = null;
         switch (i) {
             case ROTATE:
@@ -74,7 +72,7 @@ public class GameModel {
     }
 
     private boolean action(Consumer<Tetromino> function, Predicate<Set<Pair<Integer, Integer>>> predicate) {
-        var temp = new TetrominoFactoryImpl().getRandomTetromino(); // buttare via
+        var temp = this.getCurrentPiece().copy();
         function.accept(temp);
         if (predicate.test(temp.getComponents())) {
             function.accept(this.getCurrentPiece());
@@ -84,8 +82,8 @@ public class GameModel {
     }
 
     private boolean checkAvailablePosition(Set<Pair<Integer, Integer>> coords) {
-        return this.checkLateralBound(coords) && 
-            this.checkBottomBound(coords) && 
+        return this.checkLateralBound(coords) &&
+            this.checkBottomBound(coords) &&
             !this.getCoordPieces().stream().anyMatch(c -> coords.contains(c));
     }
 
