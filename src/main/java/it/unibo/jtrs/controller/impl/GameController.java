@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.model.impl.GameModel;
+import it.unibo.jtrs.model.impl.GameModel.Interaction;
 
 /**
  * GameController implementation.
@@ -23,26 +24,17 @@ public class GameController {
         return this.model.getPieces();
     }
 
-    public void advance() {
-        if(!this.model.checkBottom()) {
-            this.model.advance(0, 1);
+    public boolean advance(Tetromino next, Interaction i) { //interacion non qua
+        var res = this.model.advance(i);
+        if (!res && i == Interaction.DOWN) {
+            this.model.nextPiece(next);
+            return true;
         }
-    }
-
-    public boolean fallDown() {
-        return this.model.checkBottom();
-    }
-
-    public boolean checkPieceCollision() {
-        return this.model.checkPieceCollision();
+        return false;
     }
 
     public Tetromino getCurrentPiece() {
         return this.model.getCurrentPiece();
-    }
-
-    public void nextPiece(Tetromino next) {
-        this.model.nextPiece(next);
     }
 
 }

@@ -3,6 +3,7 @@ package it.unibo.jtrs.game.core.impl;
 import it.unibo.jtrs.controller.api.Application;
 import it.unibo.jtrs.game.core.api.GameLogic;
 import it.unibo.jtrs.game.core.api.KeyboardQuery;
+import it.unibo.jtrs.model.impl.GameModel.Interaction;
 
 /**
  * GameLogic implementation.
@@ -33,15 +34,10 @@ public class GameLogicImpl implements GameLogic {
      */
     @Override
     public void timeUpdate() {
-        if (this.application.getGameController().fallDown()) {
-            this.application.getGameController().nextPiece(this.application.getPreviewController().getCurrentTetromino());
+        var next = this.application.getPreviewController().getCurrentTetromino();
+        if (this.application.getGameController().advance(next, Interaction.DOWN)) {
             this.application.getPreviewController().nextTetromino();
         }
-        if (this.application.getGameController().checkPieceCollision()) {
-            this.application.getGameController().nextPiece(this.application.getPreviewController().getCurrentTetromino());
-            this.application.getPreviewController().nextTetromino();
-        }
-        this.application.getGameController().advance();
     }
 
     /**
