@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.utils.Pair;
@@ -96,11 +95,11 @@ public class GameModel {
     }
 
     private IntSummaryStatistics getXStats(Set<Pair<Integer, Integer>> coords) {
-        return coords.stream().collect(Collectors.summarizingInt(Pair::getX));
+        return coords.stream().mapToInt(Pair::getX).summaryStatistics();
     }
 
     private IntSummaryStatistics getYStats(Set<Pair<Integer, Integer>> coords) {
-        return coords.stream().collect(Collectors.summarizingInt(Pair::getY));
+        return coords.stream().mapToInt(Pair::getY).summaryStatistics();
     }
 
     private Set<Pair<Integer, Integer>> getCoordPieces() {
