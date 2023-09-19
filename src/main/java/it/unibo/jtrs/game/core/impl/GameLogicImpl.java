@@ -3,7 +3,8 @@ package it.unibo.jtrs.game.core.impl;
 import it.unibo.jtrs.controller.api.Application;
 import it.unibo.jtrs.game.core.api.GameLogic;
 import it.unibo.jtrs.game.core.api.KeyboardQuery;
-import it.unibo.jtrs.model.impl.GameModel.Interaction;
+import it.unibo.jtrs.model.api.GameModel.GameState;
+import it.unibo.jtrs.model.api.GameModel.Interaction;
 
 /**
  * GameLogic implementation.
@@ -11,6 +12,7 @@ import it.unibo.jtrs.model.impl.GameModel.Interaction;
 public class GameLogicImpl implements GameLogic {
 
     private final Application application;
+    private GameState gameState;
 
     /**
      * Constructor.
@@ -19,14 +21,15 @@ public class GameLogicImpl implements GameLogic {
      */
     public GameLogicImpl(final Application application) {
         this.application = application;
+        this.gameState = GameState.RUNNING;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean isOver() {
-        return false;
+    public boolean isOver() { //non serve piu'
+        return this.gameState == GameState.OVER;
     }
 
     /**
@@ -34,9 +37,13 @@ public class GameLogicImpl implements GameLogic {
      */
     @Override
     public void timeUpdate() {
-        var next = this.application.getPreviewController().getCurrentTetromino();
-        if (this.application.getGameController().advance(next, Interaction.DOWN)) {
-            this.application.getPreviewController().nextTetromino();
+        if (!this.application.getGameController().advance(Interaction.DOWN)) {
+            final var next = this.application.getPreviewController().getCurrentTetromino();
+            if (!this.application.getGameController().changePiece(next)) {
+                this.gameState = GameState.OVER;
+            } else {
+                this.application.getPreviewController().nextTetromino();
+            }
         }
     }
 

@@ -3,38 +3,52 @@ package it.unibo.jtrs.controller.impl;
 import java.util.List;
 
 import it.unibo.jtrs.model.api.Tetromino;
-import it.unibo.jtrs.model.impl.GameModel;
-import it.unibo.jtrs.model.impl.GameModel.Interaction;
+import it.unibo.jtrs.model.impl.GameModelImpl;
+import it.unibo.jtrs.model.api.GameModel.Interaction;
 
 /**
  * GameController implementation.
  */
 public class GameController {
 
-    private final GameModel model;
+    private final GameModelImpl model;
 
     /**
      * Constructor.
+     *
+     * @param first the first Tetromino
      */
-    public GameController(Tetromino first) {
-        this.model = new GameModel(first);
+    public GameController(final Tetromino first) {
+        this.model = new GameModelImpl(first);
     }
 
+    /**
+     * Returns a list of Tetrominoes in the grid.
+     *
+     * @return the list of Tetrominoes
+     */
     public List<Tetromino> getPieces() {
         return this.model.getPieces();
     }
 
-    public boolean advance(Tetromino next, Interaction i) { //interacion non qua
-        var res = this.model.advance(i);
-        if (!res && i == Interaction.DOWN) {
-            this.model.nextPiece(next);
-            return true;
-        }
-        return false;
+    /**
+     * Returns if the given interaction is successful.
+     *
+     * @param i the interaction
+     * @return true on success, false otherwise
+     */
+    public boolean advance(final Interaction i) {
+        return this.model.advance(i);
     }
 
-    public Tetromino getCurrentPiece() {
-        return this.model.getCurrentPiece();
+    /**
+     * Returns if the given Tetromino has been addedd to the grid.
+     *
+     * @param next the Tetromino to be added
+     * @return true on success, false otherwise
+     */
+    public boolean changePiece(final Tetromino next) {
+        return this.model.nextPiece(next);
     }
 
 }
