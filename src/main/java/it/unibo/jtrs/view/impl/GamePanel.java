@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 import it.unibo.jtrs.controller.impl.GameController;
 import it.unibo.jtrs.model.api.Tetromino;
-import it.unibo.jtrs.model.impl.GameModel;
+import it.unibo.jtrs.model.impl.GameModelImpl;
 import it.unibo.jtrs.utils.Pair;
 import it.unibo.jtrs.view.api.GridPanel;
 import it.unibo.jtrs.view.api.View;
@@ -18,6 +18,8 @@ import it.unibo.jtrs.view.api.View;
  * The class models the game panel. This view must show the Tetronimos placed during the game.
  */
 public class GamePanel extends JPanel implements View {
+
+    public static final long serialVersionUID = 4328743;
 
     private static final int PADDING = 20;
 
@@ -32,7 +34,7 @@ public class GamePanel extends JPanel implements View {
     public GamePanel(final GameController controller) {
         this.controller = controller;
 
-        this.game = new GridPanel(GameModel.GRID_ROWS, GameModel.GRID_COLS, PADDING);
+        this.game = new GridPanel(GameModelImpl.GRID_ROWS, GameModelImpl.GRID_COLS, PADDING);
         this.setLayout(new GridLayout());
         this.add(this.game);
     }
