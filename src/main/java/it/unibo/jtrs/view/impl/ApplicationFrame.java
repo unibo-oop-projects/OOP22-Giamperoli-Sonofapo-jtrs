@@ -27,7 +27,7 @@ public class ApplicationFrame extends JFrame {
 
         this.add(panel);
 
-        this.pack();
+        super.pack();
         this.setVisible(true);
         this.setResizable(false);
         this.addKeyListener(this.keyboard);
