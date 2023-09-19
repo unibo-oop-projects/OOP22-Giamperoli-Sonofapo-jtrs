@@ -18,8 +18,9 @@ public class PreviewPanel extends JPanel implements View {
 
     public static final long serialVersionUID = 4328743;
 
-    private static final int GRID_SIZE = 5;
-    private static final int PADDING = 100;
+    private static final int GRID_COLS = 5;
+    private static final int GRID_ROWS = 3;
+    private static final int PADDING = 50;
 
     private final GridPanel preview;
     private final transient PreviewController controller;
@@ -32,7 +33,7 @@ public class PreviewPanel extends JPanel implements View {
     public PreviewPanel(final PreviewController controller) {
         this.controller = controller;
 
-        this.preview = new GridPanel(GRID_SIZE, GRID_SIZE, PADDING);
+        this.preview = new GridPanel(GRID_ROWS, GRID_COLS, PADDING);
         this.setLayout(new GridLayout());
         this.add(this.preview);
     }

@@ -11,9 +11,6 @@ import it.unibo.jtrs.game.core.impl.KeyboardReader;
  */
 public class ApplicationFrame extends JFrame {
 
-    private static final int FRAME_W = 800;
-    private static final int FRAME_H = 800;
-
     public static final long serialVersionUID = 4328743;
 
     private final transient KeyboardReader keyboard;
@@ -30,9 +27,9 @@ public class ApplicationFrame extends JFrame {
 
         this.add(panel);
 
+        this.pack();
         this.setVisible(true);
         this.setResizable(false);
-        this.setSize(FRAME_W, FRAME_H);
         this.addKeyListener(this.keyboard);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }

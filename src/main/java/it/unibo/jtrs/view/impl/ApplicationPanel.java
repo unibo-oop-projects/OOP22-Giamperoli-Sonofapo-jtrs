@@ -3,6 +3,7 @@ package it.unibo.jtrs.view.impl;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import it.unibo.jtrs.controller.api.Application;
 
@@ -10,6 +11,8 @@ import it.unibo.jtrs.controller.api.Application;
  * A class modelling the main panel to be inserted in a frame.
  */
 public class ApplicationPanel extends JPanel {
+
+    private static final int PADDING = 20;
 
     public static final long serialVersionUID = 4328743;
 
@@ -29,6 +32,7 @@ public class ApplicationPanel extends JPanel {
         this.gamePanel = new GamePanel(application.getGameController());
 
         this.setLayout(new GridLayout(1, 2));
+        this.setBorder(new EmptyBorder(PADDING, PADDING, PADDING, PADDING));
 
         final var panelL = new JPanel(new GridLayout());
         final var panelR = new JPanel(new GridLayout(2, 1));
