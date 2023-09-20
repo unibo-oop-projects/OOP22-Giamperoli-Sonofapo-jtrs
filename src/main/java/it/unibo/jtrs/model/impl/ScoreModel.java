@@ -10,6 +10,9 @@ public class ScoreModel {
     private int score;
     private int deletedLines;
 
+    /**
+     * Constructor.
+     */
     public ScoreModel() {
         this.level = 0;
         this.score = 0;
@@ -31,6 +34,20 @@ public class ScoreModel {
     public void evaluate(final int lines) {
         this.deletedLines = this.deletedLines + lines;
         this.setLevel();
+        switch (lines) {
+            case 1:
+                this.score = this.score + 40 * (this.level + 1);
+                break;
+            case 2:
+                this.score = this.score + 100 * (this.level + 1);
+                break;
+            case 3:
+                this.score = this.score + 300 * (this.level + 1);
+                break;
+            case 4:
+                this.score = this.score + 1200 * (this.level + 1);
+                break;
+        }
     }
 
     private void setLevel() {

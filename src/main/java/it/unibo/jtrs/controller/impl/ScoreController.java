@@ -17,4 +17,8 @@ public class ScoreController {
     public int getScore() {
         return this.model.getScore();
     }
+
+    public void evaluate(final int lines) {
+        this.model.evaluate(lines);
+    }
 }
