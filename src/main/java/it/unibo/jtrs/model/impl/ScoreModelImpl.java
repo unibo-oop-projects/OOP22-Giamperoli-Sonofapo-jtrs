@@ -2,7 +2,7 @@ package it.unibo.jtrs.model.impl;
 
 import it.unibo.jtrs.utils.Pair;
 
-public class ScoreModel {
+public class ScoreModelImpl {
 
     private static final int LEVEL_FACTOR = 10;
 
@@ -13,7 +13,7 @@ public class ScoreModel {
     /**
      * Constructor.
      */
-    public ScoreModel() {
+    public ScoreModelImpl() {
         this.level = 0;
         this.score = 0;
         this.deletedLines = 0;
@@ -45,13 +45,14 @@ public class ScoreModel {
                 this.score = this.score + 300 * (this.level + 1);
                 break;
             case 4:
+            default:
                 this.score = this.score + 1200 * (this.level + 1);
                 break;
         }
     }
 
     private void setLevel() {
-        this.level = this.deletedLines / ScoreModel.LEVEL_FACTOR;
+        this.level = this.deletedLines / ScoreModelImpl.LEVEL_FACTOR;
     }
 
 }

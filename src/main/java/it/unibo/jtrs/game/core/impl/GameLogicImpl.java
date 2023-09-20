@@ -63,16 +63,16 @@ public class GameLogicImpl implements GameLogic {
     @Override
     public void keyboardUpdate(final KeyboardQuery keyboard) {
 
-        if(keyboard.isUpPressed()) {
+        if (keyboard.isUpPressed()) {
             this.application.getGameController().advance(Interaction.ROTATE);
         }
-        if(keyboard.isLeftPressed()) {
+        if (keyboard.isLeftPressed()) {
             this.application.getGameController().advance(Interaction.LEFT);
         }
-        if(keyboard.isRightPressed()) {
+        if (keyboard.isRightPressed()) {
             this.application.getGameController().advance(Interaction.RIGHT);
         }
-        if(keyboard.isDownPressed()) {
+        if (keyboard.isDownPressed()) {
             this.application.getGameController().advance(Interaction.DOWN);
         }
     }

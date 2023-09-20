@@ -11,6 +11,8 @@ import it.unibo.jtrs.view.api.View;
  */
 public class ScorePanel extends JPanel implements View {
 
+    public static final long serialVersionUID = 4328743;
+
     private final JLabel score;
     private final JLabel level;
     private final transient ScoreController controller;

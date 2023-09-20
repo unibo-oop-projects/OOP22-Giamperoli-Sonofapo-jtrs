@@ -66,7 +66,7 @@ public class GameModelImpl implements GameModel {
      */
     @Override
     public int deleteRows() {
-        var lines = this.getCompletedRows();
+        final var lines = this.getCompletedRows();
         this.removeRows(lines);
         return (int) lines.size();
     }
@@ -132,16 +132,15 @@ public class GameModelImpl implements GameModel {
     }
 
     private Set<Integer> getCompletedRows() {
-        var tmp = IntStream.range(0, GameModelImpl.GRID_ROWS)
+        return IntStream.range(0, GameModelImpl.GRID_ROWS)
             .map(i -> this.getStreamComponents(this.pieces.size())
                 .filter(c -> c.getX() == i)
                 .count() == GameModelImpl.GRID_COLS ? i : -1)
                 .filter(e -> e != -1).boxed().collect(Collectors.toSet());
-        return tmp;
     }
 
     //TODO
-    private void removeRows(Set<Integer> lines) {
+    private void removeRows(final Set<Integer> lines) {
     }
 
 }

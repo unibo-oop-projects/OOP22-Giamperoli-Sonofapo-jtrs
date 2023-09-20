@@ -74,7 +74,7 @@ public class TetrominoImpl implements Tetromino {
      * @return the center of gravity
      */
     private Pair<Double, Double> center() {
-        var c = IntStream.concat(this.compontents.stream().mapToInt(Pair::getX),
+        final var c = IntStream.concat(this.compontents.stream().mapToInt(Pair::getX),
             this.compontents.stream().mapToInt(Pair::getY)).max().getAsInt() / 2.0;
         return new Pair<>(c, c);
     }

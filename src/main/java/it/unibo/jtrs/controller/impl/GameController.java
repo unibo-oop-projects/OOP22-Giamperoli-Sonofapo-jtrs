@@ -53,6 +53,11 @@ public class GameController {
         return this.model.nextPiece(next);
     }
 
+    /**
+     * Returns the number of lines deleted.
+     * 
+     * @return the number of lines
+     */
     public int deleteRows() {
         return this.model.deleteRows();
     }
