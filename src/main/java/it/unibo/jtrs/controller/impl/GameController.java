@@ -53,8 +53,12 @@ public class GameController {
         return this.model.nextPiece(next);
     }
 
+    public int deleteRows() {
+        return this.model.deleteRows();
+    }
+
     private void translateToCenter(final Tetromino tetromino) {
-        tetromino.translate(GameModelImpl.GRID_COLS / 2 - 2, 0);
+        tetromino.translate(0, GameModelImpl.GRID_COLS / 2 - 2);
     }
 
 }

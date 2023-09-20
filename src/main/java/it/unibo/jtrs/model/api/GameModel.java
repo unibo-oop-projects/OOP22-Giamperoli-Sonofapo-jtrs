@@ -67,6 +67,13 @@ public interface GameModel {
     boolean nextPiece(Tetromino next);
 
     /**
+     * Removes the completed grid's rows.
+     * 
+     * @return the number of rows deleted
+     */
+    int deleteRows();
+
+    /**
      * Move the current Tetromino as specified with the give interaction.
      *
      * @param i the interaction
