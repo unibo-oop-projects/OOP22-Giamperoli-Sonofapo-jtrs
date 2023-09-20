@@ -30,6 +30,14 @@ public interface Tetromino {
     Set<Pair<Integer, Integer>> getComponents();
 
     /**
+     * Delete all the components from a Tetromino that are horizontally located
+     * on the given position.
+     * 
+     * @param position the horizontal compontents to remove
+     */
+    void delete(int position);
+
+    /**
      * Return the color assigend to the Tetromino.
      *
      * @return the color as an hexadecimal string

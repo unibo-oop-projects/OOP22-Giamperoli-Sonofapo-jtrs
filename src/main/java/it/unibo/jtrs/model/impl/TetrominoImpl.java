@@ -69,6 +69,16 @@ public class TetrominoImpl implements Tetromino {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void delete(final int position) {
+        this.compontents = this.compontents.stream()
+            .filter(c -> c.getX() + this.xPosition != position)
+            .collect(Collectors.toCollection(HashSet::new));
+    }
+
+    /**
      * Evaluate the Tetromino's center of gravity with floating point precision.
      *
      * @return the center of gravity
