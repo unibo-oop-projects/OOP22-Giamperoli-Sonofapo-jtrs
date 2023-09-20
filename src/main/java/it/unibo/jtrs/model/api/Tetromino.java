@@ -17,8 +17,8 @@ public interface Tetromino {
     /**
      * Translate the Tetromino by a specific amount.
      *
-     * @param x horizontal translation
-     * @param y vertical translation
+     * @param x vertical translation
+     * @param y horizontal translation
      */
     void translate(int x, int y);
 

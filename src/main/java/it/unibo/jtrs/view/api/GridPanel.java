@@ -53,7 +53,7 @@ public class GridPanel extends JPanel {
             for (int j = 0; j < this.cols; j++) {
                 final var cell = new Cell();
                 panel.add(cell);
-                this.cells.put(new Pair<>(j, i), cell);
+                this.cells.put(new Pair<>(i, j), cell);
             }
             this.add(panel);
         }
@@ -72,10 +72,10 @@ public class GridPanel extends JPanel {
     }
 
     /**
-     * A class modelling a square cell. A cell behaves exactly as a JLabel with
-     * and has a fixed size and a thin border.
+     * A class modelling a square cell. A cell behaves exactly as a JLabel and
+     * has a fixed size and a thin border.
      */
-    class Cell extends JLabel {
+    static class Cell extends JLabel {
 
         public static final long serialVersionUID = 4328743;
 
