@@ -19,6 +19,7 @@ public class GameController {
      * @param first the first Tetromino
      */
     public GameController(final Tetromino first) {
+        this.translateToCenter(first);
         this.model = new GameModelImpl(first);
     }
 
@@ -48,7 +49,12 @@ public class GameController {
      * @return true on success, false otherwise
      */
     public boolean changePiece(final Tetromino next) {
+        this.translateToCenter(next);
         return this.model.nextPiece(next);
+    }
+
+    private void translateToCenter(final Tetromino tetromino) {
+        tetromino.translate(GameModelImpl.GRID_COLS / 2 - 2, 0);
     }
 
 }
