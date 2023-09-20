@@ -3,6 +3,7 @@ package it.unibo.jtrs.model.impl;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.utils.Pair;
@@ -73,10 +74,9 @@ public class TetrominoImpl implements Tetromino {
      * @return the center of gravity
      */
     private Pair<Double, Double> center() {
-        final var x = this.compontents.stream().mapToInt(Pair::getX).summaryStatistics().getMax();
-        final var y = this.compontents.stream().mapToInt(Pair::getY).summaryStatistics().getMax();
-        final var max = (x > y ? x : y) / 2.0;
-        return new Pair<>(max, max);
+        var c = IntStream.concat(this.compontents.stream().mapToInt(Pair::getX),
+            this.compontents.stream().mapToInt(Pair::getY)).max().getAsInt() / 2.0;
+        return new Pair<>(c, c);
     }
 
     /**
