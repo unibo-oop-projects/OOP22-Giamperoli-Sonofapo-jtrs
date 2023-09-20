@@ -12,7 +12,10 @@ import it.unibo.jtrs.game.core.api.KeyboardQuery;
  */
 public class KeyboardReader implements KeyListener, KeyboardQuery {
 
+    private static final int SCAN_RATE = 250;
+
     private final Map<Integer, Boolean> keys = new HashMap<>();
+    private long millis;
 
     /**
      * Constructor.
@@ -22,6 +25,8 @@ public class KeyboardReader implements KeyListener, KeyboardQuery {
         this.keys.put(KeyEvent.VK_S, false);
         this.keys.put(KeyEvent.VK_A, false);
         this.keys.put(KeyEvent.VK_D, false);
+
+        this.millis = System.currentTimeMillis();
     }
 
     @Override
@@ -48,7 +53,7 @@ public class KeyboardReader implements KeyListener, KeyboardQuery {
      */
     @Override
     public boolean isUpPressed() {
-        return this.keys.get(KeyEvent.VK_W);
+        return this.keys.get(KeyEvent.VK_W) && this.isReady();
     }
 
     /**
@@ -56,7 +61,7 @@ public class KeyboardReader implements KeyListener, KeyboardQuery {
      */
     @Override
     public boolean isDownPressed() {
-        return this.keys.get(KeyEvent.VK_S);
+        return this.keys.get(KeyEvent.VK_S) && this.isReady();
     }
 
     /**
@@ -64,7 +69,7 @@ public class KeyboardReader implements KeyListener, KeyboardQuery {
      */
     @Override
     public boolean isLeftPressed() {
-        return this.keys.get(KeyEvent.VK_A);
+        return this.keys.get(KeyEvent.VK_A) && this.isReady();
     }
 
     /**
@@ -72,7 +77,15 @@ public class KeyboardReader implements KeyListener, KeyboardQuery {
      */
     @Override
     public boolean isRightPressed() {
-        return this.keys.get(KeyEvent.VK_D);
+        return this.keys.get(KeyEvent.VK_D) && this.isReady();
+    }
+
+    private boolean isReady() {
+        if (System.currentTimeMillis() - this.millis > SCAN_RATE) {
+            this.millis = System.currentTimeMillis();
+            return true;
+        }
+        return false;
     }
 
 }
