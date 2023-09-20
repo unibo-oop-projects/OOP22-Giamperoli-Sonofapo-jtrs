@@ -13,6 +13,7 @@ public class GameLogicImpl implements GameLogic {
 
     private final Application application;
     private GameState gameState;
+    private long millis;
 
     /**
      * Constructor.
@@ -22,13 +23,14 @@ public class GameLogicImpl implements GameLogic {
     public GameLogicImpl(final Application application) {
         this.application = application;
         this.gameState = GameState.RUNNING;
+        this.millis = System.currentTimeMillis();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean isOver() { //non serve piu'
+    public boolean isOver() {
         return this.gameState == GameState.OVER;
     }
 
@@ -37,12 +39,20 @@ public class GameLogicImpl implements GameLogic {
      */
     @Override
     public void timeUpdate() {
-        if (!this.application.getGameController().advance(Interaction.DOWN)) {
-            final var next = this.application.getPreviewController().getCurrentTetromino();
-            if (!this.application.getGameController().changePiece(next)) {
-                this.gameState = GameState.OVER;
-            } else {
-                this.application.getPreviewController().nextTetromino();
+        if (System.currentTimeMillis() - this.millis > 600 - 100 * this.application.getScoreController().getLevel()) {
+            this.millis = System.currentTimeMillis();
+
+            if (!this.application.getGameController().advance(Interaction.DOWN)) {
+
+                final var countRemoved = this.application.getGameController().deleteRows();
+                this.application.getScoreController().evaluate(countRemoved);
+
+                final var next = this.application.getPreviewController().getCurrentTetromino();
+                if (!this.application.getGameController().changePiece(next)) {
+                    this.gameState = GameState.OVER;
+                } else {
+                    this.application.getPreviewController().nextTetromino();
+                }
             }
         }
     }
@@ -52,8 +62,18 @@ public class GameLogicImpl implements GameLogic {
      */
     @Override
     public void keyboardUpdate(final KeyboardQuery keyboard) {
-        if (keyboard.isUpPressed()) {
-            application.getPreviewController().nextTetromino();
+
+        if(keyboard.isUpPressed()) {
+            this.application.getGameController().advance(Interaction.ROTATE);
+        }
+        if(keyboard.isLeftPressed()) {
+            this.application.getGameController().advance(Interaction.LEFT);
+        }
+        if(keyboard.isRightPressed()) {
+            this.application.getGameController().advance(Interaction.RIGHT);
+        }
+        if(keyboard.isDownPressed()) {
+            this.application.getGameController().advance(Interaction.DOWN);
         }
     }
 

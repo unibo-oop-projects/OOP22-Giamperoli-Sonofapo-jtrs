@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import it.unibo.jtrs.model.api.GameModel;
 import it.unibo.jtrs.model.api.Tetromino;
@@ -26,7 +29,7 @@ public class GameModelImpl implements GameModel {
      */
     public static final int GRID_COLS = 10;
 
-    final private List<Tetromino> pieces;
+    private final List<Tetromino> pieces;
 
     /**
      * Constructor.
@@ -59,22 +62,36 @@ public class GameModelImpl implements GameModel {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int deleteRows() {
+        var lines = this.getCompletedRows();
+        this.removeRows(lines);
+        return (int) lines.size();
+    }
+
+    /**
     * {@inheritDoc}
     */
     @Override
     public boolean advance(final Interaction i) {
         final Predicate<Set<Pair<Integer, Integer>>> predicate = c -> this.checkAvailablePosition(c);
-        Consumer<Tetromino> consumer = switch (i) {
+        final Consumer<Tetromino> consumer = switch (i) {
             case ROTATE -> Tetromino::rotate;
-            case DOWN -> (t -> t.translate(0, 1));
-            case LEFT -> (t -> t.translate(-1, 0));
-            case RIGHT -> (t -> t.translate(1, 0));
+            case DOWN -> t -> t.translate(1, 0);
+            case LEFT -> t -> t.translate(0, -1);
+            case RIGHT -> t -> t.translate(0, 1);
         };
         return this.action(consumer, predicate);
     }
 
     private Tetromino getCurrentPiece() {
         return this.pieces.get(this.pieces.size() - 1);
+    }
+
+    private Stream<Pair<Integer, Integer>> getStreamComponents(final int end) {
+        return this.pieces.subList(0, end).stream().flatMap(p -> p.getComponents().stream());
     }
 
     private boolean action(final Consumer<Tetromino> function, final Predicate<Set<Pair<Integer, Integer>>> predicate) {
@@ -92,9 +109,9 @@ public class GameModelImpl implements GameModel {
     }
 
     private boolean inBound(final Set<Pair<Integer, Integer>> coords) {
-        return this.getXStats(coords).getMin() >= 0
-            && this.getXStats(coords).getMax() < GameModelImpl.GRID_COLS
-            && this.getYStats(coords).getMax() < GameModelImpl.GRID_ROWS;
+        return this.getYStats(coords).getMin() >= 0
+            && this.getYStats(coords).getMax() < GameModelImpl.GRID_COLS
+            && this.getXStats(coords).getMax() < GameModelImpl.GRID_ROWS;
     }
 
     private IntSummaryStatistics getXStats(final Set<Pair<Integer, Integer>> coords) {
@@ -110,10 +127,21 @@ public class GameModelImpl implements GameModel {
     }
 
     private boolean collide(final Set<Pair<Integer, Integer>> coords) {
-        return this.pieces.subList(0, this.pieces.size() - 1)
-            .stream()
-            .flatMap(p -> p.getComponents().stream())
+        return this.getStreamComponents(this.pieces.size() - 1)
             .anyMatch(c -> coords.contains(c));
+    }
+
+    private Set<Integer> getCompletedRows() {
+        var tmp = IntStream.range(0, GameModelImpl.GRID_ROWS)
+            .map(i -> this.getStreamComponents(this.pieces.size())
+                .filter(c -> c.getX() == i)
+                .count() == GameModelImpl.GRID_COLS ? i : -1)
+                .filter(e -> e != -1).boxed().collect(Collectors.toSet());
+        return tmp;
+    }
+
+    //TODO
+    private void removeRows(Set<Integer> lines) {
     }
 
 }

@@ -8,6 +8,9 @@ import it.unibo.jtrs.game.core.api.GameEngine;
  */
 public class GameEngineImpl implements GameEngine {
 
+    private static final int FRAMES = 60;
+    private static final long PERIOD = (long) (1.0 / GameEngineImpl.FRAMES * 1000);
+
     private final Application application;
 
     /**
@@ -25,11 +28,10 @@ public class GameEngineImpl implements GameEngine {
     @Override
     public void mainLoop() {
         while (this.application.isRunning()) {
-            //draft
             try {
                 this.application.update();
                 this.application.redraw();
-                Thread.sleep(500);
+                Thread.sleep(GameEngineImpl.PERIOD);
             } catch (InterruptedException e) { }
         }
     }
