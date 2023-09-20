@@ -12,20 +12,28 @@ import it.unibo.jtrs.utils.Pair;
  */
 public class TetrominoImpl implements Tetromino {
 
-    private Set<Pair<Integer, Integer>> compontents;
-    private Pair<Integer, Integer> pivot;
     private final String color;
+    private final Pair<Double, Double> center;
+    private int xPosition;
+    private int yPosition;
+    private Set<Pair<Integer, Integer>> compontents;
 
     /**
      * Constructor.
      *
-     * @param initialComponents the initial set of coordinates
-     * @param color the color of the Tetromino
+     * @param compontents the initial set of coordinates
+     * @param x initial horizontal position
+     * @param y initial vertical position
+     * @param color the Tetromino's color
      */
-    public TetrominoImpl(final Set<Pair<Integer, Integer>> initialComponents, final String color) {
-        this.compontents = new HashSet<>(initialComponents);
+    public TetrominoImpl(final Set<Pair<Integer, Integer>> compontents, final int x,
+        final int y, final String color) {
+
+        this.compontents = new HashSet<>(compontents);
         this.color = color;
-        this.pivot = this.center();
+        this.xPosition = x;
+        this.yPosition = y;
+        this.center = this.center();
     }
 
     /**
@@ -34,10 +42,10 @@ public class TetrominoImpl implements Tetromino {
     @Override
     public void rotate() {
         this.compontents = this.compontents.stream()
-            .map(c -> new Pair<>(c.getY() - pivot.getY() + pivot.getX(),
-                pivot.getX() - c.getX() + pivot.getY()))
+            .map(c -> new Pair<>(
+                (int) (c.getY() - center.getY() + center.getX()),
+                (int) (center.getX() - c.getX() + center.getY())))
             .collect(Collectors.toCollection(HashSet::new));
-        this.pivot = this.center();
     }
 
     /**
@@ -45,10 +53,8 @@ public class TetrominoImpl implements Tetromino {
      */
     @Override
     public void translate(final int x, final int y) {
-        this.compontents = this.compontents.stream()
-            .map(c -> new Pair<>(c.getX() + x, c.getY() + y))
-            .collect(Collectors.toCollection(HashSet::new));
-        this.pivot = this.center();
+        this.xPosition = this.xPosition + x;
+        this.yPosition = this.yPosition + y;
     }
 
     /**
@@ -56,22 +62,21 @@ public class TetrominoImpl implements Tetromino {
      */
     @Override
     public Set<Pair<Integer, Integer>> getComponents() {
-        return Set.copyOf(this.compontents);
+        return this.compontents.stream()
+            .map(c -> new Pair<>(c.getX() + this.xPosition, c.getY() + this.yPosition))
+            .collect(Collectors.toCollection(HashSet::new));
     }
 
     /**
-     * Evaluate the Tetromino's pivot point at the current state. This is found
-     * as a rectangle centroid.
+     * Evaluate the Tetromino's center of gravity with floating point precision.
      *
-     * @return the pivot point
+     * @return the center of gravity
      */
-    private Pair<Integer, Integer> center() {
-        final var x = this.compontents.stream().mapToInt(Pair::getX).summaryStatistics();
-        final var y = this.compontents.stream().mapToInt(Pair::getY).summaryStatistics();
-        final int cx = (int) Math.round(x.getAverage());
-        final int cy = (int) Math.round(y.getAverage());
-
-        return new Pair<>(cx, cy);
+    private Pair<Double, Double> center() {
+        final var x = this.compontents.stream().mapToInt(Pair::getX).summaryStatistics().getMax();
+        final var y = this.compontents.stream().mapToInt(Pair::getY).summaryStatistics().getMax();
+        final var max = (x > y ? x : y) / 2.0;
+        return new Pair<>(max, max);
     }
 
     /**
@@ -87,7 +92,7 @@ public class TetrominoImpl implements Tetromino {
      */
     @Override
     public Tetromino copy() {
-        return new TetrominoImpl(Set.copyOf(compontents), color);
+        return new TetrominoImpl(Set.copyOf(compontents), this.xPosition, this.yPosition, this.color);
     }
 
 }

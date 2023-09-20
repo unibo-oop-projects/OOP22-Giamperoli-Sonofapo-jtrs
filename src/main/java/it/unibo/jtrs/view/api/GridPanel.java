@@ -53,7 +53,7 @@ public class GridPanel extends JPanel {
             for (int j = 0; j < this.cols; j++) {
                 final var cell = new Cell();
                 panel.add(cell);
-                this.cells.put(new Pair<>(j, i), cell);
+                this.cells.put(new Pair<>(i, j), cell);
             }
             this.add(panel);
         }
