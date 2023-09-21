@@ -85,7 +85,7 @@ public class TetrominoImpl implements Tetromino {
     @Override
     public int delete(final int position) {
 
-        int max = this.compontents.stream().mapToInt(Pair::getX).max().getAsInt();
+        final int max = this.compontents.stream().mapToInt(Pair::getX).max().getAsInt();
         this.compontents = this.compontents.stream()
             .filter(c -> c.getX() + this.xPosition != position)
             .map(c -> {
