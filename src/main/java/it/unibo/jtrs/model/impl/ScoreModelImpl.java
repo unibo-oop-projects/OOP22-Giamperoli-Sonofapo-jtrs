@@ -45,8 +45,9 @@ public class ScoreModelImpl {
                 this.score = this.score + 300 * (this.level + 1);
                 break;
             case 4:
-            default:
                 this.score = this.score + 1200 * (this.level + 1);
+                break;
+            default:
                 break;
         }
     }
