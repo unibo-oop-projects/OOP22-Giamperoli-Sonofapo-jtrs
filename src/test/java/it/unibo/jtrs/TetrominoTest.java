@@ -37,16 +37,16 @@ public class TetrominoTest {
     public void testRotate() {
 
         tTetromino.rotate();
-        assertEquals(tTetromino.getComponents(),
-            Set.of(new Pair<>(1, 1), new Pair<>(0, 2), new Pair<>(1, 2), new Pair<>(2, 2)));
+        assertEquals(Set.of(new Pair<>(1, 1), new Pair<>(0, 2), new Pair<>(1, 2), new Pair<>(2, 2)),
+            tTetromino.getComponents());
         tTetromino.rotate();
-        assertEquals(tTetromino.getComponents(),
-            Set.of(new Pair<>(2, 0), new Pair<>(2, 1), new Pair<>(2, 2), new Pair<>(1, 1)));
+        assertEquals(Set.of(new Pair<>(2, 0), new Pair<>(2, 1), new Pair<>(2, 2), new Pair<>(1, 1)),
+            tTetromino.getComponents());
         tTetromino.rotate();
-        assertEquals(tTetromino.getComponents(),
-            Set.of(new Pair<>(0, 0), new Pair<>(1, 0), new Pair<>(2, 0), new Pair<>(1, 1)));
+        assertEquals(Set.of(new Pair<>(0, 0), new Pair<>(1, 0), new Pair<>(2, 0), new Pair<>(1, 1)),
+            tTetromino.getComponents());
         tTetromino.rotate(); // return to starting position after 4 rotation
-        assertEquals(tTetromino.getComponents(), TetrominoData.T_COORD);
+        assertEquals(TetrominoData.T_COORD, tTetromino.getComponents());
     }
 
     /**
@@ -57,13 +57,13 @@ public class TetrominoTest {
 
         tTetromino.rotate();
         tTetromino.delete(1);
-        assertEquals(tTetromino.getComponents(),
-            Set.of(new Pair<>(1, 2), new Pair<>(2, 2)));
+        assertEquals(Set.of(new Pair<>(1, 2), new Pair<>(2, 2)),
+            tTetromino.getComponents());
 
         lTetromino.rotate();
         lTetromino.delete(1);
-        assertEquals(lTetromino.getComponents(),
-            Set.of(new Pair<>(1, 1), new Pair<>(1, 2), new Pair<>(2, 2)));
+        assertEquals(Set.of(new Pair<>(1, 1), new Pair<>(1, 2), new Pair<>(2, 2)),
+            lTetromino.getComponents());
     }
 
 }
