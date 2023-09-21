@@ -83,10 +83,11 @@ public class TetrominoImpl implements Tetromino {
      * {@inheritDoc}
      */
     @Override
-    public void delete(final int position) {
+    public int delete(final int position) {
         this.compontents = this.compontents.stream()
             .filter(c -> c.getX() + this.xPosition != position)
             .collect(Collectors.toCollection(HashSet::new));
+        return this.compontents.size();
     }
 
     /**

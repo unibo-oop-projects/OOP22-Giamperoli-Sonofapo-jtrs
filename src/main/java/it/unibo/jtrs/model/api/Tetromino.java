@@ -34,8 +34,9 @@ public interface Tetromino {
      * on the given position.
      * 
      * @param position the horizontal compontents to remove
+     * @return how many components are left
      */
-    void delete(int position);
+    int delete(int position);
 
     /**
      * Return the color assigend to the Tetromino.
