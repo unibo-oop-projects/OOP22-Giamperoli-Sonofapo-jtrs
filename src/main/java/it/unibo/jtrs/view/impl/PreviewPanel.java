@@ -18,7 +18,7 @@ public class PreviewPanel extends JPanel implements View {
     public static final long serialVersionUID = 4328743;
 
     private static final int GRID_COLS = 5;
-    private static final int GRID_ROWS = 3;
+    private static final int GRID_ROWS = 4;
     private static final int PADDING = 50;
 
     private final GridPanel preview;
@@ -43,6 +43,7 @@ public class PreviewPanel extends JPanel implements View {
     @Override
     public void redraw() {
         final var t = this.controller.getCurrentTetromino();
+        t.translate(1, 1);
         final var c = t.getComponents()
             .stream()
             .collect(Collectors.toMap(k -> k, v -> Color.decode(t.getColor())));
