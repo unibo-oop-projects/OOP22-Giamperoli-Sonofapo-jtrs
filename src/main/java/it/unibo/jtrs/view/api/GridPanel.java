@@ -81,7 +81,7 @@ public class GridPanel extends JPanel {
         this.cells.entrySet().stream()
             .filter(e -> e.getKey().getX() == line)
             .map(Entry::getValue)
-            .forEach(Cell::blink);;
+            .forEach(Cell::blink);
     }
 
     /**
