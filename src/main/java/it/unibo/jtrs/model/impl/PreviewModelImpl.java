@@ -26,7 +26,7 @@ public class PreviewModelImpl implements PreviewModel {
     */
     @Override
     public Tetromino current() {
-        return this.current;
+        return this.current.copy();
     }
 
 }
