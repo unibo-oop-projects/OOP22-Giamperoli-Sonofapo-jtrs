@@ -18,14 +18,16 @@ import it.unibo.jtrs.utils.TetrominoData;
 @SuppressWarnings("PMD")
 public class TetrominoTest {
 
-    private Tetromino tetromino;
+    private Tetromino tTetromino;
+    private Tetromino lTetromino;
 
     /**
      * Initialize necessary field for the tests.
      */
     @BeforeEach
     public void init() {
-        tetromino = new TetrominoImpl(TetrominoData.T_COORD, 0, 0, TetrominoData.T_COLOR);
+        tTetromino = new TetrominoImpl(TetrominoData.T_COORD, 0, 0, TetrominoData.T_COLOR);
+        lTetromino = new TetrominoImpl(TetrominoData.L_COORD, 0, 0, TetrominoData.L_COLOR);
     }
 
     /**
@@ -33,17 +35,35 @@ public class TetrominoTest {
      */
     @Test
     public void testRotate() {
-        tetromino.rotate();
-        assertEquals(tetromino.getComponents(),
+
+        tTetromino.rotate();
+        assertEquals(tTetromino.getComponents(),
             Set.of(new Pair<>(1, 1), new Pair<>(0, 2), new Pair<>(1, 2), new Pair<>(2, 2)));
-        tetromino.rotate();
-        assertEquals(tetromino.getComponents(),
+        tTetromino.rotate();
+        assertEquals(tTetromino.getComponents(),
             Set.of(new Pair<>(2, 0), new Pair<>(2, 1), new Pair<>(2, 2), new Pair<>(1, 1)));
-        tetromino.rotate();
-        assertEquals(tetromino.getComponents(),
+        tTetromino.rotate();
+        assertEquals(tTetromino.getComponents(),
             Set.of(new Pair<>(0, 0), new Pair<>(1, 0), new Pair<>(2, 0), new Pair<>(1, 1)));
-        tetromino.rotate(); // return to starting position after 4 rotation
-        assertEquals(tetromino.getComponents(), TetrominoData.T_COORD);
+        tTetromino.rotate(); // return to starting position after 4 rotation
+        assertEquals(tTetromino.getComponents(), TetrominoData.T_COORD);
+    }
+
+    /**
+     * Test Tetromino delete and its pack feature.
+     */
+    @Test
+    public void testPackDelete() {
+
+        tTetromino.rotate();
+        tTetromino.delete(1);
+        assertEquals(tTetromino.getComponents(),
+            Set.of(new Pair<>(1, 2), new Pair<>(2, 2)));
+
+        lTetromino.rotate();
+        lTetromino.delete(1);
+        assertEquals(lTetromino.getComponents(),
+            Set.of(new Pair<>(1, 1), new Pair<>(1, 2), new Pair<>(2, 2)));
     }
 
 }

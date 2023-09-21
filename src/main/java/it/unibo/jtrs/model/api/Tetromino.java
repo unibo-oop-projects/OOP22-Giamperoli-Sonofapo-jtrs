@@ -31,7 +31,8 @@ public interface Tetromino {
 
     /**
      * Delete all the components from a Tetromino that are horizontally located
-     * on the given position.
+     * on the given position. If empty spaces are generated, the Tetromino
+     * will be packed to fill those gaps.
      * 
      * @param position the horizontal compontents to remove
      * @return how many components are left

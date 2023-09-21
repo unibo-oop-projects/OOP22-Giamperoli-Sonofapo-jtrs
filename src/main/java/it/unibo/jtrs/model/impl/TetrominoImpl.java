@@ -86,7 +86,11 @@ public class TetrominoImpl implements Tetromino {
     public int delete(final int position) {
         this.compontents = this.compontents.stream()
             .filter(c -> c.getX() + this.xPosition != position)
+            .map(c -> new Pair<>(
+                c.getX() + this.xPosition < position ? c.getX() + this.xPosition + 1 : c.getX() + this.xPosition,
+                c.getY() + this.yPosition))
             .collect(Collectors.toCollection(HashSet::new));
+
         return this.compontents.size();
     }
 
