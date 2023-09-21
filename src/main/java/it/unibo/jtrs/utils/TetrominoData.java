@@ -26,7 +26,7 @@ public final class TetrominoData {
      * I piece coordinate.
      */
     public static final Set<Pair<Integer, Integer>> I_COORD =
-        Set.of(new Pair<>(0, 0), new Pair<>(0, 1), new Pair<>(0, 2), new Pair<>(0, 3));
+        Set.of(new Pair<>(1, 0), new Pair<>(1, 1), new Pair<>(1, 2), new Pair<>(1, 3));
     /**
      * T piece coordinate.
      */

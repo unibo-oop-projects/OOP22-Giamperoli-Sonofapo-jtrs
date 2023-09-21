@@ -20,6 +20,7 @@ public class TetrominoTest {
 
     private Tetromino tTetromino;
     private Tetromino lTetromino;
+    private Tetromino iTetromino;
 
     /**
      * Initialize necessary field for the tests.
@@ -28,6 +29,7 @@ public class TetrominoTest {
     public void init() {
         tTetromino = new TetrominoImpl(TetrominoData.T_COORD, 0, 0, TetrominoData.T_COLOR);
         lTetromino = new TetrominoImpl(TetrominoData.L_COORD, 0, 0, TetrominoData.L_COLOR);
+        iTetromino = new TetrominoImpl(TetrominoData.I_COORD, 0, 0, TetrominoData.I_COLOR);
     }
 
     /**
@@ -64,6 +66,11 @@ public class TetrominoTest {
         lTetromino.delete(1);
         assertEquals(Set.of(new Pair<>(1, 1), new Pair<>(1, 2), new Pair<>(2, 2)),
             lTetromino.getComponents());
+
+        iTetromino.rotate();
+        iTetromino.delete(2);
+        assertEquals(Set.of(new Pair<>(1, 2), new Pair<>(2, 2), new Pair<>(3, 2)),
+            iTetromino.getComponents());
     }
 
 }
