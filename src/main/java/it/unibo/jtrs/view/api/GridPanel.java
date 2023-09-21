@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -72,6 +73,18 @@ public class GridPanel extends JPanel {
     }
 
     /**
+     * Blink and entire line, given as parameter.
+     * 
+     * @param line the line to blink
+     */
+    public void blinkLine(final int line) {
+        this.cells.entrySet().stream()
+            .filter(e -> e.getKey().getX() == line)
+            .map(Entry::getValue)
+            .forEach(Cell::blink);;
+    }
+
+    /**
      * A class modelling a square cell. A cell behaves exactly as a JLabel and
      * has a fixed size and a thin border.
      */
@@ -103,6 +116,17 @@ public class GridPanel extends JPanel {
 
             this.setOpaque(true);
             this.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+        }
+
+        /**
+         * Makes the cell blink for a short period of time.
+         */
+        public void blink() {
+            this.setBackground(Color.WHITE);
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) { }
+            this.setBackground(Color.GRAY);
         }
     }
 
