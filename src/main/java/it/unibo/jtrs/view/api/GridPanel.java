@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.Map.Entry;
 
 import javax.swing.BorderFactory;
@@ -73,15 +74,17 @@ public class GridPanel extends JPanel {
     }
 
     /**
-     * Blink and entire line, given as parameter.
+     * Blink all the lines of the grid present in the specified set.
      * 
-     * @param line the line to blink
+     * @param lines a set of line number
      */
-    public void blinkLine(final int line) {
-        this.cells.entrySet().stream()
-            .filter(e -> e.getKey().getX() == line)
-            .map(Entry::getValue)
-            .forEach(Cell::blink);
+    public void blinkLines(final Set<Integer> lines) {
+        lines.stream().sorted().forEach(l -> {
+            this.cells.entrySet().stream()
+                .filter(e -> e.getKey().getX() == l)
+                .map(Entry::getValue)
+                .forEach(Cell::blink);
+        });
     }
 
     /**
@@ -93,6 +96,7 @@ public class GridPanel extends JPanel {
         public static final long serialVersionUID = 4328743;
 
         private static final int SIZE = 32;
+        private static final int BLINK_TIME = 7;
 
         /**
          * Constructor.
@@ -124,7 +128,7 @@ public class GridPanel extends JPanel {
         public void blink() {
             this.setBackground(Color.LIGHT_GRAY);
             try {
-                Thread.sleep(10);
+                Thread.sleep(BLINK_TIME);
             } catch (InterruptedException e) { }
             this.setBackground(Color.GRAY);
         }
