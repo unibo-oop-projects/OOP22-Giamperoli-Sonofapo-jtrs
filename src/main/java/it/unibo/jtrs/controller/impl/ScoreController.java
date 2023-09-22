@@ -42,4 +42,8 @@ public class ScoreController {
     public void evaluate(final int lines) {
         this.model.evaluate(lines);
     }
+
+    public int returnRemoved() {
+        return this.model.getLines();
+    }
 }
