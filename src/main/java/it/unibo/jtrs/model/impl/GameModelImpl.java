@@ -35,11 +35,9 @@ public class GameModelImpl implements GameModel {
 
     /**
      * Constructor.
-     *
-     * @param first the first Tetronimo to be placed
      */
-    public GameModelImpl(final Tetromino first) {
-        this.pieces = new ArrayList<>(List.of(first));
+    public GameModelImpl() {
+        this.pieces = new ArrayList<>();
         this.deletedLines = new HashSet<>();
     }
 

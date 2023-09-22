@@ -16,12 +16,9 @@ public class GameController {
 
     /**
      * Constructor.
-     *
-     * @param first the first Tetromino
      */
-    public GameController(final Tetromino first) {
-        this.translateToCenter(first);
-        this.model = new GameModelImpl(first);
+    public GameController() {
+        this.model = new GameModelImpl();
     }
 
     /**
@@ -56,7 +53,7 @@ public class GameController {
 
     /**
      * Return the number of lines deleted.
-     * 
+     *
      * @return the number of lines
      */
     public int deleteRows() {
@@ -65,7 +62,7 @@ public class GameController {
 
     /**
      * Return the deleted lines.
-     * 
+     *
      * @return a set of lines
      */
     public Set<Integer> getDeletedLines() {
