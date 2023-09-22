@@ -21,8 +21,6 @@ public class GamePanel extends JPanel implements View {
 
     public static final long serialVersionUID = 4328743;
 
-    private static final int PADDING = 20;
-
     private final GridPanel game;
     private final transient GameController controller;
 
@@ -34,7 +32,7 @@ public class GamePanel extends JPanel implements View {
     public GamePanel(final GameController controller) {
         this.controller = controller;
 
-        this.game = new GridPanel(GameModelImpl.GRID_ROWS, GameModelImpl.GRID_COLS, PADDING);
+        this.game = new GridPanel(GameModelImpl.GRID_ROWS, GameModelImpl.GRID_COLS, 0);
         this.setLayout(new GridLayout());
         this.add(this.game);
     }

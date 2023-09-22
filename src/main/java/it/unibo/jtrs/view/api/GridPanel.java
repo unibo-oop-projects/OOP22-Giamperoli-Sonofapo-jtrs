@@ -75,7 +75,7 @@ public class GridPanel extends JPanel {
 
     /**
      * Blink all the lines of the grid present in the specified set.
-     * 
+     *
      * @param lines a set of line number
      */
     public void blinkLines(final Set<Integer> lines) {
@@ -119,7 +119,9 @@ public class GridPanel extends JPanel {
             });
 
             this.setOpaque(true);
-            this.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+            this.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1),
+                BorderFactory.createRaisedBevelBorder()));
         }
 
         /**

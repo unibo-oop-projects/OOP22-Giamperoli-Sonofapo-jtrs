@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.stream.Collectors;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.border.EtchedBorder;
 
 import it.unibo.jtrs.controller.impl.PreviewController;
 import it.unibo.jtrs.view.api.GridPanel;
@@ -19,7 +21,7 @@ public class PreviewPanel extends JPanel implements View {
 
     private static final int GRID_COLS = 5;
     private static final int GRID_ROWS = 4;
-    private static final int PADDING = 50;
+    private static final int PADDING = 100;
 
     private final GridPanel preview;
     private final transient PreviewController controller;
@@ -35,6 +37,9 @@ public class PreviewPanel extends JPanel implements View {
         this.preview = new GridPanel(GRID_ROWS, GRID_COLS, PADDING);
         this.setLayout(new GridLayout());
         this.add(this.preview);
+        this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+        this.setOpaque(false);
+        this.preview.setOpaque(false);
     }
 
     /**

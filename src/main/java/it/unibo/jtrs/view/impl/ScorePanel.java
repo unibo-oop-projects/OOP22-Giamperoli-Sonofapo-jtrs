@@ -1,8 +1,10 @@
 package it.unibo.jtrs.view.impl;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EtchedBorder;
 
 import it.unibo.jtrs.controller.impl.ScoreController;
 import it.unibo.jtrs.view.api.View;
@@ -28,6 +30,8 @@ public class ScorePanel extends JPanel implements View {
         this.controller = controller;
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+        this.setOpaque(false);
 
         this.level = new JLabel();
         this.score = new JLabel();
@@ -44,20 +48,15 @@ public class ScorePanel extends JPanel implements View {
     public void redraw() {
         this.level.setText("Livello: " + this.controller.getLevel());
         this.score.setText("Punteggio: " + this.controller.getScore());
-        
-        var text = switch (this.controller.returnRemoved()) {
+
+        final var text = switch (this.controller.returnRemoved()) {
             case 1 -> "One Line!";
             case 2 -> "Two Lines!!";
             case 3 -> "Three Lines!!!";
             case 4 -> "TETRIS";
             default -> "";
         };
-        this.showMessage(text);
-    }
-
-    private void showMessage(String msg) {
-        //add timer to make it blink
-        this.message.setText(msg);
+        this.message.setText(text);
     }
 
 }

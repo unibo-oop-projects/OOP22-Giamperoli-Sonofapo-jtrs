@@ -1,5 +1,6 @@
 package it.unibo.jtrs.view.impl;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
@@ -34,9 +35,11 @@ public class ApplicationPanel extends JPanel {
 
         this.setLayout(new GridLayout(1, 2));
         this.setBorder(new EmptyBorder(PADDING, PADDING, PADDING, PADDING));
+        this.setBackground(Color.blue);
 
         final var panelL = new JPanel(new GridLayout());
         final var panelR = new JPanel(new GridLayout(2, 1));
+        panelR.setOpaque(false);
         panelR.add(this.previewPanel);
         panelR.add(this.scorePanel);
         panelL.add(this.gamePanel);
