@@ -1,6 +1,7 @@
 package it.unibo.jtrs.controller.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.model.impl.GameModelImpl;
@@ -24,7 +25,7 @@ public class GameController {
     }
 
     /**
-     * Returns a list of Tetrominoes in the grid.
+     * Return a list of Tetrominoes in the grid.
      *
      * @return the list of Tetrominoes
      */
@@ -33,7 +34,7 @@ public class GameController {
     }
 
     /**
-     * Returns if the given interaction is successful.
+     * Return if the given interaction is successful.
      *
      * @param i the interaction
      * @return true on success, false otherwise
@@ -43,7 +44,7 @@ public class GameController {
     }
 
     /**
-     * Returns if the given Tetromino has been addedd to the grid.
+     * Return if the given Tetromino has been addedd to the grid.
      *
      * @param next the Tetromino to be added
      * @return true on success, false otherwise
@@ -54,12 +55,21 @@ public class GameController {
     }
 
     /**
-     * Returns the number of lines deleted.
+     * Return the number of lines deleted.
      * 
      * @return the number of lines
      */
     public int deleteRows() {
         return this.model.deleteRows();
+    }
+
+    /**
+     * Return the deleted lines.
+     * 
+     * @return a set of lines
+     */
+    public Set<Integer> getDeletedLines() {
+        return this.model.getDeletedLines();
     }
 
     private void translateToCenter(final Tetromino tetromino) {

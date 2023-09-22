@@ -1,6 +1,7 @@
 package it.unibo.jtrs.model.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Set;
@@ -30,6 +31,7 @@ public class GameModelImpl implements GameModel {
     public static final int GRID_COLS = 10;
 
     private List<Tetromino> pieces;
+    private Set<Integer> deletedLines;
 
     /**
      * Constructor.
@@ -38,6 +40,7 @@ public class GameModelImpl implements GameModel {
      */
     public GameModelImpl(final Tetromino first) {
         this.pieces = new ArrayList<>(List.of(first));
+        this.deletedLines = new HashSet<>();
     }
 
     /**
@@ -66,9 +69,9 @@ public class GameModelImpl implements GameModel {
      */
     @Override
     public int deleteRows() {
-        final var lines = this.getCompletedRows();
-        this.removeRows(lines);
-        return lines.size();
+        this.deletedLines.addAll(this.getCompletedRows());
+        this.removeRows();
+        return this.deletedLines.size();
     }
 
     /**
@@ -84,6 +87,12 @@ public class GameModelImpl implements GameModel {
             case RIGHT -> t -> t.translate(0, 1);
         };
         return this.action(consumer, predicate);
+    }
+
+    public Set<Integer> getDeletedLines() {
+        var res = Set.copyOf(this.deletedLines);
+        this.deletedLines.clear();
+        return res;
     }
 
     private Tetromino getCurrentPiece() {
@@ -110,8 +119,8 @@ public class GameModelImpl implements GameModel {
 
     private boolean inBound(final Set<Pair<Integer, Integer>> coords) {
         return this.getYStats(coords).getMin() >= 0
-            && this.getYStats(coords).getMax() < GameModelImpl.GRID_COLS
-            && this.getXStats(coords).getMax() < GameModelImpl.GRID_ROWS;
+            && this.getYStats(coords).getMax() < GRID_COLS
+            && this.getXStats(coords).getMax() < GRID_ROWS;
     }
 
     private IntSummaryStatistics getXStats(final Set<Pair<Integer, Integer>> coords) {
@@ -132,23 +141,27 @@ public class GameModelImpl implements GameModel {
     }
 
     private Set<Integer> getCompletedRows() {
-        return IntStream.range(0, GameModelImpl.GRID_ROWS)
+        return IntStream.range(0, GRID_ROWS)
             .map(i -> this.getStreamComponents(this.pieces.size())
                 .filter(c -> c.getX() == i)
-                .count() == GameModelImpl.GRID_COLS ? i : -1)
+                .count() == GRID_COLS ? i : -1)
                 .filter(e -> e != -1).boxed().collect(Collectors.toSet());
     }
 
-    private void removeRows(final Set<Integer> lines) {
-        lines.stream().sorted().forEach(l -> {
+    private void removeRows() {
+        this.deletedLines.stream().sorted().forEach(l -> {
             this.pieces = this.pieces.stream()
                 .flatMap(p -> p.delete(l).stream())
                 .collect(Collectors.toCollection(ArrayList::new));
-            this.pieces.stream()
-                .filter(p -> p.getComponents().stream()
-                    .anyMatch(c -> c.getX() < l))
-                .forEach(p -> p.translate(1, 0));   
+            this.pack(l);
         });
+    }
+
+    private void pack(final int line) {
+        this.pieces.stream()
+            .filter(p -> p.getComponents().stream()
+                .anyMatch(c -> c.getX() < line))
+            .forEach(p -> p.translate(1, 0));
     }
 
 }

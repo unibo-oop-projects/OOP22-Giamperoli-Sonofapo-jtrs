@@ -122,7 +122,7 @@ public class GridPanel extends JPanel {
          * Makes the cell blink for a short period of time.
          */
         public void blink() {
-            this.setBackground(Color.WHITE);
+            this.setBackground(Color.LIGHT_GRAY);
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) { }

@@ -45,6 +45,7 @@ public class GamePanel extends JPanel implements View {
     @Override
     public void redraw() {
         final List<Tetromino> pieces = this.controller.getPieces();
+        this.controller.getDeletedLines().forEach(l -> this.game.blinkLine(l));
         final var result = pieces.stream()
             .flatMap(p -> p.getComponents().stream()
                 .map(c -> new Pair<>(c, Color.decode(p.getColor()))))
