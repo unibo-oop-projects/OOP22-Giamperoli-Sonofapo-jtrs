@@ -61,6 +61,10 @@ public class ScoreModelImpl implements ScoreModel {
         this.score = this.score + evaluatedScore;
     }
 
+    /**
+    * {@inheritDoc}
+    */
+    @Override
     public int getLines() {
         return this.lastDeleted;
     }

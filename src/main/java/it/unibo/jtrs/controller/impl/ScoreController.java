@@ -17,7 +17,7 @@ public class ScoreController {
     }
 
     /**
-     * Returns the current level.
+     * Return the current level.
      *
      * @return the current level
      */
@@ -26,7 +26,7 @@ public class ScoreController {
     }
 
     /**
-     * Returns the score.
+     * Return the score.
      *
      * @return the score
      */
@@ -43,6 +43,11 @@ public class ScoreController {
         this.model.evaluate(lines);
     }
 
+    /**
+     * Return the number of deleted rows.
+     * 
+     * @return the number of rows
+     */
     public int returnRemoved() {
         return this.model.getLines();
     }
