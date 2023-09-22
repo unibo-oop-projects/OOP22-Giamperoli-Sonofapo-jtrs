@@ -14,7 +14,6 @@ public class ApplicationImpl implements Application {
 
     private final GameLogic logic;
     private final ApplicationPanel panel;
-    private final ApplicationFrame frame;
     private final ScoreController sC;
     private final PreviewController pC;
     private final GameController gC;
@@ -31,7 +30,8 @@ public class ApplicationImpl implements Application {
 
         this.logic = new GameLogicImpl(this);
         this.panel = new ApplicationPanel(this);
-        this.frame = new ApplicationFrame(this.panel);
+
+        new ApplicationFrame(this.panel);
         (new GameEngineImpl(this)).mainLoop();
     }
 
@@ -40,7 +40,6 @@ public class ApplicationImpl implements Application {
      */
     @Override
     public void update() {
-        this.logic.keyboardUpdate(this.frame.getKeyboard());
         this.logic.timeUpdate();
     }
 

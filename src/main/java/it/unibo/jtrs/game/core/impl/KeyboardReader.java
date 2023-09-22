@@ -2,90 +2,61 @@ package it.unibo.jtrs.game.core.impl;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.HashMap;
-import java.util.Map;
 
-import it.unibo.jtrs.game.core.api.KeyboardQuery;
+import it.unibo.jtrs.controller.api.Application;
+import it.unibo.jtrs.model.api.GameModel.Interaction;
 
 /**
  * This class is able to detect which directional key is pressed.
  */
-public class KeyboardReader implements KeyListener, KeyboardQuery {
+public class KeyboardReader implements KeyListener {
 
-    private static final int SCAN_RATE = 250;
+    private static final int SCAN_RATE = 50;
 
-    private final Map<Integer, Boolean> keys = new HashMap<>();
     private long millis;
+    private final Application application;
 
     /**
      * Constructor.
+     * 
+     * @param application the application to send the commands to
      */
-    public KeyboardReader() {
-        this.keys.put(KeyEvent.VK_W, false);
-        this.keys.put(KeyEvent.VK_S, false);
-        this.keys.put(KeyEvent.VK_A, false);
-        this.keys.put(KeyEvent.VK_D, false);
-
+    public KeyboardReader(final Application application) {
         this.millis = System.currentTimeMillis();
+        this.application = application;
     }
-
-    @Override
-    public void keyTyped(final KeyEvent e) { }
 
     /**
      * {@inheritDoc}
      */
     @Override
     public void keyPressed(final KeyEvent e) {
-        this.keys.put(e.getKeyCode(), true);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void keyReleased(final KeyEvent e) {
-        this.keys.put(e.getKeyCode(), false);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isUpPressed() {
-        return this.keys.get(KeyEvent.VK_W) && this.isReady();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isDownPressed() {
-        return this.keys.get(KeyEvent.VK_S) && this.isReady();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isLeftPressed() {
-        return this.keys.get(KeyEvent.VK_A) && this.isReady();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isRightPressed() {
-        return this.keys.get(KeyEvent.VK_D) && this.isReady();
-    }
-
-    private boolean isReady() {
         if (System.currentTimeMillis() - this.millis > SCAN_RATE) {
+
             this.millis = System.currentTimeMillis();
-            return true;
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_W:
+                    application.getGameController().advance(Interaction.ROTATE);
+                    break;
+                case KeyEvent.VK_S:
+                    application.getGameController().advance(Interaction.DOWN);
+                    break;
+                case KeyEvent.VK_A:
+                    application.getGameController().advance(Interaction.LEFT);
+                    break;
+                case KeyEvent.VK_D:
+                    application.getGameController().advance(Interaction.RIGHT);
+                    break;
+                default:
+            }
         }
-        return false;
     }
+
+    @Override
+    public void keyReleased(final KeyEvent e) { }
+
+    @Override
+    public void keyTyped(final KeyEvent e) { }
 
 }

@@ -2,7 +2,6 @@ package it.unibo.jtrs.game.core.impl;
 
 import it.unibo.jtrs.controller.api.Application;
 import it.unibo.jtrs.game.core.api.GameLogic;
-import it.unibo.jtrs.game.core.api.KeyboardQuery;
 import it.unibo.jtrs.model.api.GameModel.GameState;
 import it.unibo.jtrs.model.api.GameModel.Interaction;
 
@@ -59,26 +58,6 @@ public class GameLogicImpl implements GameLogic {
                     this.application.getPreviewController().nextTetromino();
                 }
             }
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void keyboardUpdate(final KeyboardQuery keyboard) {
-
-        if (keyboard.isUpPressed()) {
-            this.application.getGameController().advance(Interaction.ROTATE);
-        }
-        if (keyboard.isLeftPressed()) {
-            this.application.getGameController().advance(Interaction.LEFT);
-        }
-        if (keyboard.isRightPressed()) {
-            this.application.getGameController().advance(Interaction.RIGHT);
-        }
-        if (keyboard.isDownPressed()) {
-            this.application.getGameController().advance(Interaction.DOWN);
         }
     }
 

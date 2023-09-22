@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import it.unibo.jtrs.controller.api.Application;
+import it.unibo.jtrs.game.core.impl.KeyboardReader;
 
 /**
  * A class modelling the main panel to be inserted in a frame.
@@ -42,6 +43,9 @@ public class ApplicationPanel extends JPanel {
 
         this.add(panelL);
         this.add(panelR);
+
+        this.addKeyListener(new KeyboardReader(application));
+        this.setFocusable(true);
     }
 
     /**

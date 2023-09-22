@@ -3,7 +3,7 @@ package it.unibo.jtrs.game.core.api;
 /**
  * An interface modelling how the game should respond to human interaction.
  * The game should be able to run forever until the match is lost and change
- * its state based on how much time has passed or any keyboard press.
+ * its state based on how much time has passed.
  */
 public interface GameLogic {
 
@@ -19,10 +19,4 @@ public interface GameLogic {
      */
     void timeUpdate();
 
-    /**
-     * Performs operation based on the keyboard status.
-     *
-     * @param keyboard the keyboard to read
-     */
-    void keyboardUpdate(KeyboardQuery keyboard);
 }
