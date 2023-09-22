@@ -26,8 +26,6 @@ public class ApplicationImpl implements Application {
         this.sC = new ScoreController();
         this.pC = new PreviewController();
         this.gC = new GameController();
-        this.gC.changePiece(this.pC.getCurrentTetromino());
-        this.pC.nextTetromino();
 
         this.logic = new GameLogicImpl(this);
         this.panel = new ApplicationPanel(this);

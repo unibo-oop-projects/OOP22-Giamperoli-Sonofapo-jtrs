@@ -1,6 +1,9 @@
 package it.unibo.jtrs.game.core.impl;
 
 import it.unibo.jtrs.controller.api.Application;
+import it.unibo.jtrs.controller.impl.GameController;
+import it.unibo.jtrs.controller.impl.PreviewController;
+import it.unibo.jtrs.controller.impl.ScoreController;
 import it.unibo.jtrs.game.core.api.GameLogic;
 import it.unibo.jtrs.model.api.GameModel.GameState;
 import it.unibo.jtrs.model.api.GameModel.Interaction;
@@ -14,9 +17,13 @@ public class GameLogicImpl implements GameLogic {
     private static final int MIN_IDLE = 150;
     private static final int RATE_FACTOR = 50;
 
-    private final Application application;
-    private GameState gameState;
     private long millis;
+    private GameState gameState;
+
+    // used for code readability purposes
+    private final GameController gC;
+    private final PreviewController pC;
+    private final ScoreController sC;
 
     /**
      * Constructor.
@@ -24,7 +31,12 @@ public class GameLogicImpl implements GameLogic {
      * @param application the application this logic should operates on
      */
     public GameLogicImpl(final Application application) {
-        this.application = application;
+        this.gC = application.getGameController();
+        this.pC = application.getPreviewController();
+        this.sC = application.getScoreController();
+
+        this.gC.changePiece(this.pC.getCurrentTetromino());
+        this.pC.nextTetromino();
         this.gameState = GameState.RUNNING;
         this.millis = System.currentTimeMillis();
     }
@@ -42,20 +54,17 @@ public class GameLogicImpl implements GameLogic {
      */
     @Override
     public void timeUpdate() {
-        final var idleTime = IDLE_RATE - (MIN_IDLE + this.application.getScoreController().getLevel() * RATE_FACTOR);
+        final var idleTime = IDLE_RATE - (MIN_IDLE + this.sC.getLevel() * RATE_FACTOR);
+
         if (System.currentTimeMillis() - this.millis > Math.max(MIN_IDLE, idleTime)) {
+
             this.millis = System.currentTimeMillis();
-
-            if (!this.application.getGameController().advance(Interaction.DOWN)) {
-
-                final var countRemoved = this.application.getGameController().deleteRows();
-                this.application.getScoreController().evaluate(countRemoved);
-
-                final var next = this.application.getPreviewController().getCurrentTetromino();
-                if (!this.application.getGameController().changePiece(next)) {
-                    this.gameState = GameState.OVER;
+            if (!this.gC.advance(Interaction.DOWN)) {
+                this.sC.evaluate(this.gC.deleteRows());
+                if (this.gC.changePiece(this.pC.getCurrentTetromino())) {
+                    this.pC.nextTetromino();
                 } else {
-                    this.application.getPreviewController().nextTetromino();
+                    this.gameState = GameState.OVER;
                 }
             }
         }
