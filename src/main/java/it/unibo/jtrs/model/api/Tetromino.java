@@ -31,13 +31,14 @@ public interface Tetromino {
 
     /**
      * Delete all the components from a Tetromino that are horizontally located
-     * on the given position. If empty spaces are generated, the Tetromino
-     * will be packed to fill those gaps.
+     * on the given position. Eventually split the Tetromino in smaller components
+     * and return them as a set. If the Tetromino has no component in that position,
+     * it is returned as is.
      * 
-     * @param position the horizontal compontents to remove
-     * @return how many components are left
+     * @param position the components' position to remove
+     * @return the Tetromino, eventually splitted
      */
-    int delete(int position);
+    Set<Tetromino> delete(int position);
 
     /**
      * Return the color assigend to the Tetromino.
