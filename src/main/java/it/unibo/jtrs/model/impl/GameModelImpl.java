@@ -29,7 +29,7 @@ public class GameModelImpl implements GameModel {
      */
     public static final int GRID_COLS = 10;
 
-    private final List<Tetromino> pieces;
+    private List<Tetromino> pieces;
 
     /**
      * Constructor.
@@ -68,7 +68,7 @@ public class GameModelImpl implements GameModel {
     public int deleteRows() {
         final var lines = this.getCompletedRows();
         this.removeRows(lines);
-        return (int) lines.size();
+        return lines.size();
     }
 
     /**
@@ -139,8 +139,16 @@ public class GameModelImpl implements GameModel {
                 .filter(e -> e != -1).boxed().collect(Collectors.toSet());
     }
 
-    //TODO
     private void removeRows(final Set<Integer> lines) {
+        for (final int line : lines) {
+            this.pieces = this.pieces.stream()
+                .flatMap(p -> p.delete(line).stream())
+                .collect(Collectors.toCollection(ArrayList::new));
+            this.pieces.stream()
+                .filter(p -> p.getComponents().stream().anyMatch(c -> c.getX() < line))
+                .forEach(p -> p.translate(1, 0));
+
+        }
     }
 
 }

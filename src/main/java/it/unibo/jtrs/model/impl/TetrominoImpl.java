@@ -83,19 +83,14 @@ public class TetrominoImpl implements Tetromino {
      * {@inheritDoc}
      */
     @Override
-    public int delete(final int position) {
-
-        final int max = this.compontents.stream().mapToInt(Pair::getX).max().getAsInt();
-        this.compontents = this.compontents.stream()
-            .filter(c -> c.getX() + this.xPosition != position)
-            .map(c -> {
-                if (c.getX() != max && max + this.xPosition > position) {
-                    return new Pair<>(c.getX() + 1, c.getY());
-                }
-                return c;
-            })
-            .collect(Collectors.toCollection(HashSet::new));
-        return this.compontents.size();
+    public Set<Tetromino> delete(final int position) {
+        if (this.compontents.stream().anyMatch(c -> c.getX() + this.xPosition == position)) {
+            return this.compontents.stream()
+                .filter(c -> c.getX() + this.xPosition != position)
+                .map(c -> new TetrominoImpl(Set.of(c), this.xPosition, this.yPosition, this.color))
+                .collect(Collectors.toCollection(HashSet::new));
+        }
+        return new HashSet<>(Set.of(this));
     }
 
     /**

@@ -10,7 +10,8 @@ import it.unibo.jtrs.utils.Pair;
 public interface Tetromino {
 
     /**
-     * Rotate the Tetromino 90 degrees clockwise on its center of gravity.
+     * Rotate the Tetromino 90 degrees clockwise on its center of gravity. To
+     * perform this rotation SRS is used (https://tetris.fandom.com/wiki/SRS).
      */
     void rotate();
 
@@ -23,7 +24,8 @@ public interface Tetromino {
     void translate(int x, int y);
 
     /**
-     * Returns a set of coordinates indicating where the Tetromino is placed.
+     * Return a set of coordinates indicating where the Tetromino's components
+     * are placed.
      * 
      * @return the set of coordinates
      */
@@ -31,13 +33,14 @@ public interface Tetromino {
 
     /**
      * Delete all the components from a Tetromino that are horizontally located
-     * on the given position. If empty spaces are generated, the Tetromino
-     * will be packed to fill those gaps.
+     * on the given position, horizontally wise. Split the Tetromino into smaller
+     * ones, each consisting of the single components, and return them as a set.
+     * If the Tetromino has no component in that position, it is returned as is.
      * 
-     * @param position the horizontal compontents to remove
-     * @return how many components are left
+     * @param position the components' position to remove
+     * @return the Tetromino, eventually splitted
      */
-    int delete(int position);
+    Set<Tetromino> delete(int position);
 
     /**
      * Return the color assigend to the Tetromino.
