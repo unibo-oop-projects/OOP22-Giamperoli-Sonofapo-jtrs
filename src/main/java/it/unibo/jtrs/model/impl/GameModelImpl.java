@@ -46,7 +46,9 @@ public class GameModelImpl implements GameModel {
     */
     @Override
     public List<Tetromino> getPieces() {
-        return List.copyOf(this.pieces);
+        return this.pieces.stream()
+            .map(Tetromino::copy)
+            .collect(Collectors.toList());
     }
 
     /**
