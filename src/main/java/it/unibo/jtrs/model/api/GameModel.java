@@ -67,7 +67,8 @@ public interface GameModel {
     boolean nextPiece(Tetromino next);
 
     /**
-     * Removes the completed grid's rows.
+     * Removes the completed grid's rows and translate all the components
+     * above them downwards.
      * 
      * @return the number of rows deleted
      */

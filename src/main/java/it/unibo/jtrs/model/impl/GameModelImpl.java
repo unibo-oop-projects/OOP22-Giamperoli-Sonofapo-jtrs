@@ -140,15 +140,15 @@ public class GameModelImpl implements GameModel {
     }
 
     private void removeRows(final Set<Integer> lines) {
-        for (final int line : lines) {
+        lines.stream().sorted().forEach(l -> {
             this.pieces = this.pieces.stream()
-                .flatMap(p -> p.delete(line).stream())
+                .flatMap(p -> p.delete(l).stream())
                 .collect(Collectors.toCollection(ArrayList::new));
             this.pieces.stream()
-                .filter(p -> p.getComponents().stream().anyMatch(c -> c.getX() < line))
-                .forEach(p -> p.translate(1, 0));
-
-        }
+                .filter(p -> p.getComponents().stream()
+                    .anyMatch(c -> c.getX() < l))
+                .forEach(p -> p.translate(1, 0));   
+        });
     }
 
 }
