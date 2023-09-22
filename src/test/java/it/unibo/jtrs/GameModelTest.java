@@ -13,16 +13,21 @@ import it.unibo.jtrs.model.impl.TetrominoImpl;
 import it.unibo.jtrs.utils.Pair;
 import it.unibo.jtrs.utils.TetrominoData;
 
+/**
+ * GameModel test class.
+ */
+@SuppressWarnings("PMD")
 public class GameModelTest {
 
     private GameModel model;
 
+    // CHECKSTYLE: MagicNumber OFF
      /**
      * Initialize necessary field for the tests.
      */
     @BeforeEach
     public void init() {
-        this.model = new GameModelImpl(new TetrominoImpl(TetrominoData.O_COORD, 18, 0, TetrominoData.O_COLOR));
+        this.model = new GameModelImpl();
     }
 
     /**
@@ -30,6 +35,7 @@ public class GameModelTest {
      */
     @Test
     public void testDeleteTwoRows() {
+        this.model.nextPiece(new TetrominoImpl(TetrominoData.O_COORD, 18, 0, TetrominoData.O_COLOR));
         this.model.nextPiece(new TetrominoImpl(TetrominoData.O_COORD, 18, 2, TetrominoData.O_COLOR));
         this.model.nextPiece(new TetrominoImpl(TetrominoData.O_COORD, 18, 4, TetrominoData.O_COLOR));
         this.model.nextPiece(new TetrominoImpl(TetrominoData.O_COORD, 18, 6, TetrominoData.O_COLOR));
@@ -40,6 +46,6 @@ public class GameModelTest {
         assertEquals(1, this.model.getPieces().size());
         assertEquals(Set.of(new Pair<>(18, 0), new Pair<>(18, 1), new Pair<>(19, 0), new Pair<>(19, 1)),
             this.model.getPieces().get(0).getComponents());
-        
     }
+    // CHECKSTYLE: MagicNumber ON
 }
