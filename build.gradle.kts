@@ -44,7 +44,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("it.unibo.jtrs.JTetris")
+    mainClass.set("it.unibo.jtrs.game.JTetris")
 }
 
 tasks.test {
