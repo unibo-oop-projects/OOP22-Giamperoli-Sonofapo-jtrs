@@ -31,7 +31,7 @@ public class GameModelImpl implements GameModel {
     public static final int GRID_COLS = 10;
 
     private List<Tetromino> pieces;
-    private Set<Integer> deletedLines;
+    private final Set<Integer> deletedLines;
 
     /**
      * Constructor.
@@ -89,8 +89,12 @@ public class GameModelImpl implements GameModel {
         return this.action(consumer, predicate);
     }
 
+    /**
+    * {@inheritDoc}
+    */
+    @Override
     public Set<Integer> getDeletedLines() {
-        var res = Set.copyOf(this.deletedLines);
+        final var res = Set.copyOf(this.deletedLines);
         this.deletedLines.clear();
         return res;
     }
