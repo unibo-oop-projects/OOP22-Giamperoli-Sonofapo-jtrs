@@ -11,6 +11,10 @@ import it.unibo.jtrs.model.api.GameModel.Interaction;
  */
 public class GameLogicImpl implements GameLogic {
 
+    private static final int IDLE_RATE = 800;
+    private static final int MIN_IDLE = 150;
+    private static final int RATE_FACTOR = 50;
+
     private final Application application;
     private GameState gameState;
     private long millis;
@@ -39,7 +43,8 @@ public class GameLogicImpl implements GameLogic {
      */
     @Override
     public void timeUpdate() {
-        if (System.currentTimeMillis() - this.millis > 600 - 100 * this.application.getScoreController().getLevel()) {
+        final var idleTime = IDLE_RATE - (MIN_IDLE + this.application.getScoreController().getLevel() * RATE_FACTOR);
+        if (System.currentTimeMillis() - this.millis > Math.max(MIN_IDLE, idleTime)) {
             this.millis = System.currentTimeMillis();
 
             if (!this.application.getGameController().advance(Interaction.DOWN)) {
