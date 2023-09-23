@@ -19,4 +19,10 @@ public interface GameLogic {
      */
     void timeUpdate();
 
+    /**
+     * Request an interrupt to the game logic. This should be used to manage
+     * tasks like pause, resume or similar.
+     */
+    void requestInterrupt();
+
 }

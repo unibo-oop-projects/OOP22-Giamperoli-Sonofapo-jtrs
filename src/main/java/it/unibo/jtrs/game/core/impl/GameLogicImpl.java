@@ -70,5 +70,10 @@ public class GameLogicImpl implements GameLogic {
         }
     }
 
+    @Override
+    public void requestInterrupt() {
+        // TODO Auto-generated method stub
+    }
+
 }
 

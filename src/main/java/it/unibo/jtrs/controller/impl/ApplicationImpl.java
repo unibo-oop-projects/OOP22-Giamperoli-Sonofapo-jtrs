@@ -55,6 +55,14 @@ public class ApplicationImpl implements Application {
      * {@inheritDoc}
      */
     @Override
+    public void interrupt() {
+        this.logic.requestInterrupt();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void redraw() {
         this.panel.redraw();
     }

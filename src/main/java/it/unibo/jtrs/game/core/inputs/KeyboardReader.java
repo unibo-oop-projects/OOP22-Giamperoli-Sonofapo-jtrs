@@ -48,6 +48,9 @@ public class KeyboardReader implements KeyListener {
                 case KeyEvent.VK_D:
                     application.getGameController().advance(Interaction.RIGHT);
                     break;
+                case KeyEvent.VK_SPACE:
+                    application.interrupt();
+                    break;
                 default:
             }
         }

@@ -29,6 +29,11 @@ public interface Application {
     boolean isRunning();
 
     /**
+     * Send an interrupt to the application.
+     */
+    void interrupt();
+
+    /**
      * Returns the score controller.
      *
      * @return the controller
