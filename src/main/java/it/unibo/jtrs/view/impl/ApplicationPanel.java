@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import it.unibo.jtrs.controller.api.Application;
-import it.unibo.jtrs.game.core.impl.KeyboardReader;
+import it.unibo.jtrs.game.core.inputs.KeyboardReader;
 
 /**
  * A class modelling the main panel to be inserted in a frame.

@@ -1,4 +1,4 @@
-package it.unibo.jtrs.view.api;
+package it.unibo.jtrs.view.custom;
 
 import java.awt.Color;
 import java.awt.Component;

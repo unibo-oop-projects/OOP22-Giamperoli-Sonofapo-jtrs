@@ -1,4 +1,4 @@
-package it.unibo.jtrs.game.core.impl;
+package it.unibo.jtrs.game.core.inputs;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
