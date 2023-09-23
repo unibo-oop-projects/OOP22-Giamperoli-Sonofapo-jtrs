@@ -1,19 +1,15 @@
 package it.unibo.jtrs.view.impl;
 
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.io.File;
-import java.io.IOException;
 
-import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JLabel;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.border.EtchedBorder;
 
 import it.unibo.jtrs.controller.impl.ScoreController;
 import it.unibo.jtrs.view.api.View;
+import it.unibo.jtrs.view.custom.Label;
 
 /**
  * The class models the score panel. This view must show the current level and score.
@@ -22,9 +18,13 @@ public class ScorePanel extends JPanel implements View {
 
     public static final long serialVersionUID = 4328743;
 
-    private final JLabel score;
-    private final JLabel level;
-    private final JLabel message;
+    private static final String FONT = "Tetris.ttf";
+    private static final float FONT_SIZE = 40f;
+    private static final int INTERLINE = 20;
+
+    private final Label level;
+    private final Label score;
+    private final Label message;
     private final transient ScoreController controller;
 
     /**
@@ -36,18 +36,28 @@ public class ScorePanel extends JPanel implements View {
         this.controller = controller;
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
         this.setOpaque(false);
 
-        this.level = this.customLabel("" + this.controller.getLevel());
-        this.score = this.customLabel("" + this.controller.getScore());
-        this.message = this.customLabel("" );
+        final var levelTxt = new Label("LEVEL", FONT, FONT_SIZE, Color.WHITE);
+        levelTxt.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        this.level = new Label(String.valueOf(this.controller.getLevel()), FONT, FONT_SIZE, Color.WHITE);
+        this.level.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 
-        this.add(this.customLabel("LEVEL"));
+        final var scoreTxt = new Label("SCORE", FONT, FONT_SIZE, Color.WHITE);
+        scoreTxt.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        this.score = new Label(String.valueOf(this.controller.getScore()), FONT, FONT_SIZE, Color.WHITE);
+        this.score.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+
+        this.message = new Label("", FONT, FONT_SIZE, Color.WHITE);
+        this.message.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+
+        this.add(levelTxt);
         this.add(this.level);
+        this.add(Box.createVerticalStrut(INTERLINE));
 
-        this.add(this.customLabel("SCORE"));
+        this.add(scoreTxt);
         this.add(this.score);
+        this.add(Box.createVerticalStrut(INTERLINE));
 
         this.add(this.message);
     }
@@ -57,8 +67,8 @@ public class ScorePanel extends JPanel implements View {
      */
     @Override
     public void redraw() {
-        this.level.setText("" + this.controller.getLevel());
-        this.score.setText("" + this.controller.getScore());
+        this.level.setText(String.valueOf(this.controller.getLevel()));
+        this.score.setText(String.valueOf(this.controller.getScore()));
 
         final var text = switch (this.controller.returnRemoved()) {
             case 1 -> "One Line!";
@@ -68,23 +78,6 @@ public class ScorePanel extends JPanel implements View {
             default -> "";
         };
         this.message.setText(text);
-    }
-
-    private JLabel customLabel(String text) {
-        var custom = new JLabel(text);
-        custom.setFont(this.customFont());
-        custom.setForeground(Color.WHITE);
-        return custom;
-    }
-
-    private Font customFont() {
-        try {
-            var file = new File("src/main/resources/Tetris.ttf");
-            var font = Font.createFont(Font.TRUETYPE_FONT, file).deriveFont(40f);
-            return font;
-        } catch (FontFormatException | IOException ex) {
-            return super.getFont();
-        }
     }
 
 }
