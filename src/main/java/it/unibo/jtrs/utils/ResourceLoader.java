@@ -18,7 +18,7 @@ public final class ResourceLoader {
      * @throws IOException if that resource can not be found
      */
     public static InputStream load(final String fileName) throws IOException {
-        var resource = ResourceLoader.class.getResourceAsStream("/" + fileName);
+        final var resource = ResourceLoader.class.getResourceAsStream("/" + fileName);
         if (resource == null) {
             throw new IOException("Can not load " + fileName);
         }
