@@ -1,5 +1,6 @@
 package it.unibo.jtrs.controller.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.jtrs.controller.api.Application;
 import it.unibo.jtrs.game.core.api.GameLogic;
 import it.unibo.jtrs.game.core.impl.GameEngineImpl;
@@ -78,6 +79,7 @@ public class ApplicationImpl implements Application {
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings(justification = "GameController assure copy of its values")
     public GameController getGameController() {
         return this.gC;
     }

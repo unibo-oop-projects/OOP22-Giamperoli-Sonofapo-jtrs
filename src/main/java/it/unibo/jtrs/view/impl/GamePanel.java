@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.swing.JPanel;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.jtrs.controller.impl.GameController;
 import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.model.impl.GameModelImpl;
@@ -29,6 +30,7 @@ public class GamePanel extends JPanel implements View {
      *
      * @param controller the game controller
      */
+    @SuppressFBWarnings(justification = "This controller is generated once and never changed")
     public GamePanel(final GameController controller) {
         this.controller = controller;
 
