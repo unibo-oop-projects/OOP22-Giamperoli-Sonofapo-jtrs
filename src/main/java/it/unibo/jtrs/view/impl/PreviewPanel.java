@@ -24,6 +24,7 @@ public class PreviewPanel extends JPanel implements View {
     private static final int GRID_COLS = 5;
     private static final int GRID_ROWS = 4;
     private static final int PADDING = 100;
+    private static final int INTERLINE = 20;
     private static final float FONT_SIZE = 30f;
 
     private final GridPanel preview;
@@ -49,6 +50,7 @@ public class PreviewPanel extends JPanel implements View {
         label.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 
         this.add(label);
+        this.add(Box.createVerticalStrut(INTERLINE));
         this.add(this.preview);
     }
 
