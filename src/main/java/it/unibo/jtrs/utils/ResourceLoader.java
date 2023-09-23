@@ -1,5 +1,6 @@
 package it.unibo.jtrs.utils;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -14,8 +15,13 @@ public final class ResourceLoader {
      *
      * @param fileName the file name
      * @return the InputStream of the file
+     * @throws IOException if that resource can not be found
      */
-    public static InputStream load(final String fileName) {
-        return ResourceLoader.class.getResourceAsStream("/" + fileName);
+    public static InputStream load(final String fileName) throws IOException {
+        var resource = ResourceLoader.class.getResourceAsStream("/" + fileName);
+        if (resource == null) {
+            throw new IOException("Can not load " + fileName);
+        }
+        return resource;
     }
 }
