@@ -25,6 +25,8 @@ public class GridPanel extends JPanel {
 
     public static final long serialVersionUID = 4328743;
 
+    private static final Color DEFAULT_COLOR = Color.decode("#999999");
+
     @SuppressFBWarnings(justification = "This field need to be transient")
     private final transient Map<Pair<Integer, Integer>, Cell> cells = new HashMap<>();
     private final int rows;
@@ -69,7 +71,7 @@ public class GridPanel extends JPanel {
      */
     public void setCells(final Map<Pair<Integer, Integer>, Color> map) {
         this.cells.forEach((k, v) -> {
-            v.setBackground(map.keySet().contains(k) ? map.get(k) : Color.GRAY);
+            v.setBackground(map.keySet().contains(k) ? map.get(k) : DEFAULT_COLOR);
         });
     }
 
@@ -132,7 +134,7 @@ public class GridPanel extends JPanel {
             try {
                 Thread.sleep(BLINK_TIME);
             } catch (InterruptedException e) { }
-            this.setBackground(Color.GRAY);
+            this.setBackground(DEFAULT_COLOR);
         }
     }
 
