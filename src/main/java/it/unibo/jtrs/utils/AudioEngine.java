@@ -25,21 +25,21 @@ public final class AudioEngine {
      *
      * @param file the file to load
      */
-    public static void load(final String file) {
+    public static void load(final String file) throws IOException {
 
         try {
             final var stream = AudioSystem.getAudioInputStream(ResourceLoader.loadAsUrl(file));
 
             clip = AudioSystem.getClip();
             clip.open(stream);
-            clip.start();
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
 
             // normalize volume
             ((FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN)).setValue(LOW_VOL_DB);
 
+            AudioEngine.resume();
+
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            clip = null;
+            throw new IOException("Can not open " + file + " " + e.getMessage(), e);
         }
     }
 
@@ -47,29 +47,23 @@ public final class AudioEngine {
      * Terminate the playing track and close its file.
      */
     public static void stop() {
-        if (clip != null) {
-            clip.stop();
-            clip.close();
-        }
+        clip.stop();
+        clip.close();
     }
 
     /**
      * Pause the current playing track.
      */
     public static void pause() {
-        if (clip != null) {
-            clip.stop();
-        }
+        clip.stop();
     }
 
     /**
      * Resume the current playing track.
      */
     public static void resume() {
-        if (clip != null) {
-            clip.start();
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
-        }
+        clip.start();
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
     /**

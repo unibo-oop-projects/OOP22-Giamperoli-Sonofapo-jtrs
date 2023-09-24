@@ -1,5 +1,8 @@
 package it.unibo.jtrs.game.core.impl;
 
+import java.io.IOException;
+import java.util.logging.Logger;
+
 import it.unibo.jtrs.controller.api.Application;
 import it.unibo.jtrs.game.core.api.GameEngine;
 import it.unibo.jtrs.utils.AudioEngine;
@@ -28,17 +31,23 @@ public class GameEngineImpl implements GameEngine {
      */
     @Override
     public void mainLoop() {
-        AudioEngine.load("track-a.wav");
-        AudioEngine.pause();
-        while (this.application.isRunning()) {
-            try {
-                this.application.update();
-                this.application.redraw();
-                Thread.sleep(GameEngineImpl.PERIOD);
-            } catch (InterruptedException e) { }
+        try {
+            AudioEngine.load("track-a.wav");
+            AudioEngine.pause();
+            while (this.application.isRunning()) {
+                try {
+                    this.application.update();
+                    this.application.redraw();
+                    Thread.sleep(GameEngineImpl.PERIOD);
+                } catch (InterruptedException e) { }
+            }
+            AudioEngine.stop();
+        } catch (IOException e) { 
+            final Logger logger = Logger.getLogger(this.getClass().getName());
+            logger.severe(e.getMessage());
+        } finally {
+            System.exit(0);
         }
-        AudioEngine.stop();
-        System.exit(0);
     }
 
 }
