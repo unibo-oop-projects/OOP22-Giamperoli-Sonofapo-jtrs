@@ -35,14 +35,12 @@ public class GameEngineImpl implements GameEngine {
             AudioEngine.load("track-a.wav");
             AudioEngine.pause();
             while (this.application.isRunning()) {
-                try {
-                    this.application.update();
-                    this.application.redraw();
-                    Thread.sleep(GameEngineImpl.PERIOD);
-                } catch (InterruptedException e) { }
+                this.application.update();
+                this.application.redraw();
+                Thread.sleep(GameEngineImpl.PERIOD);
             }
             AudioEngine.stop();
-        } catch (IOException e) { 
+        } catch (IOException | InterruptedException e) {
             final Logger logger = Logger.getLogger(this.getClass().getName());
             logger.severe(e.getMessage());
         } finally {
