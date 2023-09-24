@@ -39,7 +39,7 @@ public final class AudioEngine {
             AudioEngine.resume();
 
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            throw new IOException("Can not open " + file + " " + e.getMessage(), e);
+            throw new IOException(e);
         }
     }
 
