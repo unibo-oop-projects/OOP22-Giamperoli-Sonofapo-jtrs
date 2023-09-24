@@ -7,6 +7,7 @@ import it.unibo.jtrs.controller.api.Application;
 import it.unibo.jtrs.model.api.GameModel.GameState;
 import it.unibo.jtrs.model.api.GameModel.Interaction;
 import it.unibo.jtrs.utils.AudioEngine;
+import it.unibo.jtrs.utils.Chronometer;
 
 /**
  * This class implements a KeyListener to define the correct action to perform.
@@ -15,7 +16,7 @@ public class KeyboardReader implements KeyListener {
 
     private static final int SCAN_RATE = 50;
 
-    private long millis;
+    private final Chronometer chrono;
     private final Application application;
 
     /**
@@ -24,8 +25,8 @@ public class KeyboardReader implements KeyListener {
      * @param application the application to send the commands to
      */
     public KeyboardReader(final Application application) {
-        this.millis = System.currentTimeMillis();
         this.application = application;
+        this.chrono = new Chronometer();
     }
 
     /**
@@ -39,9 +40,9 @@ public class KeyboardReader implements KeyListener {
     @Override
     public void keyPressed(final KeyEvent e) {
 
-        if (System.currentTimeMillis() - this.millis > SCAN_RATE) {
+        if (this.chrono.elapsed() > SCAN_RATE) {
 
-            this.millis = System.currentTimeMillis();
+            this.chrono.reset();
             if (this.application.getState() == GameState.RUNNING) {
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_W:
