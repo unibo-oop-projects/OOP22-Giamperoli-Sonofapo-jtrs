@@ -21,6 +21,11 @@ public interface GameModel {
         RUNNING,
 
         /**
+         * Game is running.
+         */
+        PAUSE,
+
+        /**
          * Game is over.
          */
         OVER

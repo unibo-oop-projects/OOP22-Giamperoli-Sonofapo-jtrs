@@ -7,6 +7,7 @@ import it.unibo.jtrs.game.core.impl.GameEngineImpl;
 import it.unibo.jtrs.game.core.impl.GameLogicImpl;
 import it.unibo.jtrs.view.impl.ApplicationFrame;
 import it.unibo.jtrs.view.impl.ApplicationPanel;
+import it.unibo.jtrs.model.api.GameModel.GameState;
 
 /**
  * Application implementation.
@@ -100,6 +101,10 @@ public class ApplicationImpl implements Application {
     @SuppressFBWarnings(justification = "GameController assure copy of its values")
     public GameController getGameController() {
         return this.gC;
+    }
+
+    public GameState getState() {
+        return this.logic.getState();
     }
 
 }

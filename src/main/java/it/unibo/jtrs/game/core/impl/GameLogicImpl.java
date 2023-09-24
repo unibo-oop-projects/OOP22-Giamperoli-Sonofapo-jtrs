@@ -37,16 +37,8 @@ public class GameLogicImpl implements GameLogic {
 
         this.gC.changePiece(this.pC.getCurrentTetromino());
         this.pC.nextTetromino();
-        this.gameState = GameState.RUNNING;
+        this.gameState = GameState.PAUSE;
         this.millis = System.currentTimeMillis();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isOver() {
-        return this.gameState == GameState.OVER;
     }
 
     /**
@@ -56,7 +48,8 @@ public class GameLogicImpl implements GameLogic {
     public void timeUpdate() {
         final var idleTime = IDLE_RATE - (MIN_IDLE + this.sC.getLevel() * RATE_FACTOR);
 
-        if (System.currentTimeMillis() - this.millis > Math.max(MIN_IDLE, idleTime)) {
+        if (this.gameState == GameState.RUNNING 
+            && System.currentTimeMillis() - this.millis > Math.max(MIN_IDLE, idleTime)) {
 
             this.millis = System.currentTimeMillis();
             if (!this.gC.advance(Interaction.DOWN)) {
@@ -70,10 +63,24 @@ public class GameLogicImpl implements GameLogic {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void requestInterrupt() {
-        // TODO Auto-generated method stub
+        if (this.gameState == GameState.RUNNING) {
+            this.gameState = GameState.PAUSE;
+        } else if(this.gameState == GameState.PAUSE) {
+            this.gameState = GameState.RUNNING;
+        }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public GameState getState() {
+        return this.gameState;
+    }
 }
 

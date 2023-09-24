@@ -1,18 +1,13 @@
 package it.unibo.jtrs.game.core.api;
 
+import it.unibo.jtrs.model.api.GameModel.GameState;
+
 /**
  * An interface modelling how the game should respond to human interaction.
  * The game should be able to run forever until the match is lost and change
  * its state based on how much time has passed.
  */
 public interface GameLogic {
-
-    /**
-     * Check whether the game is over or not.
-     *
-     * @return true if game is running, false otherwise
-     */
-    boolean isOver();
 
     /**
      * Performs operation based on the flow of time.
@@ -24,5 +19,12 @@ public interface GameLogic {
      * tasks like pause, resume or similar.
      */
     void requestInterrupt();
+
+    /**
+     * Return the current game state.
+     * 
+     * @return the game state
+     */
+    GameState getState();
 
 }

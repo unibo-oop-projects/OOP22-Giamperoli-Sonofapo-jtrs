@@ -3,6 +3,7 @@ package it.unibo.jtrs.controller.api;
 import it.unibo.jtrs.controller.impl.GameController;
 import it.unibo.jtrs.controller.impl.PreviewController;
 import it.unibo.jtrs.controller.impl.ScoreController;
+import it.unibo.jtrs.model.api.GameModel.GameState;
 
 /**
  * An interface modelling an application. An application should be able to update
@@ -58,4 +59,12 @@ public interface Application {
      * @return the controller
      */
     GameController getGameController();
+
+    /**
+     * Return the current game state.
+     *
+     * @return the game state
+     */
+    GameState getState();
+
 }

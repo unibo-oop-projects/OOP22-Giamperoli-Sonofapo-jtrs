@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import it.unibo.jtrs.controller.api.Application;
+import it.unibo.jtrs.model.api.GameModel.GameState;
 import it.unibo.jtrs.model.api.GameModel.Interaction;
 import it.unibo.jtrs.utils.AudioEngine;
 
@@ -41,23 +42,28 @@ public class KeyboardReader implements KeyListener {
         if (System.currentTimeMillis() - this.millis > SCAN_RATE) {
 
             this.millis = System.currentTimeMillis();
+            if(this.application.getState() == GameState.RUNNING) {
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_W:
+                    case KeyEvent.VK_UP:
+                        application.getGameController().advance(Interaction.ROTATE);
+                        break;
+                    case KeyEvent.VK_S:
+                    case KeyEvent.VK_DOWN:
+                        application.getGameController().advance(Interaction.DOWN);
+                        break;
+                    case KeyEvent.VK_A:
+                    case KeyEvent.VK_LEFT:
+                        application.getGameController().advance(Interaction.LEFT);
+                        break;
+                    case KeyEvent.VK_D:
+                    case KeyEvent.VK_RIGHT:
+                        application.getGameController().advance(Interaction.RIGHT);
+                        break;
+                    default:
+                }
+            }
             switch (e.getKeyCode()) {
-                case KeyEvent.VK_W:
-                case KeyEvent.VK_UP:
-                    application.getGameController().advance(Interaction.ROTATE);
-                    break;
-                case KeyEvent.VK_S:
-                case KeyEvent.VK_DOWN:
-                    application.getGameController().advance(Interaction.DOWN);
-                    break;
-                case KeyEvent.VK_A:
-                case KeyEvent.VK_LEFT:
-                    application.getGameController().advance(Interaction.LEFT);
-                    break;
-                case KeyEvent.VK_D:
-                case KeyEvent.VK_RIGHT:
-                    application.getGameController().advance(Interaction.RIGHT);
-                    break;
                 case KeyEvent.VK_SPACE:
                     application.interrupt();
                     break;
