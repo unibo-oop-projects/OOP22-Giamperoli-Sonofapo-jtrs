@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 import it.unibo.jtrs.controller.api.Application;
 import it.unibo.jtrs.model.api.GameModel.Interaction;
+import it.unibo.jtrs.utils.AudioEngine;
 
 /**
  * This class is able to detect which directional key is pressed.
@@ -50,6 +51,12 @@ public class KeyboardReader implements KeyListener {
                     break;
                 case KeyEvent.VK_SPACE:
                     application.interrupt();
+                    break;
+                case KeyEvent.VK_M:
+                    AudioEngine.toggle();
+                    break;
+                case KeyEvent.VK_ESCAPE:
+                    application.terminate();
                     break;
                 default:
             }

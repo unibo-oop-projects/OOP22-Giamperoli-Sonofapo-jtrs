@@ -34,6 +34,11 @@ public interface Application {
     void interrupt();
 
     /**
+     * Terminate the application execution.
+     */
+    void terminate();
+
+    /**
      * Returns the score controller.
      *
      * @return the controller

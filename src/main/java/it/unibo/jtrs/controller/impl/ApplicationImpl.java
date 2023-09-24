@@ -18,6 +18,7 @@ public class ApplicationImpl implements Application {
     private final ScoreController sC;
     private final PreviewController pC;
     private final GameController gC;
+    private boolean isRunning;
 
     /**
      * Constructor.
@@ -31,6 +32,7 @@ public class ApplicationImpl implements Application {
         this.logic = new GameLogicImpl(this);
         this.panel = new ApplicationPanel(this);
 
+        this.isRunning = true;
         new ApplicationFrame(this.panel);
         (new GameEngineImpl(this)).mainLoop();
     }
@@ -48,7 +50,7 @@ public class ApplicationImpl implements Application {
      */
     @Override
     public boolean isRunning() {
-        return !this.logic.isOver();
+        return this.isRunning;
     }
 
     /**
@@ -57,6 +59,14 @@ public class ApplicationImpl implements Application {
     @Override
     public void interrupt() {
         this.logic.requestInterrupt();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void terminate() {
+        this.isRunning = false;
     }
 
     /**
