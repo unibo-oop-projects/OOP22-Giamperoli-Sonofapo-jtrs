@@ -103,6 +103,10 @@ public class ApplicationImpl implements Application {
         return this.gC;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public GameState getState() {
         return this.logic.getState();
     }

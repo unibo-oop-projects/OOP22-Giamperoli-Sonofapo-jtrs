@@ -42,7 +42,7 @@ public class KeyboardReader implements KeyListener {
         if (System.currentTimeMillis() - this.millis > SCAN_RATE) {
 
             this.millis = System.currentTimeMillis();
-            if(this.application.getState() == GameState.RUNNING) {
+            if (this.application.getState() == GameState.RUNNING) {
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_W:
                     case KeyEvent.VK_UP:

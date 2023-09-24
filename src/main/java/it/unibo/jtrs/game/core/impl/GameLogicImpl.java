@@ -70,7 +70,7 @@ public class GameLogicImpl implements GameLogic {
     public void requestInterrupt() {
         if (this.gameState == GameState.RUNNING) {
             this.gameState = GameState.PAUSE;
-        } else if(this.gameState == GameState.PAUSE) {
+        } else if (this.gameState == GameState.PAUSE) {
             this.gameState = GameState.RUNNING;
         }
     }
