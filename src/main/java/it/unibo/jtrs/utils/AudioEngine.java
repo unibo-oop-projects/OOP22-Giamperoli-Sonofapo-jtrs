@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -12,6 +13,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * and resume as needed.
  */
 public final class AudioEngine {
+
+    private static final float LOW_VOL_DB = -10.0f;
 
     private static Clip clip;
 
@@ -25,12 +28,15 @@ public final class AudioEngine {
     public static void load(final String file) {
 
         try {
-            final var stream = AudioSystem.getAudioInputStream(ResourceLoader.load(file));
+            final var stream = AudioSystem.getAudioInputStream(ResourceLoader.loadAsUrl(file));
 
             clip = AudioSystem.getClip();
             clip.open(stream);
             clip.start();
             clip.loop(Clip.LOOP_CONTINUOUSLY);
+
+            // normalize volume
+            ((FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN)).setValue(LOW_VOL_DB);
 
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             clip = null;

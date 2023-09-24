@@ -57,7 +57,7 @@ public class ApplicationPanel extends JPanel {
         this.setFocusable(true);
 
         try {
-            this.background = ImageIO.read(ResourceLoader.load("background.jpg"));
+            this.background = ImageIO.read(ResourceLoader.loadAsStream("background.jpg"));
         } catch (IOException e) {
             this.background = null;
         }
