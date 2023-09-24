@@ -48,17 +48,32 @@ public final class AudioEngine {
     }
 
     /**
+     * Pause the current playing track.
+     */
+    public static void pause() {
+        if (clip != null) {
+            clip.stop();
+        }
+    }
+
+    /**
+     * Resume the current playing track.
+     */
+    public static void resume() {
+        if (clip != null) {
+            clip.start();
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        }
+    }
+
+    /**
      * Toggle between pause and resume of the current playing track.
      */
     public static void toggle() {
-        if (clip == null) {
-            return;
-        }
         if (clip.isRunning()) {
-            clip.stop();
+            AudioEngine.pause();
         } else {
-            clip.start();
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            AudioEngine.resume();
         }
     }
 
