@@ -2,6 +2,7 @@ package it.unibo.jtrs.game.core.impl;
 
 import it.unibo.jtrs.controller.api.Application;
 import it.unibo.jtrs.game.core.api.GameEngine;
+import it.unibo.jtrs.utils.AudioEngine;
 
 /**
  * GameEngine implementation.
@@ -27,6 +28,7 @@ public class GameEngineImpl implements GameEngine {
      */
     @Override
     public void mainLoop() {
+        AudioEngine.load("track-a.wav");
         while (this.application.isRunning()) {
             try {
                 this.application.update();
@@ -34,6 +36,8 @@ public class GameEngineImpl implements GameEngine {
                 Thread.sleep(GameEngineImpl.PERIOD);
             } catch (InterruptedException e) { }
         }
+        AudioEngine.stop();
+        System.exit(0);
     }
 
 }
