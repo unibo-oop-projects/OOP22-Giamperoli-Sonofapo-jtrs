@@ -35,7 +35,7 @@ public class Label extends JLabel {
     private Font loadFont(final String name, final float size) {
         try {
             return Font
-                .createFont(Font.TRUETYPE_FONT, ResourceLoader.load(name))
+                .createFont(Font.TRUETYPE_FONT, ResourceLoader.loadAsStream(name))
                 .deriveFont(size);
         } catch (FontFormatException | IOException e) {
             return super.getFont();
