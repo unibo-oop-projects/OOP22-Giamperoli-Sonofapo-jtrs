@@ -8,7 +8,7 @@ import it.unibo.jtrs.model.api.GameModel.Interaction;
 import it.unibo.jtrs.utils.AudioEngine;
 
 /**
- * This class is able to detect which directional key is pressed.
+ * This class implements a KeyListener to define the correct action to perform.
  */
 public class KeyboardReader implements KeyListener {
 
@@ -28,7 +28,12 @@ public class KeyboardReader implements KeyListener {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}<br><br>
+     * 
+     * Directional keys or (W, A, S, D) moves the Tetromino, SPACE send an interrupt
+     * signal to the application, M pause the playing soundtrack and ESC terminate
+     * the application.
+     * 
      */
     @Override
     public void keyPressed(final KeyEvent e) {
@@ -38,15 +43,19 @@ public class KeyboardReader implements KeyListener {
             this.millis = System.currentTimeMillis();
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_W:
+                case KeyEvent.VK_UP:
                     application.getGameController().advance(Interaction.ROTATE);
                     break;
                 case KeyEvent.VK_S:
+                case KeyEvent.VK_DOWN:
                     application.getGameController().advance(Interaction.DOWN);
                     break;
                 case KeyEvent.VK_A:
+                case KeyEvent.VK_LEFT:
                     application.getGameController().advance(Interaction.LEFT);
                     break;
                 case KeyEvent.VK_D:
+                case KeyEvent.VK_RIGHT:
                     application.getGameController().advance(Interaction.RIGHT);
                     break;
                 case KeyEvent.VK_SPACE:
