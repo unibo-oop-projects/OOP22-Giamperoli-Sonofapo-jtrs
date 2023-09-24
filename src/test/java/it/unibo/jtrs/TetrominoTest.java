@@ -1,6 +1,7 @@
 package it.unibo.jtrs;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -16,8 +17,7 @@ import it.unibo.jtrs.utils.TetrominoData;
 /**
  * Tetromino test class.
  */
-@SuppressWarnings("PMD")
-public class TetrominoTest {
+class TetrominoTest {
 
     private Tetromino tTetromino;
 
@@ -25,7 +25,7 @@ public class TetrominoTest {
      * Initialize necessary field for the tests.
      */
     @BeforeEach
-    public void init() {
+    void init() {
         tTetromino = new TetrominoImpl(TetrominoData.T_COORD, 0, 0, TetrominoData.T_COLOR);
     }
 
@@ -33,7 +33,7 @@ public class TetrominoTest {
      * Test Tetromino rotation.
      */
     @Test
-    public void testRotate() {
+    void testRotate() {
 
         tTetromino.rotate();
         assertEquals(Set.of(new Pair<>(1, 1), new Pair<>(0, 2), new Pair<>(1, 2), new Pair<>(2, 2)),
@@ -52,24 +52,22 @@ public class TetrominoTest {
      * Test Tetromino component deletion.
      */
     @Test
-    public void testDelete() {
+    void testDelete() {
 
         final var t1 = new TetrominoImpl(Set.of(new Pair<>(0, 2)), 0, 0, tTetromino.getColor());
         final var t2 = new TetrominoImpl(Set.of(new Pair<>(2, 2)), 0, 0, tTetromino.getColor());
 
         tTetromino.rotate();
-        // delete some components and get the remaining Tetrominoes
-        final var res = tTetromino.delete(1).stream().collect(Collectors.toList());
-        final var map = res.stream().map(Tetromino::getComponents).collect(Collectors.toSet());
+        // delete some components and get the remaining Tetrominoes' components
+        final var res = tTetromino.delete(1).stream()
+            .map(Tetromino::getComponents)
+            .collect(Collectors.toSet());
 
-        assertEquals(true, map.contains(t1.getComponents()) && map.contains(t2.getComponents()));
+        assertTrue(res.contains(t1.getComponents()) && res.contains(t2.getComponents()));
 
-        // delete the remaining components to test their total deletion
-        final var c1 = res.get(0).delete(0);
-        final var c2 = res.get(1).delete(2);
-
-        assertEquals(true, c1.isEmpty());
-        assertEquals(true, c2.isEmpty());
+        // delete single components to test their total deletion
+        assertTrue(t1.delete(0).isEmpty());
+        assertTrue(t2.delete(2).isEmpty());
     }
 
 }
