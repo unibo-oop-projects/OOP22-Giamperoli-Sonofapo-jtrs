@@ -7,6 +7,7 @@ import it.unibo.jtrs.controller.impl.ScoreController;
 import it.unibo.jtrs.game.core.api.GameLogic;
 import it.unibo.jtrs.model.api.GameModel.GameState;
 import it.unibo.jtrs.model.api.GameModel.Interaction;
+import it.unibo.jtrs.utils.AudioEngine;
 
 /**
  * GameLogic implementation.
@@ -70,8 +71,10 @@ public class GameLogicImpl implements GameLogic {
     public void requestInterrupt() {
         if (this.gameState == GameState.RUNNING) {
             this.gameState = GameState.PAUSE;
+            AudioEngine.pause();
         } else if (this.gameState == GameState.PAUSE) {
             this.gameState = GameState.RUNNING;
+            AudioEngine.resume();
         }
     }
 

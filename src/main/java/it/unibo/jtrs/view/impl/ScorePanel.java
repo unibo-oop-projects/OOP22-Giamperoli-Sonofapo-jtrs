@@ -48,7 +48,7 @@ public class ScorePanel extends JPanel implements View {
         this.score = new Label(String.valueOf(this.controller.getScore()), FONT, FONT_SIZE, Color.WHITE);
         this.score.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 
-        this.message = new Label("", FONT, FONT_SIZE, Color.WHITE);
+        this.message = new Label("", FONT, FONT_SIZE / 2, Color.WHITE);
         this.message.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 
         this.add(levelTxt);
