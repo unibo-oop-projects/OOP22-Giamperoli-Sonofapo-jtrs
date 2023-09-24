@@ -71,7 +71,7 @@ public class GameController {
     }
 
     private void translateToCenter(final Tetromino tetromino) {
-        if (tetromino.getColor().equals(TetrominoData.I_COLOR)) {
+        if (TetrominoData.I_COLOR.equals(tetromino.getColor())) {
             tetromino.translate(-1, 0);
         }
         tetromino.translate(0, GameModelImpl.GRID_COLS / 2 - 2);
