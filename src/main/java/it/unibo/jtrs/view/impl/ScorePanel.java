@@ -1,7 +1,5 @@
 package it.unibo.jtrs.view.impl;
 
-import java.awt.Color;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
@@ -9,6 +7,7 @@ import javax.swing.JPanel;
 
 import it.unibo.jtrs.controller.impl.ScoreController;
 import it.unibo.jtrs.view.api.View;
+import it.unibo.jtrs.view.custom.Constants;
 import it.unibo.jtrs.view.custom.Label;
 
 /**
@@ -17,10 +16,6 @@ import it.unibo.jtrs.view.custom.Label;
 public class ScorePanel extends JPanel implements View {
 
     public static final long serialVersionUID = 4328743;
-
-    private static final String FONT = "Tetris.ttf";
-    private static final float FONT_SIZE = 40f;
-    private static final int INTERLINE = 20;
 
     private final Label level;
     private final Label score;
@@ -38,26 +33,26 @@ public class ScorePanel extends JPanel implements View {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setOpaque(false);
 
-        final var levelTxt = new Label("LEVEL", FONT, FONT_SIZE, Color.WHITE);
+        final var levelTxt = new Label("LEVEL", Constants.ScorePanel.FONT_SIZE_L);
         levelTxt.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        this.level = new Label(String.valueOf(this.controller.getLevel()), FONT, FONT_SIZE, Color.WHITE);
+        this.level = new Label(String.valueOf(this.controller.getLevel()), Constants.ScorePanel.FONT_SIZE_L);
         this.level.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 
-        final var scoreTxt = new Label("SCORE", FONT, FONT_SIZE, Color.WHITE);
+        final var scoreTxt = new Label("SCORE", Constants.ScorePanel.FONT_SIZE_L);
         scoreTxt.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        this.score = new Label(String.valueOf(this.controller.getScore()), FONT, FONT_SIZE, Color.WHITE);
+        this.score = new Label(String.valueOf(this.controller.getScore()), Constants.ScorePanel.FONT_SIZE_L);
         this.score.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 
-        this.message = new Label("", FONT, FONT_SIZE / 2, Color.WHITE);
+        this.message = new Label("", Constants.ScorePanel.FONT_SIZE_S);
         this.message.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 
         this.add(levelTxt);
         this.add(this.level);
-        this.add(Box.createVerticalStrut(INTERLINE));
+        this.add(Box.createVerticalStrut(Constants.ScorePanel.INTERLINE));
 
         this.add(scoreTxt);
         this.add(this.score);
-        this.add(Box.createVerticalStrut(INTERLINE));
+        this.add(Box.createVerticalStrut(Constants.ScorePanel.INTERLINE));
 
         this.add(this.message);
     }

@@ -25,8 +25,6 @@ public class GridPanel extends JPanel {
 
     public static final long serialVersionUID = 4328743;
 
-    private static final Color DEFAULT_COLOR = Color.decode("#999999");
-
     @SuppressFBWarnings(justification = "This field need to be transient")
     private final transient Map<Pair<Integer, Integer>, Cell> cells = new HashMap<>();
     private final int rows;
@@ -71,7 +69,8 @@ public class GridPanel extends JPanel {
      */
     public void setCells(final Map<Pair<Integer, Integer>, Color> map) {
         this.cells.forEach((k, v) -> {
-            v.setBackground(map.keySet().contains(k) ? map.get(k) : DEFAULT_COLOR);
+            v.setBackground(map.keySet().contains(k) ? map.get(k)
+                : Constants.GridPanel.DEFAULT_COLOR);
         });
     }
 
@@ -97,9 +96,6 @@ public class GridPanel extends JPanel {
 
         public static final long serialVersionUID = 4328743;
 
-        private static final int SIZE = 32;
-        private static final int BLINK_TIME = 7;
-
         /**
          * Constructor.
          */
@@ -111,12 +107,12 @@ public class GridPanel extends JPanel {
 
                 @Override
                 public int getIconWidth() {
-                    return SIZE;
+                    return Constants.GridPanel.CELL_SIZE;
                 }
 
                 @Override
                 public int getIconHeight() {
-                    return SIZE;
+                    return Constants.GridPanel.CELL_SIZE;
                 }
             });
 
@@ -132,9 +128,9 @@ public class GridPanel extends JPanel {
         public void blink() {
             this.setBackground(Color.LIGHT_GRAY);
             try {
-                Thread.sleep(BLINK_TIME);
+                Thread.sleep(Constants.GridPanel.BLINK_TIME);
             } catch (InterruptedException e) { }
-            this.setBackground(DEFAULT_COLOR);
+            this.setBackground(Constants.GridPanel.DEFAULT_COLOR);
         }
     }
 

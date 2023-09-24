@@ -29,6 +29,7 @@ public class GameEngineImpl implements GameEngine {
     @Override
     public void mainLoop() {
         AudioEngine.load("track-a.wav");
+        AudioEngine.pause();
         while (this.application.isRunning()) {
             try {
                 this.application.update();

@@ -32,6 +32,16 @@ public class Label extends JLabel {
         this.setForeground(foreground);
     }
 
+    /**
+     * Constructor.
+     *
+     * @param value the text for this label
+     * @param size the font size
+     */
+    public Label(final String value, final float size) {
+        this(value, Constants.Label.FONT, size, Constants.Label.TEXT_COLOR);
+    }
+
     private Font loadFont(final String name, final float size) {
         try {
             return Font
