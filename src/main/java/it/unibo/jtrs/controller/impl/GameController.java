@@ -5,6 +5,7 @@ import java.util.Set;
 
 import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.model.impl.GameModelImpl;
+import it.unibo.jtrs.utils.TetrominoData;
 import it.unibo.jtrs.model.api.GameModel.Interaction;
 
 /**
@@ -70,6 +71,9 @@ public class GameController {
     }
 
     private void translateToCenter(final Tetromino tetromino) {
+        if (tetromino.getColor().equals(TetrominoData.I_COLOR)) {
+            tetromino.translate(-1, 0);
+        }
         tetromino.translate(0, GameModelImpl.GRID_COLS / 2 - 2);
     }
 
