@@ -9,6 +9,10 @@ import it.unibo.jtrs.controller.api.Application;
 import it.unibo.jtrs.view.api.GenericPanel;
 import it.unibo.jtrs.view.custom.Constants;
 
+/**
+ * A class modelling the main application panel. This panel consists of
+ * 3 sub-panels, displaying the game field, the preview and the score.
+ */
 public class MainPanel extends GenericPanel {
 
     public static final long serialVersionUID = 4328743;
@@ -17,6 +21,11 @@ public class MainPanel extends GenericPanel {
     private final ScorePanel scorePanel;
     private final GamePanel gamePanel;
 
+    /**
+     * Constructor.
+     *
+     * @param application the application to manage
+     */
     public MainPanel(final Application application) {
         this.previewPanel = new PreviewPanel(application.getPreviewController());
         this.scorePanel = new ScorePanel(application.getScoreController());
@@ -47,5 +56,5 @@ public class MainPanel extends GenericPanel {
         this.previewPanel.redraw();
         this.scorePanel.redraw();
     }
-    
+
 }

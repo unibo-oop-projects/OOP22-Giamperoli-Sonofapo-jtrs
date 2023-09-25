@@ -27,7 +27,7 @@ public class ApplicationPanel extends JLayeredPane {
     private final transient Application application;
 
     private transient BufferedImage background;
-    private List<GenericPanel> panels = new ArrayList<>();
+    private final List<GenericPanel> panels = new ArrayList<>();
 
     /**
      * Constructor.
@@ -45,9 +45,8 @@ public class ApplicationPanel extends JLayeredPane {
         this.panels.add(GameState.PAUSE.ordinal(), new MessagePanel("PAUSE", "Press SPACE to resume", offset));
         this.panels.add(GameState.OVER.ordinal(), new MessagePanel("GAME OVER", "Press ESC to exit the game", offset));
 
-
-        for (GameState s : GameState.values()) {
-            var i = s.ordinal();
+        for (final GameState s : GameState.values()) {
+            final var i = s.ordinal();
             this.panels.get(i).setVisible(false);
             this.add(this.panels.get(i), i);
         }
@@ -84,7 +83,7 @@ public class ApplicationPanel extends JLayeredPane {
         }
     }
 
-    private void setActiveLayer(int layer) {
+    private void setActiveLayer(final int layer) {
         for (int i = 0; i < this.panels.size(); i++) {
             this.panels.get(i).setVisible(i == layer);
         }

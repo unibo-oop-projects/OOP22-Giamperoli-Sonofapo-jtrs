@@ -7,6 +7,8 @@ import javax.swing.JPanel;
  */
 public abstract class GenericPanel extends JPanel {
 
+    public static final long serialVersionUID = 4328743;
+
     /**
      * Redraw the panel.
      */
