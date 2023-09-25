@@ -33,7 +33,6 @@ public class GameEngineImpl implements GameEngine {
     public void mainLoop() {
         try {
             AudioEngine.load("track-a.wav");
-            AudioEngine.pause();
             while (this.application.isRunning()) {
                 this.application.update();
                 this.application.redraw();

@@ -16,6 +16,11 @@ public interface GameModel {
     enum GameState {
 
         /**
+         * Game is ready to start.
+         */
+        START,
+
+        /**
          * Game is running.
          */
         RUNNING,

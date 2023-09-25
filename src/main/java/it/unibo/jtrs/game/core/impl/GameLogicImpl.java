@@ -39,7 +39,7 @@ public class GameLogicImpl implements GameLogic {
 
         this.gC.changePiece(this.pC.getCurrentTetromino());
         this.pC.nextTetromino();
-        this.gameState = GameState.PAUSE;
+        this.gameState = GameState.START;
         this.chrono = new Chronometer();
     }
 
@@ -60,6 +60,7 @@ public class GameLogicImpl implements GameLogic {
                     this.pC.nextTetromino();
                 } else {
                     this.gameState = GameState.OVER;
+                    AudioEngine.pause();
                 }
             }
         }
@@ -70,12 +71,20 @@ public class GameLogicImpl implements GameLogic {
      */
     @Override
     public void requestInterrupt() {
-        if (this.gameState == GameState.RUNNING) {
-            this.gameState = GameState.PAUSE;
-            AudioEngine.pause();
-        } else if (this.gameState == GameState.PAUSE) {
-            this.gameState = GameState.RUNNING;
-            AudioEngine.play();
+        switch (this.gameState) {
+            case START:
+                this.gameState = GameState.RUNNING;
+                AudioEngine.play();
+                break;
+            case RUNNING:
+                this.gameState = GameState.PAUSE;
+                AudioEngine.pause();
+                break;
+            case PAUSE:
+                this.gameState = GameState.RUNNING;
+                AudioEngine.play();
+                break;
+            default:
         }
     }
 
