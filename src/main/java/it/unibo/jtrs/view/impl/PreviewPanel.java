@@ -7,10 +7,9 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import it.unibo.jtrs.controller.impl.PreviewController;
-import it.unibo.jtrs.view.api.View;
+import it.unibo.jtrs.view.api.GenericPanel;
 import it.unibo.jtrs.view.custom.Constants;
 import it.unibo.jtrs.view.custom.GridPanel;
 import it.unibo.jtrs.view.custom.Label;
@@ -18,7 +17,7 @@ import it.unibo.jtrs.view.custom.Label;
 /**
  * The class models the preview panel. This view must show the next Tetromino.
  */
-public class PreviewPanel extends JPanel implements View {
+public class PreviewPanel extends GenericPanel {
 
     public static final long serialVersionUID = 4328743;
 

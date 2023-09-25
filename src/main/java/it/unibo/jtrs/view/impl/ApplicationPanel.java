@@ -1,37 +1,33 @@
 package it.unibo.jtrs.view.impl;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JLayeredPane;
+import javax.swing.OverlayLayout;
 
 import it.unibo.jtrs.controller.api.Application;
 import it.unibo.jtrs.game.core.inputs.KeyboardReader;
+import it.unibo.jtrs.model.api.GameModel.GameState;
 import it.unibo.jtrs.utils.ResourceLoader;
+import it.unibo.jtrs.view.api.GenericPanel;
 import it.unibo.jtrs.view.custom.Constants;
-import it.unibo.jtrs.view.custom.Label;
 
 /**
  * A class modelling the main panel to be inserted in a frame.
  */
-public class ApplicationPanel extends JPanel {
+public class ApplicationPanel extends JLayeredPane {
 
     public static final long serialVersionUID = 4328743;
 
     private final transient Application application;
-    private final PreviewPanel previewPanel;
-    private final ScorePanel scorePanel;
-    private final GamePanel gamePanel;
+
     private transient BufferedImage background;
+    private List<GenericPanel> panels = new ArrayList<>();
 
     /**
      * Constructor.
@@ -39,29 +35,22 @@ public class ApplicationPanel extends JPanel {
      * @param application the application this panel should show
      */
     public ApplicationPanel(final Application application) {
+        this.setLayout(new OverlayLayout(this));
+
         this.application = application;
+        final int offset = (int) (super.getSize().height * Constants.ApplicationPanel.HEIGHT_OFFSET);
 
-        this.previewPanel = new PreviewPanel(this.application.getPreviewController());
-        this.scorePanel = new ScorePanel(this.application.getScoreController());
-        this.gamePanel = new GamePanel(this.application.getGameController());
+        this.panels.add(GameState.START.ordinal(), new StartPanel());
+        this.panels.add(GameState.RUNNING.ordinal(), new MainPanel(application));
+        this.panels.add(GameState.PAUSE.ordinal(), new MessagePanel("PAUSE", "Press SPACE to resume", offset));
+        this.panels.add(GameState.OVER.ordinal(), new MessagePanel("GAME OVER", "Press ESC to exit the game", offset));
 
-        this.setLayout(new GridLayout(1, 2));
-        this.setBorder(new EmptyBorder(Constants.ApplicationPanel.PADDING,
-            Constants.ApplicationPanel.PADDING,
-            Constants.ApplicationPanel.PADDING,
-            Constants.ApplicationPanel.PADDING));
-        this.setBackground(Color.DARK_GRAY);
 
-        final var panelL = new JPanel(new GridLayout());
-        final var panelR = new JPanel(new GridLayout(2, 1));
-        panelL.setOpaque(false);
-        panelR.setOpaque(false);
-        panelR.add(this.previewPanel);
-        panelR.add(this.scorePanel);
-        panelL.add(this.gamePanel);
-
-        this.add(panelL);
-        this.add(panelR);
+        for (GameState s : GameState.values()) {
+            var i = s.ordinal();
+            this.panels.get(i).setVisible(false);
+            this.add(this.panels.get(i), i);
+        }
 
         this.addKeyListener(new KeyboardReader(this.application));
         this.setFocusable(true);
@@ -77,21 +66,11 @@ public class ApplicationPanel extends JPanel {
      * Redraws the application components.
      */
     public void redraw() {
-        switch (this.application.getState()) {
-            case RUNNING:
-                this.gamePanel.redraw();
-                this.previewPanel.redraw();
-                this.scorePanel.redraw();
-                break;
-            case PAUSE:
-            //TODO
-                break;
-            case OVER:
-                this.gameover();
-                break;
-            default:
+        final var state = this.application.getState();
+        this.setActiveLayer(state.ordinal());
+        if (state == GameState.RUNNING) {
+            this.panels.get(state.ordinal()).redraw();
         }
-
     }
 
     /**
@@ -105,22 +84,9 @@ public class ApplicationPanel extends JPanel {
         }
     }
 
-    private void gameover() {
-        final int offset = (int) (this.getSize().height * Constants.ApplicationPanel.HEIGHT_OFFSET);
-        this.removeAll();
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.add(Box.createVerticalStrut(offset));
-
-        final JLabel l1 = new Label("GAME OVER", Constants.ApplicationPanel.GAME_OVER_SIZE);
-        l1.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        this.add(l1);
-        this.add(Box.createVerticalStrut(Constants.ApplicationPanel.INTERLINE));
-
-        final JLabel l2 = new Label("Press ESC to close the game", Constants.ApplicationPanel.EXIT_TEXT_SIZE);
-        l2.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        this.add(l2);
-
-        this.repaint();
-        this.validate();
+    private void setActiveLayer(int layer) {
+        for (int i = 0; i < this.panels.size(); i++) {
+            this.panels.get(i).setVisible(i == layer);
+        }
     }
 }

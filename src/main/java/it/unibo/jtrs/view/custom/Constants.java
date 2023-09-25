@@ -60,6 +60,12 @@ public final class Constants {
          * Offset to center game over text.
          */
         public static final float HEIGHT_OFFSET = 0.4f;
+    }
+
+    /**
+     * Message panel constants.
+     */
+    public static class MessagePanel {
 
         /**
          * Default interline.
@@ -69,12 +75,13 @@ public final class Constants {
         /**
          * Game over font size.
          */
-        public static final float GAME_OVER_SIZE = 70f;
+        public static final float TITLE_SIZE = 70f;
 
         /**
          * Exit text font size.
          */
-        public static final float EXIT_TEXT_SIZE = 20f;
+        public static final float SUBTITLE_SIZE = 20f;
+
     }
 
     /**

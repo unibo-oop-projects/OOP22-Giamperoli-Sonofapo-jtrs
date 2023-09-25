@@ -3,17 +3,16 @@ package it.unibo.jtrs.view.impl;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 
 import it.unibo.jtrs.controller.impl.ScoreController;
-import it.unibo.jtrs.view.api.View;
+import it.unibo.jtrs.view.api.GenericPanel;
 import it.unibo.jtrs.view.custom.Constants;
 import it.unibo.jtrs.view.custom.Label;
 
 /**
  * The class models the score panel. This view must show the current level and score.
  */
-public class ScorePanel extends JPanel implements View {
+public class ScorePanel extends GenericPanel {
 
     public static final long serialVersionUID = 4328743;
 
