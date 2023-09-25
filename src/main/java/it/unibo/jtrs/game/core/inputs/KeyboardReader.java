@@ -69,7 +69,11 @@ public class KeyboardReader implements KeyListener {
                     application.interrupt();
                     break;
                 case KeyEvent.VK_M:
-                    AudioEngine.toggle();
+                    if (AudioEngine.isPlaying()) {
+                        AudioEngine.mute();
+                    } else {
+                        AudioEngine.unmute();
+                    }
                     break;
                 case KeyEvent.VK_ESCAPE:
                     application.terminate();

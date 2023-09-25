@@ -75,7 +75,7 @@ public class GameLogicImpl implements GameLogic {
             AudioEngine.pause();
         } else if (this.gameState == GameState.PAUSE) {
             this.gameState = GameState.RUNNING;
-            AudioEngine.resume();
+            AudioEngine.play();
         }
     }
 
