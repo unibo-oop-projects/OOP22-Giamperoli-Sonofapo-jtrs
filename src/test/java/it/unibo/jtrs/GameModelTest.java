@@ -38,7 +38,7 @@ class GameModelTest {
      */
     @Test
     void testNextPiece() {
-        for (int i = 18; i >= 0; i = i - 2) {
+        for (int i = 18; i >= 0; i -= 2) {
             assertTrue(this.model.nextPiece(new TetrominoImpl(TetrominoData.O_COORD, i, 0, TetrominoData.O_COLOR)));
         }
         assertFalse(this.model.nextPiece(new TetrominoImpl(TetrominoData.O_COORD, 0, 0, TetrominoData.O_COLOR)));
@@ -62,7 +62,7 @@ class GameModelTest {
      */
     @Test
     void testDeleteTwoRows() {
-        for (int i = 0; i < 10; i = i + 2) {
+        for (int i = 0; i < 10; i += 2) {
             this.model.nextPiece(new TetrominoImpl(TetrominoData.O_COORD, 18, i, TetrominoData.O_COLOR));
         }
         this.model.nextPiece(new TetrominoImpl(TetrominoData.O_COORD, 16, 0, TetrominoData.O_COLOR));
@@ -78,7 +78,7 @@ class GameModelTest {
      */
     @Test
     void testDeleteThreeRows() {
-        for (int i = 0; i < 8; i = i + 2) {
+        for (int i = 0; i < 8; i += 2) {
             this.model.nextPiece(new TetrominoImpl(TetrominoData.O_COORD, 18, i, TetrominoData.O_COLOR));
         }
         this.model.nextPiece(new TetrominoImpl(TetrominoData.I_COORD, 16, 0, TetrominoData.I_COLOR));
@@ -102,7 +102,7 @@ class GameModelTest {
     @Test
     void testDeleteFourRows() {
         Tetromino tmp;
-        for (int i = 0; i < 10; i = i + 1) {
+        for (int i = 0; i < 10; i++) {
             tmp = new TetrominoImpl(TetrominoData.I_COORD, 16, i - 2, TetrominoData.I_COLOR);
             tmp.rotate();
             this.model.nextPiece(tmp);

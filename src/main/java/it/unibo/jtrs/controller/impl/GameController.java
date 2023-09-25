@@ -74,6 +74,9 @@ public class GameController {
         if (TetrominoData.I_COLOR.equals(tetromino.getColor())) {
             tetromino.translate(-1, 0);
         }
+        if (TetrominoData.O_COLOR.equals(tetromino.getColor())) {
+            tetromino.translate(0, 1);
+        }
         tetromino.translate(0, GameModelImpl.GRID_COLS / 2 - 2);
     }
 
