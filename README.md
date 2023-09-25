@@ -33,7 +33,7 @@ Il gioco mette a disposizione i seguenti comandi, da impartire attraverso la tas
 ### Altri comandi
 - ESC permette il termine e la chiusura dell'applicazione
 - SPACE permette di mettere in pausa la partita
-- M permette di mettere in pausa o far riprendere la traccia musicale
+- M permette di mutare o meno la traccia musicale
 
 ## Meccaniche di gioco
 Il funzionamento del gioco è molto intuitivo. Al completamento di una, due, tre o quattro linee nel senso orizzontale, queste verrano eliminate dalla griglia e i pezzi soprastanti verrano traslati di conseguenza. Maggiore è il numero di linee eliminate con un singolo posizionamento di un Tetramino, maggiore sarà il punteggio assegnato.
