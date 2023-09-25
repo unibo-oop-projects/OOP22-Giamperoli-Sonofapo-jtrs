@@ -50,7 +50,7 @@ public class GameLogicImpl implements GameLogic {
     public void timeUpdate() {
         final var idleTime = IDLE_RATE - (MIN_IDLE + this.sC.getLevel() * RATE_FACTOR);
 
-        if (this.gameState == GameState.RUNNING 
+        if (this.gameState == GameState.RUNNING
             && this.chrono.elapsed() > Math.max(MIN_IDLE, idleTime)) {
 
             this.chrono.reset();
@@ -73,16 +73,13 @@ public class GameLogicImpl implements GameLogic {
     public void requestInterrupt() {
         switch (this.gameState) {
             case START:
+            case PAUSE:
                 this.gameState = GameState.RUNNING;
                 AudioEngine.play();
                 break;
             case RUNNING:
                 this.gameState = GameState.PAUSE;
                 AudioEngine.pause();
-                break;
-            case PAUSE:
-                this.gameState = GameState.RUNNING;
-                AudioEngine.play();
                 break;
             default:
         }

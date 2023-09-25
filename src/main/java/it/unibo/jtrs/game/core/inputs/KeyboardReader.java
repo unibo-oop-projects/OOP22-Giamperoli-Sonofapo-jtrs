@@ -21,7 +21,7 @@ public class KeyboardReader implements KeyListener {
 
     /**
      * Constructor.
-     * 
+     *
      * @param application the application to send the commands to
      */
     public KeyboardReader(final Application application) {
@@ -31,11 +31,11 @@ public class KeyboardReader implements KeyListener {
 
     /**
      * {@inheritDoc}<br><br>
-     * 
+     *
      * Directional keys or (W, A, S, D) moves the Tetromino, SPACE send an interrupt
      * signal to the application, M pause the playing soundtrack and ESC terminate
      * the application.
-     * 
+     *
      */
     @Override
     public void keyPressed(final KeyEvent e) {
