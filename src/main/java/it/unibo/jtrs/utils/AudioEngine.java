@@ -17,6 +17,7 @@ public final class AudioEngine {
     private static final float LOW_VOL_DB = -10.0f;
 
     private static Clip clip;
+    private static boolean isMuted;
 
     private AudioEngine() { }
 
@@ -27,16 +28,16 @@ public final class AudioEngine {
      */
     public static void load(final String file) throws IOException {
 
+        isMuted = false;
+
         try {
             final var stream = AudioSystem.getAudioInputStream(ResourceLoader.loadAsUrl(file));
 
             clip = AudioSystem.getClip();
             clip.open(stream);
 
-            // normalize volume
+            // lower volume
             ((FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN)).setValue(LOW_VOL_DB);
-
-            AudioEngine.resume();
 
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             throw new IOException("Audio load failure", e);
@@ -52,29 +53,48 @@ public final class AudioEngine {
     }
 
     /**
-     * Pause the current playing track.
+     * Play the current track if the audio engine is allowed to.
+     */
+    public static void play() {
+        if (!isMuted) {
+            clip.start();
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        }
+    }
+
+    /**
+     * Pause the current playing track if the audio engine is allowd to.
      */
     public static void pause() {
+        if (!isMuted) {
+            clip.stop();
+        }
+    }
+
+    /**
+     * Mute the audio engine. Play and pause function will no longer produce
+     * an effect as long as unmute is called.
+     */
+    public static void mute() {
+        isMuted = true;
         clip.stop();
     }
 
     /**
-     * Resume the current playing track.
+     * Unmute the audio engine.
      */
-    public static void resume() {
-        clip.start();
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
+    public static void unmute() {
+        isMuted = false;
+        play();
     }
 
     /**
-     * Toggle between pause and resume of the current playing track.
+     * Return the running status of the loaded clip.
+     *
+     * @return true if the clip is playing
      */
-    public static void toggle() {
-        if (clip.isRunning()) {
-            AudioEngine.pause();
-        } else {
-            AudioEngine.resume();
-        }
+    public static boolean isPlaying() {
+        return clip.isRunning();
     }
 
 }
