@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import it.unibo.jtrs.model.api.GameModel;
 import it.unibo.jtrs.model.api.Tetromino;
+import it.unibo.jtrs.model.api.GameModel.Interaction;
 import it.unibo.jtrs.model.impl.GameModelImpl;
 import it.unibo.jtrs.model.impl.TetrominoImpl;
 import it.unibo.jtrs.utils.Pair;
@@ -113,6 +114,84 @@ class GameModelTest {
         assertEquals(Set.of(new Pair<>(19, 0), new Pair<>(19, 1),
             new Pair<>(18, 0), new Pair<>(18, 1)), this.getAllComponents());
     }
+
+    /**
+     * Test advance downwards.
+     */
+    @Test
+    void testAdvanceDownwards() {
+        this.model.nextPiece(new TetrominoImpl(TetrominoData.O_COORD, 0, 0, TetrominoData.O_COLOR));
+        for (int i = 0; i < 18; i++) {
+            assertTrue(this.model.advance(Interaction.DOWN));
+        }
+        assertFalse(this.model.advance(Interaction.DOWN));
+
+        this.model.nextPiece(new TetrominoImpl(TetrominoData.O_COORD, 0, 0, TetrominoData.O_COLOR));
+        for (int i = 0; i < 16; i++) {
+            assertTrue(this.model.advance(Interaction.DOWN));
+        }
+        assertFalse(this.model.advance(Interaction.DOWN));
+    }
+
+    /**
+     * Test advance leftwards.
+     */
+    @Test
+    void testAdvanceLeftWards() {
+        this.model.nextPiece(new TetrominoImpl(TetrominoData.O_COORD, 18, 1, TetrominoData.O_COLOR));
+        assertTrue(this.model.advance(Interaction.LEFT));
+        assertFalse(this.model.advance(Interaction.LEFT));
+
+        this.model.nextPiece(new TetrominoImpl(TetrominoData.O_COORD, 18, 3, TetrominoData.O_COLOR));
+        assertTrue(this.model.advance(Interaction.LEFT));
+        assertFalse(this.model.advance(Interaction.LEFT));
+    }
+
+    /**
+     * Test advance rightwards.
+     */
+    @Test
+    void testAdvanceRightWards() {
+        this.model.nextPiece(new TetrominoImpl(TetrominoData.O_COORD, 18, 7, TetrominoData.O_COLOR));
+        assertTrue(this.model.advance(Interaction.RIGHT));
+        assertFalse(this.model.advance(Interaction.RIGHT));
+
+        this.model.nextPiece(new TetrominoImpl(TetrominoData.O_COORD, 18, 5, TetrominoData.O_COLOR));
+        assertTrue(this.model.advance(Interaction.RIGHT));
+        assertFalse(this.model.advance(Interaction.RIGHT));
+    }
+
+    /**
+     * Test rotate against another piece.
+     */
+    @Test
+    void testRotateWithPieceCollision() {
+        this.model.nextPiece(new TetrominoImpl(TetrominoData.T_COORD, 17, 5, TetrominoData.T_COLOR));
+        this.model.advance(Interaction.ROTATE);
+        this.model.advance(Interaction.ROTATE);
+        this.model.advance(Interaction.ROTATE);
+
+        this.model.nextPiece(new TetrominoImpl(TetrominoData.T_COORD, 17, 6, TetrominoData.T_COLOR));
+        assertTrue(this.model.advance(Interaction.ROTATE));
+        assertTrue(this.model.advance(Interaction.ROTATE));
+        assertFalse(this.model.advance(Interaction.ROTATE));
+    }
+
+    /**
+     * Test rotate against a bound.
+     */
+    @Test
+    void testRotateWithBoundCollision() {
+        this.model.nextPiece(new TetrominoImpl(TetrominoData.T_COORD, 17, 1, TetrominoData.T_COLOR));
+        assertTrue(this.model.advance(Interaction.ROTATE));
+        assertTrue(this.model.advance(Interaction.ROTATE));
+        assertTrue(this.model.advance(Interaction.ROTATE));
+
+        this.model.advance(Interaction.ROTATE);
+        this.model.advance(Interaction.DOWN);
+        assertFalse(this.model.advance(Interaction.ROTATE));
+    }
+
     // CHECKSTYLE: MagicNumber ON
 
     Set<Pair<Integer, Integer>> getAllComponents() {
