@@ -8,7 +8,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
-import it.unibo.jtrs.controller.impl.PreviewController;
+import it.unibo.jtrs.controller.api.PreviewController;
 import it.unibo.jtrs.view.api.GenericPanel;
 import it.unibo.jtrs.view.custom.Constants;
 import it.unibo.jtrs.view.custom.GridPanel;

@@ -1,53 +1,51 @@
 package it.unibo.jtrs.controller.impl;
 
+import it.unibo.jtrs.controller.api.ScoreController;
+import it.unibo.jtrs.model.api.ScoreModel;
 import it.unibo.jtrs.model.impl.ScoreModelImpl;
 
 /**
  * ScoreController implementation.
  */
-public class ScoreController {
+public class ScoreControllerImpl implements ScoreController {
 
-    private final ScoreModelImpl model;
+    private final ScoreModel model;
 
     /**
      * Constructor.
      */
-    public ScoreController() {
+    public ScoreControllerImpl() {
         this.model = new ScoreModelImpl();
     }
 
     /**
-     * Returns the current level.
-     *
-     * @return the current level
+     * {@inheritDoc}
      */
+    @Override
     public int getLevel() {
         return this.model.getLevel();
     }
 
     /**
-     * Returns the score.
-     *
-     * @return the score
+     * {@inheritDoc}
      */
+    @Override
     public int getScore() {
         return this.model.getScore();
     }
 
     /**
-     * Evaluates a new score based on the number of lines completed.
-     *
-     * @param lines the number of lines
+     * {@inheritDoc}
      */
+    @Override
     public void evaluate(final int lines) {
         this.model.evaluate(lines);
     }
 
     /**
-     * Returns the number of deleted rows.
-     * 
-     * @return the number of rows
+     * {@inheritDoc}
      */
+    @Override
     public int returnRemoved() {
         return this.model.getLines();
     }

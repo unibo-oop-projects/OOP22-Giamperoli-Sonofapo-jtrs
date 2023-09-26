@@ -1,9 +1,9 @@
 package it.unibo.jtrs.game.core.impl;
 
 import it.unibo.jtrs.controller.api.Application;
-import it.unibo.jtrs.controller.impl.GameController;
-import it.unibo.jtrs.controller.impl.PreviewController;
-import it.unibo.jtrs.controller.impl.ScoreController;
+import it.unibo.jtrs.controller.api.GameController;
+import it.unibo.jtrs.controller.api.PreviewController;
+import it.unibo.jtrs.controller.api.ScoreController;
 import it.unibo.jtrs.game.core.api.GameLogic;
 import it.unibo.jtrs.model.api.GameModel.GameState;
 import it.unibo.jtrs.model.api.GameModel.Interaction;

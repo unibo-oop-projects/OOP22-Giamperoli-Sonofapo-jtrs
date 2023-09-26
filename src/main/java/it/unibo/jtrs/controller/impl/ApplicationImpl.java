@@ -2,6 +2,9 @@ package it.unibo.jtrs.controller.impl;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.jtrs.controller.api.Application;
+import it.unibo.jtrs.controller.api.GameController;
+import it.unibo.jtrs.controller.api.PreviewController;
+import it.unibo.jtrs.controller.api.ScoreController;
 import it.unibo.jtrs.game.core.api.GameLogic;
 import it.unibo.jtrs.game.core.impl.GameEngineImpl;
 import it.unibo.jtrs.game.core.impl.GameLogicImpl;
@@ -26,9 +29,9 @@ public class ApplicationImpl implements Application {
      */
     public ApplicationImpl() {
 
-        this.sC = new ScoreController();
-        this.pC = new PreviewController();
-        this.gC = new GameController();
+        this.sC = new ScoreControllerImpl();
+        this.pC = new PreviewControllerImpl();
+        this.gC = new GameControllerImpl();
 
         this.logic = new GameLogicImpl(this);
         this.panel = new ApplicationPanel(this);

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import it.unibo.jtrs.controller.impl.GameController;
+import it.unibo.jtrs.controller.api.GameController;
 import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.model.impl.GameModelImpl;
 import it.unibo.jtrs.utils.Pair;

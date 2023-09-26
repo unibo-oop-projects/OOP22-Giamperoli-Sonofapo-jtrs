@@ -4,7 +4,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 
-import it.unibo.jtrs.controller.impl.ScoreController;
+import it.unibo.jtrs.controller.api.ScoreController;
 import it.unibo.jtrs.view.api.GenericPanel;
 import it.unibo.jtrs.view.custom.Constants;
 import it.unibo.jtrs.view.custom.Label;
