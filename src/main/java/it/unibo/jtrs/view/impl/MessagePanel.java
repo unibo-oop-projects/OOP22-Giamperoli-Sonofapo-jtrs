@@ -1,10 +1,13 @@
 package it.unibo.jtrs.view.impl;
 
+import java.awt.Color;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
+import it.unibo.jtrs.utils.Chronometer;
 import it.unibo.jtrs.view.api.GenericPanel;
 import it.unibo.jtrs.view.custom.Constants;
 import it.unibo.jtrs.view.custom.Label;
@@ -17,6 +20,10 @@ import it.unibo.jtrs.view.custom.Label;
 public class MessagePanel extends GenericPanel {
 
     public static final long serialVersionUID = 4328743;
+
+    private final transient Chronometer chrono = new Chronometer();
+    private final JLabel l2;
+    private boolean active;
 
     /**
      * Constructor.
@@ -35,7 +42,7 @@ public class MessagePanel extends GenericPanel {
         this.add(l1);
         this.add(Box.createVerticalStrut(Constants.MessagePanel.INTERLINE));
 
-        final JLabel l2 = new Label(t2, Constants.MessagePanel.SUBTITLE_SIZE);
+        l2 = new Label(t2, Constants.MessagePanel.SUBTITLE_SIZE);
         l2.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         this.add(l2);
     }
@@ -44,6 +51,12 @@ public class MessagePanel extends GenericPanel {
      * {@inheritDoc}
      */
     @Override
-    public void redraw() { }
+    public void redraw() {
+        if (this.chrono.elapsed() > 1000) {
+            this.l2.setForeground(this.active ? new Color(0, true) : Constants.Label.TEXT_COLOR);
+            this.active = !this.active;
+            this.chrono.reset();
+        }
+    }
 
 }

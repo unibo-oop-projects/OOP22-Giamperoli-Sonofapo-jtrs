@@ -1,6 +1,8 @@
 package it.unibo.jtrs.view.impl;
 
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -17,9 +19,7 @@ public class MainPanel extends GenericPanel {
 
     public static final long serialVersionUID = 4328743;
 
-    private final PreviewPanel previewPanel;
-    private final ScorePanel scorePanel;
-    private final GamePanel gamePanel;
+    private final List<GenericPanel> panels = new ArrayList<>();
 
     /**
      * Constructor.
@@ -27,9 +27,9 @@ public class MainPanel extends GenericPanel {
      * @param application the application to manage
      */
     public MainPanel(final Application application) {
-        this.previewPanel = new PreviewPanel(application.getPreviewController());
-        this.scorePanel = new ScorePanel(application.getScoreController());
-        this.gamePanel = new GamePanel(application.getGameController());
+        this.panels.add(new GamePanel(application.getGameController()));
+        this.panels.add(new PreviewPanel(application.getPreviewController()));
+        this.panels.add(new ScorePanel(application.getScoreController()));
 
         this.setLayout(new GridLayout(1, 2));
         this.setBorder(new EmptyBorder(Constants.ApplicationPanel.PADDING,
@@ -40,10 +40,10 @@ public class MainPanel extends GenericPanel {
 
         final var subpanel = new JPanel(new GridLayout(2, 1));
         subpanel.setOpaque(false);
-        subpanel.add(this.previewPanel);
-        subpanel.add(this.scorePanel);
+        subpanel.add(this.panels.get(1));
+        subpanel.add(this.panels.get(2));
 
-        this.add(this.gamePanel);
+        this.add(this.panels.get(0));
         this.add(subpanel);
     }
 
@@ -52,9 +52,7 @@ public class MainPanel extends GenericPanel {
      */
     @Override
     public void redraw() {
-        this.gamePanel.redraw();
-        this.previewPanel.redraw();
-        this.scorePanel.redraw();
+        this.panels.forEach(GenericPanel::redraw);
     }
 
 }
