@@ -3,8 +3,7 @@ package it.unibo.jtrs.view.impl;
 import javax.swing.JFrame;
 
 /**
- * A class representing the main window. The windows is able to provide
- * a KeyboardQuery in order to detect direction key presses.
+ * A class representing the main window frame.
  */
 public class ApplicationFrame extends JFrame {
 
@@ -13,7 +12,7 @@ public class ApplicationFrame extends JFrame {
     /**
      * Constructor.
      *
-     * @param panel the application panel
+     * @param panel the application panel to show
      */
     public ApplicationFrame(final ApplicationPanel panel) {
         super();

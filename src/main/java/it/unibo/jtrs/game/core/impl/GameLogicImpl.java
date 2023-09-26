@@ -30,7 +30,7 @@ public class GameLogicImpl implements GameLogic {
     /**
      * Constructor.
      *
-     * @param application the application this logic should operates on
+     * @param application the application this logic should operate on
      */
     public GameLogicImpl(final Application application) {
         this.gC = application.getGameController();

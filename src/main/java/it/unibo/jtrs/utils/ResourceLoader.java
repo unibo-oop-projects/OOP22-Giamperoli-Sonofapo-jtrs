@@ -12,7 +12,7 @@ public final class ResourceLoader {
     private ResourceLoader() { }
 
     /**
-     * Return an InputStream to a given file.
+     * Returns an InputStream to a given file.
      *
      * @param fileName the file name
      * @return the InputStream of the file
@@ -27,7 +27,7 @@ public final class ResourceLoader {
     }
 
     /**
-     * Return the url of the given file.
+     * Returns the url of the given file.
      * 
      * @param fileName the file name
      * @return the URL of the file

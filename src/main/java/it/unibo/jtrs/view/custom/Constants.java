@@ -65,17 +65,17 @@ public final class Constants {
         );
 
         /**
-         * Default interline.
+         * Title interline.
          */
         public static final int TITLE_INTERLINE = 60;
 
         /**
-         * Default interline.
+         * Subtitle interline.
          */
         public static final int SUBTITLE_INTERLINE = 30;
 
         /**
-         * Default interline.
+         * List elements interline.
          */
         public static final int LIST_INTERLINE = 10;
 

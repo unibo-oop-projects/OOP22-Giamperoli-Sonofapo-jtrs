@@ -17,7 +17,7 @@ public class ScoreController {
     }
 
     /**
-     * Return the current level.
+     * Returns the current level.
      *
      * @return the current level
      */
@@ -26,7 +26,7 @@ public class ScoreController {
     }
 
     /**
-     * Return the score.
+     * Returns the score.
      *
      * @return the score
      */
@@ -35,7 +35,7 @@ public class ScoreController {
     }
 
     /**
-     * Evaluate a new score based on the number of lines completed.
+     * Evaluates a new score based on the number of lines completed.
      *
      * @param lines the number of lines
      */
@@ -44,7 +44,7 @@ public class ScoreController {
     }
 
     /**
-     * Return the number of deleted rows.
+     * Returns the number of deleted rows.
      * 
      * @return the number of rows
      */

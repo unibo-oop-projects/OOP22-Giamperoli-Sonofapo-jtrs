@@ -14,7 +14,8 @@ import it.unibo.jtrs.view.api.GenericPanel;
 import it.unibo.jtrs.view.custom.GridPanel;
 
 /**
- * The class models the game panel. This view must show the Tetronimos placed during the game.
+ * The class models the game panel. This view must show the Tetronimos placed
+ * during the game.
  */
 public class GamePanel extends GenericPanel {
 

@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import it.unibo.jtrs.utils.ResourceLoader;
 
 /**
- * Class that model a custom JLabel. This label can have a custom font
+ * Class that models a custom JLabel. This label can have a custom font
  * and foreground color.
  */
 public class Label extends JLabel {

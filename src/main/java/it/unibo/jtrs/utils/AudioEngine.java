@@ -9,8 +9,8 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
- * A simple audio engine that make possible to load a track from a file, pause
- * and resume as needed.
+ * A simple audio engine that makes possible to load a track from a file, play,
+ * pause and resume as needed.
  */
 public final class AudioEngine {
 
@@ -22,7 +22,7 @@ public final class AudioEngine {
     private AudioEngine() { }
 
     /**
-     * Load a file into the engine and start playing it.
+     * Loads a file into the engine and start playing it.
      *
      * @param file the file to load
      */
@@ -45,7 +45,7 @@ public final class AudioEngine {
     }
 
     /**
-     * Terminate the playing track and close its file.
+     * Terminates the playing track and closes its file.
      */
     public static void stop() {
         clip.stop();
@@ -53,7 +53,7 @@ public final class AudioEngine {
     }
 
     /**
-     * Play the current track if the audio engine is allowed to.
+     * Plays the current track if the audio engine is allowed to.
      */
     public static void play() {
         if (!isMuted) {
@@ -63,7 +63,7 @@ public final class AudioEngine {
     }
 
     /**
-     * Pause the current playing track if the audio engine is allowd to.
+     * Pauses the current playing track if the audio engine is allowd to.
      */
     public static void pause() {
         if (!isMuted) {
@@ -72,7 +72,7 @@ public final class AudioEngine {
     }
 
     /**
-     * Mute the audio engine. Play and pause function will no longer produce
+     * Mutes the audio engine. Play and pause function will no longer produce
      * an effect as long as unmute is called.
      */
     public static void mute() {
@@ -81,7 +81,7 @@ public final class AudioEngine {
     }
 
     /**
-     * Unmute the audio engine.
+     * Unmutes the audio engine.
      */
     public static void unmute() {
         isMuted = false;

@@ -1,7 +1,7 @@
 package it.unibo.jtrs.utils;
 
 /**
- * A simple chronometer class that measure elapsed time in milliseconds.
+ * A simple chronometer class that measures elapsed time in milliseconds.
  */
 public class Chronometer {
 
@@ -15,7 +15,7 @@ public class Chronometer {
     }
 
     /**
-     * Return how many millisecond have passed since chronometer creation.
+     * Returns how many millisecond have passed since chronometer creation.
      * 
      * @return the millisecond elapsed
      */
@@ -24,7 +24,7 @@ public class Chronometer {
     }
 
     /**
-     * Reset the chronometer and start counting over from 0.
+     * Resets the chronometer and start counting over from 0.
      */
     public void reset() {
         this.start = System.currentTimeMillis();

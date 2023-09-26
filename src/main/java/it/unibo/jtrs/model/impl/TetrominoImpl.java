@@ -38,7 +38,7 @@ public class TetrominoImpl implements Tetromino {
     }
 
     /**
-     * Evaluate the Tetromino's center of gravity with floating point precision.
+     * Evaluates the Tetromino's center of gravity with floating point precision.
      *
      * @return the center of gravity
      */

@@ -19,7 +19,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.jtrs.utils.Pair;
 
 /**
- * This class model a graphical grid panel.
+ * This class models a graphical grid panel.
  */
 public class GridPanel extends JPanel {
 
@@ -62,7 +62,7 @@ public class GridPanel extends JPanel {
     }
 
     /**
-     * Update a map of coordinates, each with their specified color. Restore the
+     * Updates a map of coordinates, each with their specified color. Restore the
      * remaining cells with a default color.
      *
      * @param map the map to read from
@@ -75,7 +75,7 @@ public class GridPanel extends JPanel {
     }
 
     /**
-     * Blink all the lines of the grid present in the specified set.
+     * Blinks all the lines of the grid contained in the specified set.
      *
      * @param lines a set of line number
      */

@@ -10,7 +10,7 @@ public abstract class GenericPanel extends JPanel {
     public static final long serialVersionUID = 4328743;
 
     /**
-     * Redraw the panel.
+     * Redraws the panel.
      */
     public abstract void redraw();
 }

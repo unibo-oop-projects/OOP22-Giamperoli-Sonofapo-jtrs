@@ -32,9 +32,9 @@ public class KeyboardReader implements KeyListener {
     /**
      * {@inheritDoc}<br><br>
      *
-     * Directional keys or (W, A, S, D) moves the Tetromino, SPACE send an interrupt
-     * signal to the application, M pause the playing soundtrack and ESC terminate
-     * the application.
+     * Directional keys or (W, A, S, D) moves the Tetromino, SPACE sends an interrupt
+     * signal to the application, M mutes/unmutes the playing soundtrack and ESC
+     * terminates the application.
      *
      */
     @Override

@@ -10,13 +10,13 @@ import it.unibo.jtrs.utils.Pair;
 public interface Tetromino {
 
     /**
-     * Rotate the Tetromino 90 degrees clockwise on its center of gravity. To
+     * Rotates the Tetromino 90 degrees clockwise on its center of gravity. To
      * perform this rotation SRS is used (https://tetris.fandom.com/wiki/SRS).
      */
     void rotate();
 
     /**
-     * Translate the Tetromino by a specific amount.
+     * Translates the Tetromino by a specific amount.
      *
      * @param x vertical translation
      * @param y horizontal translation
@@ -24,7 +24,7 @@ public interface Tetromino {
     void translate(int x, int y);
 
     /**
-     * Return a set of coordinates indicating where the Tetromino's components
+     * Returns a set of coordinates indicating where the Tetromino's components
      * are placed.
      * 
      * @return the set of coordinates
@@ -32,9 +32,9 @@ public interface Tetromino {
     Set<Pair<Integer, Integer>> getComponents();
 
     /**
-     * Delete all the components from a Tetromino that are horizontally located
-     * on the given position, horizontally wise. Split the Tetromino into smaller
-     * ones, each consisting of the single components, and return them as a set.
+     * Deletes all the components from a Tetromino that are horizontally located
+     * on the given position, horizontally wise. Splits the Tetromino into smaller
+     * ones, each consisting of the single components, and returns them as a set.
      * If the Tetromino has no component in that position, it is returned as is.
      * 
      * @param position the components' position to remove
@@ -43,14 +43,14 @@ public interface Tetromino {
     Set<Tetromino> delete(int position);
 
     /**
-     * Return the color assigend to the Tetromino.
+     * Returns the color assigend to the Tetromino.
      *
      * @return the color as an hexadecimal string
      */
     String getColor();
 
     /**
-     * Create a copy of the Tetromino.
+     * Creates a copy of the Tetromino.
      * 
      * @return the copy
      */

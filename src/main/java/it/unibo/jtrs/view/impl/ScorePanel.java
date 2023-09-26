@@ -10,7 +10,8 @@ import it.unibo.jtrs.view.custom.Constants;
 import it.unibo.jtrs.view.custom.Label;
 
 /**
- * The class models the score panel. This view must show the current level and score.
+ * The class models the score panel. This view must show the current level and
+ * score.
  */
 public class ScorePanel extends GenericPanel {
 

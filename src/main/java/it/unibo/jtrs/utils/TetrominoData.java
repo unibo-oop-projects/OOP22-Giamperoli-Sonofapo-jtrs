@@ -3,7 +3,7 @@ package it.unibo.jtrs.utils;
 import java.util.Set;
 
 /**
- * Provides sets of coordinats for all Tetris pieces and thei respective color (hex format).
+ * Provides sets of coordinats for all Tetris pieces and their respective color (hex format).
  */
 public final class TetrominoData {
 

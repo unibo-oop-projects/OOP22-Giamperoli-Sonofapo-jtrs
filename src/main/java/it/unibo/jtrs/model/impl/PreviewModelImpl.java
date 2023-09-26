@@ -5,8 +5,7 @@ import it.unibo.jtrs.model.api.Tetromino;
 import it.unibo.jtrs.model.api.TetrominoFactory;
 
 /**
- * This class implements the preview model. This model should be able to provide
- * the next Tetromino according to game rules.
+ * PreviewModel implementation.
  */
 public class PreviewModelImpl implements PreviewModel {
 

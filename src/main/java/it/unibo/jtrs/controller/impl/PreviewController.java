@@ -19,7 +19,7 @@ public class PreviewController {
     }
 
     /**
-     * Return the current Tetromino.
+     * Returns the current Tetromino.
      *
      * @return the Tetromino
      */
@@ -28,7 +28,7 @@ public class PreviewController {
     }
 
     /**
-     * Advance to next Tetromino.
+     * Advances to the next Tetromino.
      */
     public void nextTetromino() {
         this.model.next();

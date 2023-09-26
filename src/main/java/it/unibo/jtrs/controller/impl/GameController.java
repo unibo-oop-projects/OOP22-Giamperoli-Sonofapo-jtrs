@@ -23,7 +23,7 @@ public class GameController {
     }
 
     /**
-     * Return a list of Tetrominoes in the grid.
+     * Returns a list of Tetrominoes in the grid.
      *
      * @return the list of Tetrominoes
      */
@@ -32,7 +32,7 @@ public class GameController {
     }
 
     /**
-     * Return if the given interaction is successful.
+     * Returns the outcome of the given interaction.
      *
      * @param i the interaction
      * @return true on success, false otherwise
@@ -42,7 +42,7 @@ public class GameController {
     }
 
     /**
-     * Return if the given Tetromino has been addedd to the grid.
+     * Returns if the given Tetromino has been addedd to the grid.
      *
      * @param next the Tetromino to be added
      * @return true on success, false otherwise
@@ -53,7 +53,7 @@ public class GameController {
     }
 
     /**
-     * Return the number of lines deleted.
+     * Returns the number of lines deleted.
      *
      * @return the number of lines
      */
@@ -62,7 +62,7 @@ public class GameController {
     }
 
     /**
-     * Return the deleted lines.
+     * Returns the deleted lines.
      *
      * @return a set of lines
      */
