@@ -1,6 +1,7 @@
 package it.unibo.jtrs.view.custom;
 
 import java.awt.Color;
+import java.util.List;
 
 /**
  * Graphic's constants.
@@ -47,6 +48,54 @@ public final class Constants {
     }
 
     /**
+     * Start panel constants.
+     */
+    public static class StartPanel {
+
+        /**
+         * List of commands.
+         */
+        public static final List<String> COMMANDS_LIST = List.of(
+            "- W to rotate      ",
+            "- A to move left   ",
+            "- D to move right  ",
+            "- S to move down   ",
+            "- SPACE to pause   ",
+            "- M to toggle music"
+        );
+
+        /**
+         * Default interline.
+         */
+        public static final int TITLE_INTERLINE = 60;
+
+        /**
+         * Default interline.
+         */
+        public static final int SUBTITLE_INTERLINE = 30;
+
+        /**
+         * Default interline.
+         */
+        public static final int LIST_INTERLINE = 10;
+
+        /**
+         * Title font size.
+         */
+        public static final float TITLE_SIZE = 100f;
+
+        /**
+         * Subtitle font size.
+         */
+        public static final float SUBTITLE_SIZE = 30f;
+
+        /**
+         * Commands list font size.
+         */
+        public static final float LIST_SIZE = 15f;
+    }
+
+    /**
      * Application panel constants.
      */
     public static class ApplicationPanel {
@@ -55,11 +104,6 @@ public final class Constants {
          * Default padding.
          */
         public static final int PADDING = 20;
-
-        /**
-         * Offset to center game over text.
-         */
-        public static final float HEIGHT_OFFSET = 0.4f;
     }
 
     /**
@@ -81,6 +125,11 @@ public final class Constants {
          * Exit text font size.
          */
         public static final float SUBTITLE_SIZE = 20f;
+
+        /**
+         * Blink time.
+         */
+        public static final int BLINK_TIME = 800;
 
     }
 
@@ -131,8 +180,13 @@ public final class Constants {
         public static final float FONT_SIZE_S = 20f;
 
         /**
-         * Default interline.
+         * Small interline.
          */
-        public static final int INTERLINE = 20;
+        public static final int INTERLINE_S = 10;
+
+        /**
+         * Large interline.
+         */
+        public static final int INTERLINE_L = 20;
     }
 }

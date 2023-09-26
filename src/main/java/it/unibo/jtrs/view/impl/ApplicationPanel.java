@@ -16,8 +16,6 @@ import it.unibo.jtrs.game.core.inputs.KeyboardReader;
 import it.unibo.jtrs.model.api.GameModel.GameState;
 import it.unibo.jtrs.utils.ResourceLoader;
 import it.unibo.jtrs.view.api.GenericPanel;
-import it.unibo.jtrs.view.custom.Constants;
-
 /**
  * A class modelling the main panel to be inserted in a frame.
  */
@@ -38,12 +36,11 @@ public class ApplicationPanel extends JLayeredPane {
         this.setLayout(new OverlayLayout(this));
 
         this.application = application;
-        final int offset = (int) (super.getSize().height * Constants.ApplicationPanel.HEIGHT_OFFSET);
 
         this.panels.add(GameState.START.ordinal(), new StartPanel());
         this.panels.add(GameState.RUNNING.ordinal(), new MainPanel(application));
-        this.panels.add(GameState.PAUSE.ordinal(), new MessagePanel("PAUSE", "Press SPACE to resume", offset));
-        this.panels.add(GameState.OVER.ordinal(), new MessagePanel("GAME OVER", "Press ESC to exit the game", offset));
+        this.panels.add(GameState.PAUSE.ordinal(), new MessagePanel("PAUSE", "Press SPACE to resume"));
+        this.panels.add(GameState.OVER.ordinal(), new MessagePanel("GAME OVER", "Press ESC to exit the game"));
 
         for (final GameState s : GameState.values()) {
             final var i = s.ordinal();

@@ -30,11 +30,9 @@ public class MessagePanel extends GenericPanel {
      *
      * @param t1 title
      * @param t2 subtitle
-     * @param offset the top offset
      */
-    public MessagePanel(final String t1, final String t2, final int offset) {
+    public MessagePanel(final String t1, final String t2) {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.add(Box.createVerticalStrut(offset));
         this.setOpaque(false);
 
         final JLabel l1 = new Label(t1, Constants.MessagePanel.TITLE_SIZE);
@@ -52,7 +50,7 @@ public class MessagePanel extends GenericPanel {
      */
     @Override
     public void redraw() {
-        if (this.chrono.elapsed() > 1000) {
+        if (this.chrono.elapsed() > Constants.MessagePanel.BLINK_TIME) {
             this.l2.setForeground(this.active ? new Color(0, true) : Constants.Label.TEXT_COLOR);
             this.active = !this.active;
             this.chrono.reset();
