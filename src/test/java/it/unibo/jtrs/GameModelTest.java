@@ -25,7 +25,7 @@ class GameModelTest {
     private GameModel model;
 
     // CHECKSTYLE: MagicNumber OFF
-     /**
+    /**
      * Initialize necessary field for the tests.
      */
     @BeforeEach
@@ -69,7 +69,7 @@ class GameModelTest {
 
         assertEquals(2, this.model.deleteRows());
         assertEquals(1, this.model.getPieces().size());
-        assertEquals(Set.of(new Pair<>(18, 0), new Pair<>(18, 1), 
+        assertEquals(Set.of(new Pair<>(18, 0), new Pair<>(18, 1),
             new Pair<>(19, 0), new Pair<>(19, 1)), this.getAllComponents());
     }
 
@@ -110,7 +110,7 @@ class GameModelTest {
         this.model.nextPiece(new TetrominoImpl(TetrominoData.O_COORD, 14, 0, TetrominoData.O_COLOR));
         assertEquals(4, this.model.deleteRows());
         assertEquals(1, this.model.getPieces().size());
-        assertEquals(Set.of(new Pair<>(19, 0), new Pair<>(19, 1), 
+        assertEquals(Set.of(new Pair<>(19, 0), new Pair<>(19, 1),
             new Pair<>(18, 0), new Pair<>(18, 1)), this.getAllComponents());
     }
     // CHECKSTYLE: MagicNumber ON
