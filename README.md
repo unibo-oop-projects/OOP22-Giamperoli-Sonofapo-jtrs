@@ -11,29 +11,29 @@ Il fine ultimo del gioco è quello di totalizzare il maggior numero di punti pri
 
 I pezzi presenti nel gioco si chiamano Tetramini e ne esistono di sette tipi diversi, ciascuno di una forma che ricorda una lettera e con uno specifico colore. Nello specifico si hanno i seguenti Tetramini:
 
-- O, di colore giallo
-- I, di colore ciano
-- T, di colore magenta
-- L, di colore arancione
-- J, di colore blu
-- S, di colore verde
-- Z, di colore rosso
+- `O`, di colore giallo
+- `I`, di colore ciano
+- `T`, di colore magenta
+- `L`, di colore arancione
+- `J`, di colore blu
+- `S`, di colore verde
+- `Z`, di colore rosso
 
 ## Comandi di gioco
 Il gioco mette a disposizione i seguenti comandi, da impartire attraverso la tastiera. Nello specifico:
 
 ### Movimento
-- W oppure ↑ permettono di ruotare il Tetramino di 90° in senso orario
-- S oppure ↓ permettono di far scorrere il Tetramino verso il basso
-- A oppure ← permettono di spostare il Tetramino a sinistra
-- D oppure → permettono di spostare il Tetromino a destra
+- `W` oppure `↑` permettono di ruotare il Tetramino di 90° in senso orario
+- `S` oppure `↓` permettono di far scorrere il Tetramino verso il basso
+- `A` oppure `←` permettono di spostare il Tetramino a sinistra
+- `D` oppure `→` permettono di spostare il Tetromino a destra
 
 1. Si noti che tutti i movimenti sono unitari e riferiti al Tetramino attualmente in caduta.
 
 ### Altri comandi
-- ESC permette il termine e la chiusura dell'applicazione
-- SPACE permette di mettere in pausa la partita
-- M permette di mutare o meno la traccia musicale
+- `ESC` permette il termine e la chiusura dell'applicazione
+- `SPACE` permette di mettere in pausa la partita
+- `M` permette di mutare o meno la traccia musicale
 
 ## Meccaniche di gioco
 Il funzionamento del gioco è molto intuitivo. Al completamento di una, due, tre o quattro linee nel senso orizzontale, queste verrano eliminate dalla griglia e i pezzi soprastanti verrano traslati di conseguenza. Maggiore è il numero di linee eliminate con un singolo posizionamento di un Tetramino, maggiore sarà il punteggio assegnato.
