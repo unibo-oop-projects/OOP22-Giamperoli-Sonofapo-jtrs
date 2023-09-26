@@ -1,5 +1,6 @@
 package it.unibo.jtrs.view.impl;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -15,8 +16,6 @@ import it.unibo.jtrs.game.core.inputs.KeyboardReader;
 import it.unibo.jtrs.model.api.GameModel.GameState;
 import it.unibo.jtrs.utils.ResourceLoader;
 import it.unibo.jtrs.view.api.GenericPanel;
-import it.unibo.jtrs.view.custom.Constants;
-
 /**
  * A class modelling the main panel to be inserted in a frame.
  */
@@ -25,9 +24,8 @@ public class ApplicationPanel extends JLayeredPane {
     public static final long serialVersionUID = 4328743;
 
     private final transient Application application;
-
+    private final List<GenericPanel> panels = new ArrayList<>();
     private transient BufferedImage background;
-    private List<GenericPanel> panels = new ArrayList<>();
 
     /**
      * Constructor.
@@ -38,16 +36,14 @@ public class ApplicationPanel extends JLayeredPane {
         this.setLayout(new OverlayLayout(this));
 
         this.application = application;
-        final int offset = (int) (super.getSize().height * Constants.ApplicationPanel.HEIGHT_OFFSET);
 
         this.panels.add(GameState.START.ordinal(), new StartPanel());
         this.panels.add(GameState.RUNNING.ordinal(), new MainPanel(application));
-        this.panels.add(GameState.PAUSE.ordinal(), new MessagePanel("PAUSE", "Press SPACE to resume", offset));
-        this.panels.add(GameState.OVER.ordinal(), new MessagePanel("GAME OVER", "Press ESC to exit the game", offset));
+        this.panels.add(GameState.PAUSE.ordinal(), new MessagePanel("PAUSE", "Press SPACE to resume"));
+        this.panels.add(GameState.OVER.ordinal(), new MessagePanel("GAME OVER", "Press ESC to exit the game"));
 
-
-        for (GameState s : GameState.values()) {
-            var i = s.ordinal();
+        for (final GameState s : GameState.values()) {
+            final var i = s.ordinal();
             this.panels.get(i).setVisible(false);
             this.add(this.panels.get(i), i);
         }
@@ -57,7 +53,15 @@ public class ApplicationPanel extends JLayeredPane {
 
         try {
             this.background = ImageIO.read(ResourceLoader.loadAsStream("background.jpg"));
-        } catch (IOException e) {
+        } catch (IOException e) { // fallback to default background
+            this.setOpaque(true);
+            this.setBackground(Color.DARK_GRAY);
+            for (final GameState s : GameState.values()) {
+                final var i = s.ordinal();
+                this.panels.get(i).setOpaque(true);
+                this.panels.get(i).setBackground(Color.DARK_GRAY);
+            }
+
             this.background = null;
         }
     }
@@ -66,11 +70,9 @@ public class ApplicationPanel extends JLayeredPane {
      * Redraws the application components.
      */
     public void redraw() {
-        final var state = this.application.getState();
-        this.setActiveLayer(state.ordinal());
-        if (state == GameState.RUNNING) {
-            this.panels.get(state.ordinal()).redraw();
-        }
+        final var layer = this.application.getState().ordinal();
+        this.setActiveLayer(layer);
+        this.panels.get(layer).redraw();
     }
 
     /**
@@ -79,12 +81,10 @@ public class ApplicationPanel extends JLayeredPane {
     @Override
     protected void paintComponent(final Graphics g) {
         super.paintComponent(g);
-        if (this.background != null) {
-            g.drawImage(this.background, 0, 0, this);
-        }
+        g.drawImage(this.background, 0, 0, this);
     }
 
-    private void setActiveLayer(int layer) {
+    private void setActiveLayer(final int layer) {
         for (int i = 0; i < this.panels.size(); i++) {
             this.panels.get(i).setVisible(i == layer);
         }

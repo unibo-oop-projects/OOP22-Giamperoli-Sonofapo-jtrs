@@ -46,12 +46,14 @@ public class ScorePanel extends GenericPanel {
         this.message.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 
         this.add(levelTxt);
+        this.add(Box.createVerticalStrut(Constants.ScorePanel.INTERLINE_S));
         this.add(this.level);
-        this.add(Box.createVerticalStrut(Constants.ScorePanel.INTERLINE));
+        this.add(Box.createVerticalStrut(Constants.ScorePanel.INTERLINE_L));
 
         this.add(scoreTxt);
+        this.add(Box.createVerticalStrut(Constants.ScorePanel.INTERLINE_S));
         this.add(this.score);
-        this.add(Box.createVerticalStrut(Constants.ScorePanel.INTERLINE));
+        this.add(Box.createVerticalStrut(Constants.ScorePanel.INTERLINE_L));
 
         this.add(this.message);
     }
