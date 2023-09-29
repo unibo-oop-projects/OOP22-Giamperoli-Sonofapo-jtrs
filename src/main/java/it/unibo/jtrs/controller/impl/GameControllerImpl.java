@@ -36,7 +36,7 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     @Override
-    public boolean advance(final Interaction i) {
+    public synchronized boolean advance(final Interaction i) {
         return this.model.advance(i);
     }
 
