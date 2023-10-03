@@ -423,9 +423,9 @@ https://github.com/Sonofapo/OOP22-jtrs/blob/2aeff6f68fed1508f020c7ed595d120fd784
 
 - Utilizzo di Lambda Expression. Seguono alcuni esempi:
 
-https://github.com/Sonofapo/OOP22-jtrs/blame/2aeff6f68fed1508f020c7ed595d120fd78431c9/src/main/java/it/unibo/jtrs/view/custom/GridPanel.java#L71
+https://github.com/Sonofapo/OOP22-jtrs/blob/2aeff6f68fed1508f020c7ed595d120fd78431c9/src/main/java/it/unibo/jtrs/view/custom/GridPanel.java#L71
 
-https://github.com/Sonofapo/OOP22-jtrs/blame/2aeff6f68fed1508f020c7ed595d120fd78431c9/src/main/java/it/unibo/jtrs/view/custom/GridPanel.java#L82
+https://github.com/Sonofapo/OOP22-jtrs/blob/2aeff6f68fed1508f020c7ed595d120fd78431c9/src/main/java/it/unibo/jtrs/view/custom/GridPanel.java#L82
 
 #### Alex Giamperoli
 
@@ -437,13 +437,13 @@ https://github.com/Sonofapo/OOP22-jtrs/blob/2aeff6f68fed1508f020c7ed595d120fd784
 
 - Utilizzo di Lamba Expression. Segue un esempio:
 
-https://github.com/Sonofapo/OOP22-jtrs/blame/328a8a496976ecebf2dc8167c66bf630786ccb72/src/main/java/it/unibo/jtrs/model/impl/GameModelImpl.java#L143
+https://github.com/Sonofapo/OOP22-jtrs/blob/328a8a496976ecebf2dc8167c66bf630786ccb72/src/main/java/it/unibo/jtrs/model/impl/GameModelImpl.java#L143
 
 - Utilizzo di Predicate e Consumer. Seguono alcuni esempi:
 
-https://github.com/Sonofapo/OOP22-jtrs/blame/328a8a496976ecebf2dc8167c66bf630786ccb72/src/main/java/it/unibo/jtrs/model/impl/GameModelImpl.java#L100
+https://github.com/Sonofapo/OOP22-jtrs/blob/328a8a496976ecebf2dc8167c66bf630786ccb72/src/main/java/it/unibo/jtrs/model/impl/GameModelImpl.java#L100
 
-https://github.com/Sonofapo/OOP22-jtrs/blame/328a8a496976ecebf2dc8167c66bf630786ccb72/src/main/java/it/unibo/jtrs/model/impl/GameModelImpl.java#L101
+https://github.com/Sonofapo/OOP22-jtrs/blob/328a8a496976ecebf2dc8167c66bf630786ccb72/src/main/java/it/unibo/jtrs/model/impl/GameModelImpl.java#L101
 
 Link a risorse esterne utilizzate:
 - Immagine di sfondo: https://wallpapercave.com/wp/wp4478566.jpg
