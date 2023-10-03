@@ -425,7 +425,7 @@ https://github.com/Sonofapo/OOP22-jtrs/blob/2aeff6f68fed1508f020c7ed595d120fd784
 
 https://github.com/Sonofapo/OOP22-jtrs/blob/2aeff6f68fed1508f020c7ed595d120fd78431c9/src/main/java/it/unibo/jtrs/view/custom/GridPanel.java#L71
 
-https://github.com/Sonofapo/OOP22-jtrs/blob/2aeff6f68fed1508f020c7ed595d120fd78431c9/src/main/java/it/unibo/jtrs/view/custom/GridPanel.java#L82
+https://github.com/Sonofapo/OOP22-jtrs/blob/6994d9f924221a868cafcf976f49365daeab2ea8/src/main/java/it/unibo/jtrs/view/custom/GridPanel.java#L83
 
 #### Alex Giamperoli
 
