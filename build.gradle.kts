@@ -4,9 +4,7 @@
  * This generated file contains a sample Java application project to get you started.
  * For more details take a look at the 'Building Java & JVM projects' chapter in the Gradle
  * User Manual available at https://docs.gradle.org/8.0.2/userguide/building_java_projects.html
- */
-
-plugins {
+ */    plugins {
 
     // Apply the java plugin to add support for Java
     java
@@ -23,7 +21,10 @@ plugins {
     id("com.github.johnrengelman.shadow") version "7.0.0"
     id("org.danilopianini.gradle-java-qa") version "1.9.0"
 
+
+id("org.danilopianini.unibo-oop-gradle-plugin") version "1.0.2"
 }
+
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -51,3 +52,5 @@ tasks.test {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
+
+ java { toolchain { languageVersion.set(JavaLanguageVersion.of(17)) } }
