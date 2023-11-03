@@ -20,13 +20,6 @@
      */
     id("com.github.johnrengelman.shadow") version "7.0.0"
     id("org.danilopianini.gradle-java-qa") version "1.9.0"
-
-
-id("org.danilopianini.unibo-oop-gradle-plugin") version "1.0.2"
-
-id("org.danilopianini.unibo-oop-gradle-plugin") version "1.0.2"
-
-id("org.danilopianini.unibo-oop-gradle-plugin") version "1.0.2"
 }
 
 
