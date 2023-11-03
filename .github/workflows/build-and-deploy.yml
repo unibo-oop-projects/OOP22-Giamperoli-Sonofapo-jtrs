@@ -47,6 +47,8 @@ jobs:
     steps:
       - name: Checkout
         uses: DanySK/action-checkout@0.2.14
+      - run: |
+          (curl https://raw.githubusercontent.com/arzzen/git-quick-stats/master/git-quick-stats | bash -s -- -T) > git-stats.txt
       - uses: DanySK/build-check-deploy-gradle-action@2.2.10
         with:
           build-command: ./gradlew test || true
@@ -59,7 +61,7 @@ jobs:
         uses: ncipollo/release-action@v1.13.0
         with:
           tag: ${{ needs.version.outputs.version_tag }}
-          artifacts: "**/*blame*.md"
+          artifacts: "**/*blame*.md,git-stats.txt"
           allowUpdates: true
           replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
