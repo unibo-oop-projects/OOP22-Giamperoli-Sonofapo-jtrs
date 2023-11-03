@@ -23,7 +23,10 @@
 
 
 id("org.danilopianini.unibo-oop-gradle-plugin") version "1.0.2"
+
+id("org.danilopianini.unibo-oop-gradle-plugin") version "1.0.2"
 }
+
 
 
 repositories {
@@ -53,4 +56,5 @@ tasks.test {
     useJUnitPlatform()
 }
 
+ java { toolchain { languageVersion.set(JavaLanguageVersion.of(17)) } }
  java { toolchain { languageVersion.set(JavaLanguageVersion.of(17)) } }

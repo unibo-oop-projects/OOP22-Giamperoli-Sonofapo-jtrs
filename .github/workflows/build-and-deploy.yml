@@ -16,7 +16,6 @@ jobs:
     runs-on: ubuntu-22.04
     outputs:
        version_tag: ${{ steps.version.outputs.version_tag }}
-       java_version: ${{ steps.version.outputs.java_version }}
     steps:
       - name: Checkout
         uses: DanySK/action-checkout@0.2.14
@@ -31,8 +30,6 @@ jobs:
           bump_each_commit: true
           search_commit_body: false
       - run: '[ -n "${{ steps.version.outputs.version_tag }}" ]'
-      - run: |
-          ruby -e 'puts("java_version=#{/^java.version\s*=\s*(\d+)$/.match(File.read("gradle.properties"))[1]}")' > $GITHUB_OUTPUT
   build:
     permissions:
       contents: write
@@ -56,7 +53,7 @@ jobs:
           check-command: ./gradlew blame
           should-run-codecov: false
           should-deploy: false
-          java-version: ${{ needs.version.outputs.java_version }}
+          java-version: 17
       - name: Release
         if: contains('Linux', runner.os) && needs.branch.outputs.is_default
         uses: ncipollo/release-action@v1.13.0
